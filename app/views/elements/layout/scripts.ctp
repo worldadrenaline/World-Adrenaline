@@ -1,4 +1,4 @@
-<?php if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'kumutu.lan') === false)): //Hide for dev environments ?>
+<?php if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'local-adventicus') === false)): //Hide for dev environments ?>
 <!-- Google Analytics -->
 <script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");
@@ -6,10 +6,9 @@
 </script>
 <script type="text/javascript">
 	try {
-		var pageTracker = _gat._getTracker("UA-2845737-17");
+		var pageTracker = _gat._getTracker("UA-2845737-11");
 		pageTracker._trackPageview();
 	} catch(err) {}
 </script>
 <!-- /Google Analytics -->
-
 <?php endif; ?>

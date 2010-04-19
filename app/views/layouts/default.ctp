@@ -4,87 +4,93 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php echo $title_for_layout; ?> - Adventicus</title>
 		<meta name="Description" content="Adventure activity listings worldwide. Find an adventure activity globally and make a request." />
-		<meta name="Keywords" content="adventure, travel, adventure travel, extreme sports, extreme" />
+		<meta name="Keywords" content="adventure, travel, adventure travel, extreme sports, extreme, adventure sport, adventure holiday, travel, sport, holidays, tour, adventicus" />
 		<meta name="robots" content="index,follow" />
 
 		<?php echo $html->meta('icon', $html->url('/img/favicon.png')); ?>
 		<?php // <link rel="apple-touch-icon" href="/img/favicon-iphone.png" /> ?>
 
 		<?php 
-			echo $html->css('screen', 'stylesheet', 'media="screen"', true); 
+			echo $html->css('screen', 'stylesheet', 'media="screen"', true);
+			echo $html->css('adventicus','stylesheet', 'media="screen"', true); 
 			//echo $html->css('mobile', 'stylesheet', 'media="mobile"', true); 
 			//echo $html->css('print', 'stylesheet', 'media="print"', true); 
-
-			//echo $javascript->link(array('jquery-1.3.2.min', 'jquery-ui-1.7.2.custom.min')); 
-			//echo $javascript->link(array('cufon-yui.js', 'libs/Capture_it_400.font.js', 'kumutu'));
-			
 			echo $scripts_for_layout;
-		?>
+		
+			if(!empty($ajax)) {
+			    echo $javascript->link('prototype');
+			} 
+		?> 
+		
+		
 	</head>
-	<body id="top">
-
+	<body>
 		<p id="skipnav" class="hidden"><a href="#content">Go to content</a></p>
-
 		<div id="container">
-
 			<div id="header">
 			</div> <!-- /header -->
+			<div class="top_panel">
+				<div class="sub_container">
+					<div class="adven_logo"><a href="/"><img src="/img/logo-D3.png" alt="Logo" id="logo" /></a></div>
+					<div class="adven_message"><span>Adventicus</span> is the largest directory of adventure activity operators on the web. Whether you're a climber, diver, white-water rafter, hiker, mountain biker, or paraglider<span>...find your adventure now!</span></div>
+				</div> <!-- /sub_container -->
+			</div> <!-- /top_panel -->
 
 			<div id="nav">
 			</div> <!-- /nav -->
 
+			<script type="text/javascript" >
+			function chng(obj)
+			{
+			alert(obj)
+			obj='text-decoration:underline';
+			}
+			</script>
+
+
+			<div class="header_panel"><div class="header_menu">
+			
+				<?php  echo $this->element('activity_types/list'); ?>
+				<?php // echo $this->element('activity_types/listStatic'); ?>
+				
+				
+				
+			
+			</div></div> <!-- //header_panel -->
 
 			<div id="content">
 
-<!-- Begin session-flash  -->
-
-				<?php // $session->flash('auth'); ?>
+				<!-- Begin session-flash  -->
 				<?php $session->flash(); ?>
-
-<!-- End session-flash -->
-
-<!-- Begin content_for_layout -->
-
+				<!-- End session-flash -->
+	
+				<!-- Begin content_for_layout -->
 				<?php echo $content_for_layout; ?>
-
-<!-- End content_for_layout -->
+				<!-- End content_for_layout -->
 
 				<div class="clear"></div>
 
 			</div> <!-- /content -->
 
 			<div id="footer">
-
 				<div id="footer-links">
 					<h2>Site Links</h2>
 					<ul>
 						<li class="first"><?php echo $html->link(__('About', true), '/about'); ?></li>
-						<li><?php echo $html->link(__('Jobs', true), '/jobs'); ?></li>
 						<li><?php echo $html->link(__('Contact', true), '/contact'); ?></li>
 					</ul>
 				</div> <!-- /footerlinks -->
-				<?php /*
 				<div id="footer-copyright">
-					&copy; KumutuLabs <?php echo date('Y'); ?>
+					&copy; Adventicus <?php echo date('Y'); ?>
 				</div>
-				*/ ?>
 			</div> <!-- /footer -->
 
 		</div> <!-- /container -->
 
-		<div id="ajax-error-dialog" title="<?php __('ERROR'); ?>">
-			<!--  <p><?php //__('There has been an error with an AJAX request, the server responded with the following error:'); ?></p> -->
-			<p id="ajax-error-response"></p>
-		</div> <!-- /ajax-error-dialog -->
-
 
 		<!-- scripts -->
-
-		<script type="text/javascript">Cufon.now();</script>
 		<?php echo $this->element('layout/scripts'); ?>
-
 		<!-- /scripts -->
-
 
 		<div id="debug">
 			<?php debug($session->read()); ?>

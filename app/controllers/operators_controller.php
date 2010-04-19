@@ -11,9 +11,23 @@ class OperatorsController extends AppController {
 
 	function index() {
 		$this->Operator->recursive = 0;
+		//$this->passedArgs['limit'] = 50;
+		//$this->passedArgs['order'] = array('Operator.name' => 'asc');
+		
+		
+		//Get ActivityType requested on previous page
+		$activityType = $this->params['pass']['0'];
+		
+		$this->paginate = array (
+			'conditions' => array('ActivityType LIKE' => $activityType),
+			'limit' => 50,
+			'order' => array('Operator.name' => 'asc')
+		);
+		 
 		$this->set('operators', $this->paginate());
 	}
-
+	
+	
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Operator', true));
@@ -21,8 +35,18 @@ class OperatorsController extends AppController {
 		}
 		$this->set('operator', $this->Operator->read(null, $id));
 	}
+	
+	/*
+	 * Admin functions
+	 */
+	 
+	function admin_index() {
+		$this->Operator->recursive = 0;
+		$this->set('operators', $this->paginate());
+	}
 
-	function add() {
+
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Operator->create();
 			if ($this->Operator->save($this->data)) {
@@ -34,7 +58,7 @@ class OperatorsController extends AppController {
 		}
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Operator', true));
 			$this->redirect(array('action' => 'index'));
@@ -52,7 +76,7 @@ class OperatorsController extends AppController {
 		}
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for Operator', true));
 			$this->redirect(array('action' => 'index'));

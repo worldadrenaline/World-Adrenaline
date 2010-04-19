@@ -13,8 +13,12 @@ class CountriesController extends AppController {
 		$this->Country->recursive = 0;
 		$this->set('countries', $this->paginate());
 	}
+	
+	/*
+	 * Admin functions
+	 */
 
-	function view($id = null) {
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Country', true));
 			$this->redirect(array('action' => 'index'));
@@ -22,7 +26,7 @@ class CountriesController extends AppController {
 		$this->set('country', $this->Country->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->Country->create();
 			if ($this->Country->save($this->data)) {
@@ -34,7 +38,7 @@ class CountriesController extends AppController {
 		}
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid Country', true));
 			$this->redirect(array('action' => 'index'));
@@ -52,7 +56,7 @@ class CountriesController extends AppController {
 		}
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for Country', true));
 			$this->redirect(array('action' => 'index'));

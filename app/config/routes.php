@@ -41,8 +41,7 @@
  * View an operator's profile
  */
 	Router::connect('/operator/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));
-	Router::connect('/prospect/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));
-		
+	Router::connect('/prospect/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));		
 	
 /**
  *  Static routes for simple pages.

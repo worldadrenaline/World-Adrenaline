@@ -4,13 +4,20 @@ class ActivityTypesController extends AppController {
 	var $name = 'ActivityTypes';
 	var $helpers = array('Html', 'Form');
 
-	function index() {
-		$this->ActivityType->recursive = 0;
-		$this->passedArgs['limit'] = 200;
-		$this->passedArgs['order'] = array('ActivityType.ActName' => 'asc'); 
-		$this->set('activityTypes', $this->paginate());
+
+	function beforeFilter() {
+	    parent::beforeFilter(); 
+	    $this->Auth->allowedActions = array('index', 'view');
 	}
-	
+
+	function index() {
+		$ActivityTypes = $this->paginate();
+		if (isset($this->params['requested'])){
+			return $ActivityTypes;
+		} else {
+			$this->set('activityTypes',$ActivityTypes);
+		}
+	}
 	
 	/*
 	 * Admin functions
