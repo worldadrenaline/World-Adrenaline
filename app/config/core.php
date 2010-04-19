@@ -148,7 +148,7 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', 'ACr93b0qyJfIxfs2guVoUubWwvniR2G0FgaD8fy');
+	Configure::write('Security.salt', '4030cf26e4ed7dd97901903eb47c2fa1df514e3b');
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
  * Will append a querystring parameter containing the time the file was modified. This is

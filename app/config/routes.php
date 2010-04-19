@@ -36,4 +36,18 @@
  * ...and connect the rest of 'Pages' controller's urls.
  */
 	Router::connect('/pages/*', array('controller' => 'pages', 'action' => 'display'));
+	
+/**
+ * View an operator's profile
+ */
+	Router::connect('/operator/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));
+	Router::connect('/prospect/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));
+		
+	
+/**
+ *  Static routes for simple pages.
+ */
+ 	Router::connect ('/about', array('controller'=>'pages', 'action'=>'display', 'about'));
+	Router::connect('/contact',	array('controller' => 'pages', 'action' => 'display', 'contact'));
+	
 ?>
