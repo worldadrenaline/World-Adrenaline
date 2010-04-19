@@ -50,4 +50,10 @@
  	Router::connect ('/about', array('controller'=>'pages', 'action'=>'display', 'about'));
 	Router::connect('/contact',	array('controller' => 'pages', 'action' => 'display', 'contact'));
 	
+/**
+ *  Redirect the admin area to the users controller.
+ */
+	Router::connect('/admin', array('controller' => 'users', 'admin' => true));
+
+			
 ?>

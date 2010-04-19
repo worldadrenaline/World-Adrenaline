@@ -3,18 +3,28 @@ class ActivityTypesController extends AppController {
 
 	var $name = 'ActivityTypes';
 	var $helpers = array('Html', 'Form');
-	
-	function beforeFilter() {
-	    parent::beforeFilter(); 
-	    $this->Auth->allowedActions = array('index', 'view');
-	}
 
 	function index() {
 		$this->ActivityType->recursive = 0;
+		$this->passedArgs['limit'] = 200;
+		$this->passedArgs['order'] = array('ActivityType.ActName' => 'asc'); 
 		$this->set('activityTypes', $this->paginate());
 	}
-
-	function view($id = null) {
+	
+	
+	/*
+	 * Admin functions
+	 */
+	
+	function admin_index() {
+		$this->ActivityType->recursive = 0;
+		$this->passedArgs['limit'] = 200; 
+		$this->passedArgs['order'] = array('ActivityType.ActName' => 'asc'); 
+		$this->set('activityTypes', $this->paginate());
+	}
+	
+	
+	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid ActivityType', true));
 			$this->redirect(array('action' => 'index'));
@@ -22,7 +32,7 @@ class ActivityTypesController extends AppController {
 		$this->set('activityType', $this->ActivityType->read(null, $id));
 	}
 
-	function add() {
+	function admin_add() {
 		if (!empty($this->data)) {
 			$this->ActivityType->create();
 			if ($this->ActivityType->save($this->data)) {
@@ -34,7 +44,7 @@ class ActivityTypesController extends AppController {
 		}
 	}
 
-	function edit($id = null) {
+	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
 			$this->Session->setFlash(__('Invalid ActivityType', true));
 			$this->redirect(array('action' => 'index'));
@@ -52,7 +62,7 @@ class ActivityTypesController extends AppController {
 		}
 	}
 
-	function delete($id = null) {
+	function admin_delete($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid id for ActivityType', true));
 			$this->redirect(array('action' => 'index'));

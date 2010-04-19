@@ -64,7 +64,7 @@
  * 'admin' 		-> admin_index() and /admin/controller/index
  * 'superuser' -> superuser_index() and /superuser/controller/index
  */
-	//Configure::write('Routing.admin', 'admin');
+	Configure::write('Routing.admin', 'admin');
 
 /**
  * Turn off all caching application-wide.
@@ -144,7 +144,7 @@
  * CakePHP session IDs are also regenerated between requests if
  * 'Security.level' is set to 'high'.
  */
-	Configure::write('Security.level', 'high');
+	Configure::write('Security.level', 'low');
 /**
  * A random string used in security hashing methods.
  */
