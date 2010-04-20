@@ -1,7 +1,9 @@
-<?php 
+<?php
 class Contact extends AppModel {
-    
-    var $useTable = false;
+
+	var $name = 'Contact';
+	
+	var $useTable = false;
     var $_schema = array(
         'name'      =>array('type'=>'string', 'length'=>100), 
         'email'     =>array('type'=>'string', 'length'=>255), 
@@ -16,30 +18,30 @@ class Contact extends AppModel {
     var $validate = array(
         'name' => array(
             'rule'=>array('minLength', 1), 
-            'message'=>'Name is required'
+            'message'=>'Your name is required'
         ),
         'email' => array(
             'rule'=>'email', 
-            'message'=>'Valid email address required'
+            'message'=>'A valid email address required'
         ),
         'subject' => array(
             'rule'=>array('minLength', 1), 
-            'message'=>'Subject is required'
+            'message'=>'The subject is required'
         ),
         'message' => array(
             'rule'=>array('minLength', 1), 
-            'message'=>'Message is required'
+            'message'=>'A short message is required'
         ),
         'date' => array(
             'rule'=>'date', 
-            'message'=>'Valid date is required'
+            'message'=>'A valid date is required'
         ),
         'phone' => array(
            'notEmpty'=>array(
                 'rule' => 'notEmpty', 
                 'required' => true,
                 'allowEmpty' => false,
-                'message' => 'Phone number is required'
+                'message' => 'Your phone number is required'
             ),
             'validCharacters'=>array(
                 'rule' => '/^[+\s\(\)0-9]+$/i', 
@@ -53,7 +55,7 @@ class Contact extends AppModel {
                 'rule' => 'notEmpty', 
                 'required' => true,
                 'allowEmpty' => false,
-                'message' => 'Number of participants is required'
+                'message' => 'The number of participants is required'
             ),
             'validCharacters'=>array(
                 'rule' => array('inList', array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10+')), 
@@ -67,7 +69,7 @@ class Contact extends AppModel {
                 'rule' => array('equalTo', '1'), 
                 'required' => true,
                 'allowEmpty' => false,
-                'message' => 'Terms must be accepted'
+                'message' => 'The terms of use must be accepted'
             ),
             'isBoolean'=>array(
                 'rule' => array('boolean'), 
@@ -77,5 +79,6 @@ class Contact extends AppModel {
             )
          )
     );
+
 }
 ?>

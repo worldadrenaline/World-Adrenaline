@@ -81,19 +81,21 @@ class UsersController extends AppController {
 	function initAcl() {
 	    $group =& $this->User->Group;
 	    //Allow admins to everything
-	    $group->id = 1;     
+	    $group->id = 5;     
 	    $this->Acl->allow($group, 'controllers');
 	 
-	    //allow managers to activityTypes and widgets
-	    $group->id = 2;
+	    //allow managers to activityTypes and Countries and Operators and Contacts
+	    $group->id = 6;
 	    $this->Acl->deny($group, 'controllers');
 	    $this->Acl->allow($group, 'controllers/ActivityTypes');
 	    $this->Acl->allow($group, 'controllers/Countries');
    	    $this->Acl->allow($group, 'controllers/Operators');
+  	    $this->Acl->allow($group, 'controllers/Contacts');
+
 
 	 
 	    //allow users to only add and edit on posts and widgets
-	    $group->id = 3;
+	    $group->id = 7;
 	    $this->Acl->deny($group, 'controllers');        
 	    $this->Acl->allow($group, 'controllers/Operators/add');
 	    $this->Acl->allow($group, 'controllers/Operators/edit');        

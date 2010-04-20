@@ -48,6 +48,8 @@
  */
  	Router::connect ('/about', array('controller'=>'pages', 'action'=>'display', 'about'));
 	Router::connect('/contact',	array('controller' => 'pages', 'action' => 'display', 'contact'));
+	Router::connect('/thanks',	array('controller' => 'pages', 'action' => 'display', 'thanks'));
+	Router::connect('/terms',	array('controller' => 'pages', 'action' => 'display', 'terms'));
 	
 /**
  *  Redirect the admin area to the users controller.

@@ -1,7 +1,7 @@
 <?php 
  class RecaptchaComponent extends Object {
-    var $publickey = "";
-    var $privatekey= "";
+    var $publickey = "6Lf9KgcAAAAAADYWTqUyR0kYSxwbJ36ntBYAUI3r";
+    var $privatekey= "6Lf9KgcAAAAAAFHCc0Xu5pHLAR17srqJ1eamIgFp";
     
     var $is_valid = false;
     var $error = "";

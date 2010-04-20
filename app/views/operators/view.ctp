@@ -71,10 +71,10 @@
 			
 			<?php //New form in CakePHP ?>
 			<?php 
-			    //echo $form->create('Contact');
+			    echo $form->create('Contact');
 			    //echo $form->create('Contact', array('action' => 'sendContactRequest'));
 			    //echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'sendContactRequest')));
-			    echo $form->create('Contact', array('url' => array('controller' => 'operators', 'action' => 'sendContactRequest')));
+			    //echo $form->create('Contact', array('url' => array('controller' => 'operators', 'action' => 'sendContactRequest')));
 
 			    
    				echo $form->input('name', array('label'=>'Name <span>*</span>', 'size'=>'35'));

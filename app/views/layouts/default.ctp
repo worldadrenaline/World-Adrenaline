@@ -51,15 +51,9 @@
 				<?php $session->flash(); ?>
 				<!-- End session-flash -->
 
-			<div class="header_panel"><div class="header_menu">
 			
 				<?php  echo $this->element('activity_types/list'); ?>
-				<?php // echo $this->element('activity_types/listStatic'); ?>
-				
-				
-				
 			
-			</div></div> <!-- //header_panel -->
 
 			<div id="content">
 
