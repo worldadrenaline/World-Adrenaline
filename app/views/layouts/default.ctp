@@ -47,6 +47,9 @@
 			}
 			</script>
 
+				<!-- Begin session-flash  -->
+				<?php $session->flash(); ?>
+				<!-- End session-flash -->
 
 			<div class="header_panel"><div class="header_menu">
 			
@@ -60,9 +63,7 @@
 
 			<div id="content">
 
-				<!-- Begin session-flash  -->
-				<?php $session->flash(); ?>
-				<!-- End session-flash -->
+
 	
 				<!-- Begin content_for_layout -->
 				<?php echo $content_for_layout; ?>

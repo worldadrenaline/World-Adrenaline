@@ -9,7 +9,6 @@ h4 {}
 h5 {}
 p {}
 br {clear: left;}
-.weak {font-size: 85%; color: #CCC;}
 
 .sub_container {margin:auto; width:899px; height:auto;}
 
@@ -43,8 +42,6 @@ br {clear: left;}
 .sub_po_bg ul li a:hover {color:#ff2020; font-weight:bold; text-decoration:none;}
 .sub_po_bg ul li span{font-weight:bold; color:#006ec0;}
 
-.contact_bg {float:left; width:595px; height:auto; background-color:#FFF; border:solid 10px #ecf8fe; padding:10px; font-size:13px; color:#333; margin:30px 0 0;}
-.contact_bg h2 { background-color:#ECF8FE; margin:-10px -10px 0; padding:15px 10px; font-size:20px; }
 .con_text {float:left; width:595px; height:auto; font-size:12px;  padding:10px 0px 5px 0px; font-weight:bold;}
 .con_text a{text-decoration:none; color:#F00;}
 .con_text a:hover{text-decoration:underline; color:#F00;}

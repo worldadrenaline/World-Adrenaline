@@ -18,6 +18,11 @@ class CountriesController extends AppController {
 	 * Admin functions
 	 */
 
+	function admin_index() {
+		$this->Country->recursive = 0;
+		$this->set('countries', $this->paginate());
+	}
+
 	function admin_view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Country', true));

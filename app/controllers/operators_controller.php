@@ -3,10 +3,14 @@ class OperatorsController extends AppController {
 
 	var $name = 'Operators';
 	var $helpers = array('Html', 'Form');
+	
+	//var $components = array('Recaptcha');
 
 	function beforeFilter() {
 	    parent::beforeFilter(); 
 	    $this->Auth->allowedActions = array('index', 'view');
+		$this->Recaptcha->publickey = "6Lf9KgcAAAAAADYWTqUyR0kYSxwbJ36ntBYAUI3r";
+		$this->Recaptcha->privatekey = "6Lf9KgcAAAAAAFHCc0Xu5pHLAR17srqJ1eamIgFp"; 
 	}
 
 	function index() {
@@ -34,7 +38,47 @@ class OperatorsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('operator', $this->Operator->read(null, $id));
+		
+		
+		//Validate form with reCaptcha
+		/*
+		if($this->Recaptcha->valid($this->params['form'])) {
+			//submission is valid!
+		} 
+		else {
+		  //invalid reCAPTCHA entry. 
+		}
+		*/
+				
 	}
+	
+	function sendContactRequest () {
+		   /*
+		    if ($this->RequestHandler->isPost()) {
+	        $this->Contact->set($this->data);
+	        if ($this->Contact->validates()) {
+	            //send email using the Email component
+	            $this->Email->to = 'ryan.off@kumutu.com';  
+	            $this->Email->subject = 'Information request from ' . $this->data['Contact']['name'];  
+	            $this->Email->from = $this->data['Contact']['email'];  
+	            $this->Email->send($this->data['Contact']['message']);
+	        }
+	    }
+	    */
+	    
+		if ($this->Contact->validates()) {
+	//		$this->Session->setFlash('processing form..');
+	        $this->set ( 'success', 'The message was sent <br />Thank you!' );
+			$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
+		}
+		else {
+			$this->set ( 'error', 'Please complete all fields' );
+			$this->Session->setFlash('Please complete all required fields..');
+            $this->redirect($this->referer(), null, true);
+		}
+
+	}
+	
 	
 	/*
 	 * Admin functions

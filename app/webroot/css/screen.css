@@ -24,21 +24,21 @@
 * {	margin:0; padding:0;}
 
 /* General Style Info */
-body {margin:0px; padding:0px; background-color:#FFF; font: 14px/18px Helvetica Neue,Helvetica,Arial,sans-serif; }
+body {margin:0px; padding:0px; background-color:#EDF8FE; font: 14px/18px Helvetica Neue,Helvetica,Arial,sans-serif; }
 
 a {	text-decoration: underline;}
-a:hover {background:#fff; text-decoration:none; }
+a:hover { }
 a img { border:none;}
-p { line-height:22px !important; padding:0; font:18px/27px Helvetica,Arial,serif; padding-bottom:10px; margin:5px 0 18px; }
+p { padding:0; padding-bottom:10px; margin:5px 0 18px; }
 
 h1, h2, h3, h4 { font-weight: normal; }
 h1 { font-size: 90px; line-height:90px; font-weight: bold; }
-h2 { background:#fff; color: #e32; font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif; font-size: 190%; margin: 0.3em 0;padding-top: 0.8em; }
+h2 { color: #e32; font-size: 190%; margin: 0.3em 0;padding-top: 0.8em; }
 h3 {color: #993; font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif; font-size: 165%; padding-top: 1.5em;}
 h4 { color: #993; font-weight: normal; padding-top: 0.5em; }
 ul, li { margin: 0px; }
 
-.weak { font-size: 85%; color: #666; }
+.weak { font-size: 85%; color: #999; }
 p.weak { padding: 0px; margin: 0px; }
 .clear { clear: both; }
 
@@ -177,12 +177,7 @@ fieldset fieldset div {
 	clear: left;
 	margin: 0 20px;
 }
-form div {
-	clear: both;
-	margin-bottom: 1em;
-	padding: .5em;
-	vertical-align: text-top;
-}
+form div { vertical-align: text-top; }
 form div.input {
 	color: #444;
 }
@@ -190,24 +185,13 @@ form div.required {
 	color: #333;
 	font-weight: bold;
 }
-form div.submit {
-	border: 0;
-	clear: both;
-	margin-top: 10px;
-	margin-left: 140px;
-}
+form div.submit { border: 0; clear: both; margin-top: 10px;}
 label {
 	display: block;
 	font-size: 110%;
 	padding-right: 20px;
 }
-input, textarea {
-	clear: both;
-	font-size: 140%;
-	font-family: "frutiger linotype", "lucida grande", "verdana", sans-serif;
-	padding: 2px;
-	width: 100%;
-}
+input, textarea { padding: 2px; }
 select {
 	/*
 	clear: both;
@@ -417,6 +401,8 @@ div.code-coverage-results span.result-good {
 	color: #0a0;
 }
 
+#flashMessage { width:80%; margin: 10px auto; border: 1px solid #AA0000; background-color: #FFFFFF; padding: 10px; text-align: center; }
+
 /* Home */
 .tagline {
 	clear:both;
@@ -451,8 +437,8 @@ div.code-coverage-results span.result-good {
 .content_panel {float:left; width:100%; height:auto; background:url(../img/content_bg.jpg) repeat-x left top; padding-top:10px;}
 .content_left_panel {float:left; width:635px; height:auto; padding-left:25px;}
 .content_left_panel h1 { color:#0073C2; border-bottom:1px solid #B7E4FA; font-family:Calibri; font-size:40px; font-weight:normal; line-height:40px; margin:15px 0 0; padding:0 0 13px 10px; width:624px; }
-.content_left_panel h2 { color:#0073C2; font-size:15px; font-weight:bold; margin:15px 0 5px; }
-.content_left_panel p { margin: 0px; }
+.content_left_panel h2 { color:#0073C2; font-size:15px; font-weight:bold; margin:0px 0 5px; }
+.content_left_panel p { margin: 0px; font-size: 16px; }
 .content_title {float:left; width:605px; height:auto; font-family:Calibri; font-size: 20px; color:#0073c2; margin-top: 5px; padding-left:10px; padding-bottom:5px; border-bottom:solid 1px #b7e4fa;}
 .content_bg {float:left; width:730px; height:auto; border-top:solid 1px #fff;}
 .content_tumb {float:left; width:635px; height:auto; padding:10px 0px 10px 0px;}
@@ -494,3 +480,15 @@ ul.activityList { float: left; list-style: none; margin:0; padding:0; }
 ul.activityList a {float:left; width:182px; height:15px; background:url(../img/nav_bg.png) no-repeat left top; text-decoration:none; color:#FFF; font-family:Verdana, Geneva, sans-serif; font-size:13px; padding:6px 0px 6px 30px;}
 ul.activityList a:hover {float:left; width:182px; height:15px; background:url(../img/nav_bg.png) no-repeat left top; text-decoration:underline; color:#FFF; font-family:Verdana, Geneva, sans-serif; font-size:13px; padding:6px 0px 6px 30px;}
 li.activityLink { }
+
+/* Information Request Form */
+.contact {float:left; width:595px; height:auto; background-color:#FFF; border:solid 10px #ecf8fe; padding:10px; font-size:13px; color:#333; margin:30px 0 0;}
+.contact h2 { background-color:#ECF8FE; margin:-10px -10px 0; padding:15px 10px; font-size:20px; }
+.contact span { color: #FF2020; }
+.contact label { font-size:12px; font-weight:bold; height:auto; padding:10px 0 5px; }
+.contact .checkbox label { display: inline; }
+.contact .checkbox { clear: both; margin:12px 0 0; }
+.contact textarea {}
+.contact .textarea {}
+.contact .submit { margin-top: 20px; }
+.recaptcha {margin-top: 20px;}
