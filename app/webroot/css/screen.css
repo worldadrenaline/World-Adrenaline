@@ -34,7 +34,7 @@ p { padding:0; padding-bottom:10px; margin:5px 0 18px; }
 h1, h2, h3, h4 { font-weight: normal; }
 h1 { font-size: 90px; line-height:90px; font-weight: bold; }
 h2 { color: #e32; font-size: 190%; margin: 0.3em 0;padding-top: 0.8em; }
-h3 {color: #993; font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif; font-size: 165%; padding-top: 1.5em;}
+h3 {color: #333; font-family:'Gill Sans','lucida grande',helvetica, arial, sans-serif; font-size: 165%; padding-top: 1.5em; padding-bottom: 20px;}
 h4 { color: #993; font-weight: normal; padding-top: 0.5em; }
 ul, li { margin: 0px; }
 

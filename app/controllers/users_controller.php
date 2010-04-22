@@ -6,7 +6,7 @@ class UsersController extends AppController {
 	
 	function beforeFilter() {
 	    parent::beforeFilter();
-   	    $this->Auth->allowedActions = array('login', 'logout');
+   	    $this->Auth->allowedActions = array('login', 'logout', 'initAcl', 'buildAcl');
 	    //$this->Auth->allow('*');
 	}
 
@@ -78,6 +78,109 @@ class UsersController extends AppController {
 		$this->redirect($this->Auth->logout());
 	}
 	
+
+	
+    /**
+     * Acl functions
+     */
+    
+    /**
+     * Rebuild the Acl based on the current controllers in the application, populates acos table
+     *
+     * @return void
+     */
+	
+function buildAcl() {
+		if (!Configure::read('debug')) {
+			return $this->_stop();
+		}
+		$log = array();
+
+		$aco =& $this->Acl->Aco;
+		$root = $aco->node('controllers');
+		if (!$root) {
+			$aco->create(array('parent_id' => null, 'model' => null, 'alias' => 'controllers'));
+			$root = $aco->save();
+			$root['Aco']['id'] = $aco->id; 
+			$log[] = 'Created Aco node for controllers';
+		} else {
+			$root = $root[0];
+		}   
+
+		App::import('Core', 'File');
+		$Controllers = Configure::listObjects('controller');
+		$appIndex = array_search('App', $Controllers);
+		if ($appIndex !== false ) {
+			unset($Controllers[$appIndex]);
+		}
+		$baseMethods = get_class_methods('Controller');
+		$baseMethods[] = 'buildAcl';
+
+		$Plugins = $this->_getPluginControllerNames();
+		$Controllers = array_merge($Controllers, $Plugins);
+
+		// look at each controller in app/controllers
+		foreach ($Controllers as $ctrlName) {
+			$methods = $this->_getClassMethods($this->_getPluginControllerPath($ctrlName));
+
+			// Do all Plugins First
+			if ($this->_isPlugin($ctrlName)){
+				$pluginNode = $aco->node('controllers/'.$this->_getPluginName($ctrlName));
+				if (!$pluginNode) {
+					$aco->create(array('parent_id' => $root['Aco']['id'], 'model' => null, 'alias' => $this->_getPluginName($ctrlName)));
+					$pluginNode = $aco->save();
+					$pluginNode['Aco']['id'] = $aco->id;
+					$log[] = 'Created Aco node for ' . $this->_getPluginName($ctrlName) . ' Plugin';
+				}
+			}
+			// find / make controller node
+			$controllerNode = $aco->node('controllers/'.$ctrlName);
+			if (!$controllerNode) {
+				if ($this->_isPlugin($ctrlName)){
+					$pluginNode = $aco->node('controllers/' . $this->_getPluginName($ctrlName));
+					$aco->create(array('parent_id' => $pluginNode['0']['Aco']['id'], 'model' => null, 'alias' => $this->_getPluginControllerName($ctrlName)));
+					$controllerNode = $aco->save();
+					$controllerNode['Aco']['id'] = $aco->id;
+					$log[] = 'Created Aco node for ' . $this->_getPluginControllerName($ctrlName) . ' ' . $this->_getPluginName($ctrlName) . ' Plugin Controller';
+				} else {
+					$aco->create(array('parent_id' => $root['Aco']['id'], 'model' => null, 'alias' => $ctrlName));
+					$controllerNode = $aco->save();
+					$controllerNode['Aco']['id'] = $aco->id;
+					$log[] = 'Created Aco node for ' . $ctrlName;
+				}
+			} else {
+				$controllerNode = $controllerNode[0];
+			}
+
+			//clean the methods. to remove those in Controller and private actions.
+			foreach ($methods as $k => $method) {
+				if (strpos($method, '_', 0) === 0) {
+					unset($methods[$k]);
+					continue;
+				}
+				if (in_array($method, $baseMethods)) {
+					unset($methods[$k]);
+					continue;
+				}
+				$methodNode = $aco->node('controllers/'.$ctrlName.'/'.$method);
+				if (!$methodNode) {
+					$aco->create(array('parent_id' => $controllerNode['Aco']['id'], 'model' => null, 'alias' => $method));
+					$methodNode = $aco->save();
+					$log[] = 'Created Aco node for '. $method;
+				}
+			}
+		}
+		if(count($log)>0) {
+			debug($log);
+		}
+	}
+	
+	/**
+     * Initiate the Acl, populates the aros_acos table
+     * 
+     * @return unknown_type
+     */
+	
 	function initAcl() {
 	    $group =& $this->User->Group;
 	    //Allow admins to everything
@@ -103,6 +206,8 @@ class UsersController extends AppController {
 	    $this->Acl->allow($group, 'controllers/Countries/edit');
    	    $this->Acl->allow($group, 'controllers/ActivityTypes/add');
 	    $this->Acl->allow($group, 'controllers/ActivityTypes/edit');
+   	    $this->Acl->allow($group, 'controllers/Contacts/add');
+
 	}
 	
 

@@ -3,23 +3,32 @@ class ContactsController extends AppController {
 
 	var $name = 'Contacts';
 	var $helpers = array('Html', 'Form');
+	
+	function beforeFilter() {
+	    parent::beforeFilter(); 
+	    $this->Auth->allowedActions = array('add');
+	}
 
 
 	function add() {
 	    $this->Contact->set($this->data);
 	
 		if ($this->Contact->validates()) {
-			$this->Session->setFlash('Success.. Your request has been sent.');
-	        $this->set ( 'success', 'The message was sent <br />Thank you!' );
-			$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
+			$this->Contact->create();
+			if ($this->Contact->save($this->data)) {
+				// We should now send the contact via the Kumutu API to the operator
+				// If it succeeds, then display the follow message
+				$this->Session->setFlash(__('Success.. Your request has been sent.', true));
+				$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
+			} else {
+				$this->Session->setFlash(__('Your request could not be sent. Please, try again.', true));
+			}
 		}
 		else {
-			// $this->set ( 'error', 'Please complete all fields' );
-			// $this->Session->setFlash('Please complete all required fields..');
-	        // $this->redirect($this->referer(), null, true);
-	        
-	        $errors = $this->Product->invalidFields();
-		    $this->Session->setFlash(implode(',', $errors)); 
+			// $this->redirect($this->referer(), null, true);
+	        $errors = $this->Contact->invalidFields();
+		    $this->Session->setFlash(implode(',', $errors));
+			//The problem we have is that this is taking us to the contact add page instead of back to the original page. If a redirect, then we loose all info in form. Possibly put this code in an element on the Operator page.
 		}
 		
 		
