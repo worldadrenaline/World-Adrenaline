@@ -63,14 +63,17 @@
 				</script>
 				<!-- END Google Friends Connect Rating -->		
 			</div> <!-- /googleReviews -->
-		</div>
+		</div> <!-- /sub_to_bg -->
 	
-		<div class="contact">
+				<?php echo $this->element('contacts/add'); ?>
 		
-			<h2>Request more information from this operator </h2>
 			
-			<?php //New form in CakePHP ?>
 			<?php 
+			/*
+				<div class="contact">
+		
+				<h2>Request more information from this operator </h2>
+			
 			    echo $form->create('Contact');
 			    //echo $form->create('Contact', array('action' => 'sendContactRequest'));
 			    //echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'sendContactRequest')));
@@ -99,6 +102,7 @@
 				
 			    echo $form->submit('submit.png');
 				echo $form->end();
+				*/
 			?>
 			
 			

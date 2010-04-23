@@ -24,7 +24,7 @@
 * {	margin:0; padding:0;}
 
 /* General Style Info */
-body {margin:0px; padding:0px; background-color:#EDF8FE; font: 14px/18px Helvetica Neue,Helvetica,Arial,sans-serif; }
+body {margin:0px; padding:0px; background-color:#FFF; font: 14px/18px Helvetica Neue,Helvetica,Arial,sans-serif; }
 
 a {	text-decoration: underline;}
 a:hover { }
@@ -416,7 +416,7 @@ div.code-coverage-results span.result-good {
 
 
 /* top panel */
-.top_panel {float:left; width:100%; height:130px; background:url(../img/top_panel_bg.jpg) repeat-x left top;}
+.top_panel {float:left; width:100%;  background:url(../img/top_panel_bg.jpg) repeat-x left top #EBF8FE;}
 .adven_logo {float:left; width:auto; height:102px; padding-top:25px;}
 .adven_message {float:right; width:459px; height:101px; background:url(../img/message.png) no-repeat left top; margin-top:27px; padding:8px 30px 0px 30px; font-family:Verdana, Geneva, sans-serif; font-size:12px; color:#065c89; font-style:italic; font-weight:bold; }
 .adven_message span {font-size:15px;}
@@ -440,7 +440,7 @@ div.code-coverage-results span.result-good {
 .content_left_panel h2 { color:#0073C2; font-size:15px; font-weight:bold; margin:0px 0 5px; }
 .content_left_panel p { margin: 0px; font-size: 16px; }
 .content_title {float:left; width:605px; height:auto; font-family:Calibri; font-size: 20px; color:#0073c2; margin-top: 5px; padding-left:10px; padding-bottom:5px; border-bottom:solid 1px #b7e4fa;}
-.content_bg {float:left; width:730px; height:auto; border-top:solid 1px #fff;}
+.content_bg {float:left; width:730px; height:auto; border-top:solid 1px #fff; margin-bottom:10px; margin-top:10px; }
 .content_tumb {float:left; width:635px; height:auto; padding:10px 0px 10px 0px;}
 .content_link {color:#0e5c9a;}
 .content_link a {text-decoration:none; color:#0e5c9a; padding: 5px;}
