@@ -187,13 +187,13 @@ function buildAcl() {
 	    $group->id = 5;     
 	    $this->Acl->allow($group, 'controllers');
 	 
-	    //allow managers to activityTypes and Countries and Operators and Contacts
+	    //allow managers to activityTypes and Countries and Operators and Requests
 	    $group->id = 6;
 	    $this->Acl->deny($group, 'controllers');
 	    $this->Acl->allow($group, 'controllers/ActivityTypes');
 	    $this->Acl->allow($group, 'controllers/Countries');
    	    $this->Acl->allow($group, 'controllers/Operators');
-  	    $this->Acl->allow($group, 'controllers/Contacts');
+  	    $this->Acl->allow($group, 'controllers/Requests');
 
 
 	 
@@ -206,7 +206,7 @@ function buildAcl() {
 	    $this->Acl->allow($group, 'controllers/Countries/edit');
    	    $this->Acl->allow($group, 'controllers/ActivityTypes/add');
 	    $this->Acl->allow($group, 'controllers/ActivityTypes/edit');
-   	    $this->Acl->allow($group, 'controllers/Contacts/add');
+   	    $this->Acl->allow($group, 'controllers/Requests/add');
 
 	}
 	

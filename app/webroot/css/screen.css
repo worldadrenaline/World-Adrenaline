@@ -148,7 +148,6 @@ dd {
 
 /* Forms */
 form {
-	clear: both;
 	margin-right: 20px;
 	padding: 0;
 	width: 80%;
@@ -436,11 +435,11 @@ div.code-coverage-results span.result-good {
 /* content panel */
 .content_panel {float:left; width:100%; height:auto; background:url(../img/content_bg.jpg) repeat-x left top; padding-top:10px;}
 .content_left_panel {float:left; width:635px; height:auto; padding-left:25px;}
-.content_left_panel h1 { color:#0073C2; border-bottom:1px solid #B7E4FA; font-family:Calibri; font-size:40px; font-weight:normal; line-height:40px; margin:15px 0 0; padding:0 0 13px 10px; width:624px; }
+.content_left_panel h1 { color:#0073C2; border-bottom:1px solid #B7E4FA; font-family:Calibri; font-size:40px; font-weight:normal; line-height:40px; margin:15px 0 0; padding:0 0 13px 10px; width:610px; }
 .content_left_panel h2 { color:#0073C2; font-size:15px; font-weight:bold; margin:0px 0 5px; }
 .content_left_panel p { margin: 0px; font-size: 16px; }
-.content_title {float:left; width:605px; height:auto; font-family:Calibri; font-size: 20px; color:#0073c2; margin-top: 5px; padding-left:10px; padding-bottom:5px; border-bottom:solid 1px #b7e4fa;}
-.content_bg {float:left; width:730px; height:auto; border-top:solid 1px #fff; margin-bottom:10px; margin-top:10px; }
+.content_title {float:left; width:605px; height:auto; font-family:Calibri; font-size: 20px; color:#0073c2; margin-top: 5px; padding-left:0px; padding-bottom:5px;}
+.content_bg {float:left; width:730px; height:auto;  margin-bottom:10px; margin-top:10px; }
 .content_tumb {float:left; width:635px; height:auto; padding:10px 0px 10px 0px;}
 .content_link {color:#0e5c9a;}
 .content_link a {text-decoration:none; color:#0e5c9a; padding: 5px;}
@@ -482,13 +481,13 @@ ul.activityList a:hover {float:left; width:182px; height:15px; background:url(..
 li.activityLink { }
 
 /* Information Request Form */
-.contact {float:left; width:595px; height:auto; background-color:#FFF; border:solid 10px #ecf8fe; padding:10px; font-size:13px; color:#333; margin:30px 0 0;}
-.contact h2 { background-color:#ECF8FE; margin:-10px -10px 0; padding:15px 10px; font-size:20px; }
-.contact span { color: #FF2020; }
-.contact label { font-size:12px; font-weight:bold; height:auto; padding:10px 0 5px; }
-.contact .checkbox label { display: inline; }
-.contact .checkbox { clear: both; margin:12px 0 0; }
-.contact textarea {}
-.contact .textarea {}
-.contact .submit { margin-top: 20px; }
+.request {float:left; width:595px; height:auto; background-color:#FFF; border:solid 10px #ecf8fe; padding:10px; font-size:13px; color:#333; margin:30px 0 0;}
+.request h2 { background-color:#ECF8FE; margin:-10px -10px 0; padding:15px 10px; font-size:20px; }
+.request span { color: #FF2020; }
+.request label { font-size:12px; font-weight:bold; height:auto; padding:10px 0 5px; }
+.request .checkbox label { display: inline; }
+.request .checkbox { clear: both; margin:12px 0 0; }
+.request textarea {}
+.request .textarea {}
+.request .submit { margin-top: 20px; }
 .recaptcha {margin-top: 20px;}

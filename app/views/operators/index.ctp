@@ -1,3 +1,5 @@
+<?php //  echo $this->element('activity_types/list'); ?>
+
 <!-- content_panel -->
 <div class="content_panel">
 	<div class="sub_container">
@@ -9,14 +11,29 @@
 			
 			<div class="content_bg">
 
+				<?php /* Filter not yet working
+				<!-- Filter the results -->
 				<div class="filter">
 				<h5>Filter by</h5>
-						<form name="frm" action="" method="post">
-						<input type="hidden" name="id" value="1034"  />
-						<select id="ContryList" name="ContryList" onchange="form.submit()" >
-						<option value="" selected="selected">- Country -</option><option value="AF" ><b>Afghanistan<b></option></select> 
+						<form name="filterForm" action="" method="get">
+						<!-- <input type="hidden" name="id" value="1034"  /> -->
+							<select id="ContryList" name="ContryList" onchange="form.submit()" >
+								<option value="" selected="selected">- Country -</option>
+								<option value="GB" >United Kingdom</option>
+							</select> 
 						</form>
 				</div>
+								
+				
+				<?php 
+				 /*
+				    echo $form->create('', array('url' => array('controller' => 'operators', 'action' => 'index')));
+	    			echo $form->input('country', array('type'=>'select', 'options'=>array ('' => '- Country -', 'UK' => 'United Kingdom'), 'label'=>'Filter by'));
+					echo $form->input('activityType', array('type'=>'hidden', 'value'=>$activityType));
+				    echo $form->end('Send');
+				*/
+				?>
+				
 				
 				<div class="content_tumb">
 					<div class="paging">

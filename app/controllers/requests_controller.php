@@ -1,7 +1,7 @@
 <?php
-class ContactsController extends AppController {
+class RequestsController extends AppController {
 
-	var $name = 'Contacts';
+	var $name = 'Requests';
 	var $helpers = array('Html', 'Form');
 	
 	function beforeFilter() {
@@ -11,11 +11,11 @@ class ContactsController extends AppController {
 
 
 	function add() {
-	    $this->Contact->set($this->data);
+	    $this->Request->set($this->data);
 	
-		if ($this->Contact->validates()) {
-			$this->Contact->create();
-			if ($this->Contact->save($this->data)) {
+		if ($this->Request->validates()) {
+			$this->Request->create();
+			if ($this->Request->save($this->data)) {
 				// We should now send the contact via the Kumutu API to the operator
 				// If it succeeds, then display the follow message
 				$this->Session->setFlash(__('Success.. Your request has been sent.', true));
@@ -26,7 +26,7 @@ class ContactsController extends AppController {
 		}
 		else {
 			// $this->redirect($this->referer(), null, true);
-	        $errors = $this->Contact->invalidFields();
+	        $errors = $this->Request->invalidFields();
 		    $this->Session->setFlash(implode(',', $errors));
 			//The problem we have is that this is taking us to the contact add page instead of back to the original page. If a redirect, then we loose all info in form. Possibly put this code in an element on the Operator page.
 		}
@@ -35,13 +35,13 @@ class ContactsController extends AppController {
 		/* 
 		// The data is saved locally. Now we send the message via Kumutu to the Operator
 		    if ($this->RequestHandler->isPost()) {
-	        $this->Contact->set($this->data);
-	        if ($this->Contact->validates()) {
+	        $this->Request->set($this->data);
+	        if ($this->Request->validates()) {
 	            //send email using the Email component
 	            $this->Email->to = 'ryan.off@kumutu.com';  
-	            $this->Email->subject = 'Information request from ' . $this->data['Contact']['name'];  
-	            $this->Email->from = $this->data['Contact']['email'];  
-	            $this->Email->send($this->data['Contact']['message']);
+	            $this->Email->subject = 'Information request from ' . $this->data['Request']['name'];  
+	            $this->Email->from = $this->data['Request']['email'];  
+	            $this->Email->send($this->data['Request']['message']);
 	        }
 	    }
 	    */
@@ -53,58 +53,58 @@ class ContactsController extends AppController {
 	 */
 	 	 
  	function admin_index() {
-		$this->Contact->recursive = 0;
-		$this->set('contacts', $this->paginate());
+		$this->Request->recursive = 0;
+		$this->set('requests', $this->paginate());
 	}
 
 	function admin_view($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid Contact', true));
+			$this->Session->setFlash(__('Invalid Request', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->set('contact', $this->Contact->read(null, $id));
+		$this->set('request', $this->Request->read(null, $id));
 	}
 
 	function admin_add() {
 		if (!empty($this->data)) {
-			$this->Contact->create();
-			if ($this->Contact->save($this->data)) {
-				$this->Session->setFlash(__('The Contact has been saved', true));
+			$this->Request->create();
+			if ($this->Request->save($this->data)) {
+				$this->Session->setFlash(__('The Request has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The Contact could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The Request could not be saved. Please, try again.', true));
 			}
 		}
 	}
 
 	function admin_edit($id = null) {
 		if (!$id && empty($this->data)) {
-			$this->Session->setFlash(__('Invalid Contact', true));
+			$this->Session->setFlash(__('Invalid Request', true));
 			$this->redirect(array('action' => 'index'));
 		}
 		if (!empty($this->data)) {
-			if ($this->Contact->save($this->data)) {
-				$this->Session->setFlash(__('The Contact has been saved', true));
+			if ($this->Request->save($this->data)) {
+				$this->Session->setFlash(__('The Request has been saved', true));
 				$this->redirect(array('action' => 'index'));
 			} else {
-				$this->Session->setFlash(__('The Contact could not be saved. Please, try again.', true));
+				$this->Session->setFlash(__('The Request could not be saved. Please, try again.', true));
 			}
 		}
 		if (empty($this->data)) {
-			$this->data = $this->Contact->read(null, $id);
+			$this->data = $this->Request->read(null, $id);
 		}
 	}
 
 	function admin_delete($id = null) {
 		if (!$id) {
-			$this->Session->setFlash(__('Invalid id for Contact', true));
+			$this->Session->setFlash(__('Invalid id for Request', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		if ($this->Contact->del($id)) {
-			$this->Session->setFlash(__('Contact deleted', true));
+		if ($this->Request->del($id)) {
+			$this->Session->setFlash(__('Request deleted', true));
 			$this->redirect(array('action' => 'index'));
 		}
-		$this->Session->setFlash(__('The Contact could not be deleted. Please, try again.', true));
+		$this->Session->setFlash(__('The Request could not be deleted. Please, try again.', true));
 		$this->redirect(array('action' => 'index'));
 	}
 

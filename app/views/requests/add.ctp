@@ -6,7 +6,7 @@
 
 	<?php // if ($success_email) { echo '<div class="notice">'. $success_email .'></div>'; } ?> 
 	<div class="content_bg">
-		<?php echo $this->element('contacts/add'); ?>
+		<?php echo $this->element('requests/add'); ?>
 	</div>
 
 </div> <!-- /content_left_panel -->

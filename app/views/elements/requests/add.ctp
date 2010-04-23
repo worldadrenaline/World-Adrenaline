@@ -1,14 +1,13 @@
 
-<div class="contact">
+<div class="request">
 	
 	
 		<h2>Request more information from this operator  </h2>
 		
 		
 		<?php 
-		    echo $form->create('Contact');
-		    //echo $form->create('Contact', array('action' => 'sendContactRequest'));
-		    //echo $form->create('Contact', array('url' => array('controller' => 'operators', 'action' => 'sendContactRequest')));
+		    echo $form->create('Request');
+		    //echo $form->create('Request', array('url' => array('controller' => 'operators', 'action' => 'sendRequest')));
 
 		    
 				echo $form->input('name', array('label'=>'Name <span>*</span>', 'size'=>'35'));

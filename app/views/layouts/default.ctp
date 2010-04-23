@@ -54,11 +54,6 @@
 			</script>
 
 
-
-			
-				<?php  echo $this->element('activity_types/list'); ?>
-			
-
 			<div id="content">
 
 

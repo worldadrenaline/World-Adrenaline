@@ -65,19 +65,19 @@
 			</div> <!-- /googleReviews -->
 		</div> <!-- /sub_to_bg -->
 	
-				<?php echo $this->element('contacts/add'); ?>
+				<?php echo $this->element('requests/add'); ?>
 		
 			
 			<?php 
 			/*
-				<div class="contact">
+				<div class="request">
 		
 				<h2>Request more information from this operator </h2>
 			
-			    echo $form->create('Contact');
-			    //echo $form->create('Contact', array('action' => 'sendContactRequest'));
-			    //echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'sendContactRequest')));
-			    //echo $form->create('Contact', array('url' => array('controller' => 'operators', 'action' => 'sendContactRequest')));
+			    echo $form->create('Request');
+			    //echo $form->create('Request', array('action' => 'sendRequest'));
+			    //echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'sendRequest')));
+			    //echo $form->create('Request', array('url' => array('controller' => 'operators', 'action' => 'sendRequest')));
 
 			    
    				echo $form->input('name', array('label'=>'Name <span>*</span>', 'size'=>'35'));
@@ -122,15 +122,15 @@
 			<!--<input type="hidden" name="opName" id="id" value="<?=$operator['Operator']['name']?>" />
 			<input type="hidden" name="action" id="id" value="email" />-->
 			<div class="con_text">Name:<span>*</span></div>
-			<div class="con_box_bg"><label><input type="text" name="data[Contact][name]" id="ContactName" /></label></div>
+			<div class="con_box_bg"><label><input type="text" name="data[Request][name]" id="RequestName" /></label></div>
 			<div class="con_text">Email:<span>*</span></div>
-			<div class="con_box_bg"><label><input type="text" style="width:200px;" name="data[Contact][email]" id="ContactEmail" /></label></div>
+			<div class="con_box_bg"><label><input type="text" style="width:200px;" name="data[Request][email]" id="RequestEmail" /></label></div>
 			<div class="con_text">Phone:<span>*</span></div>
-			<div class="con_box_bg"><label><input type="text" name="data[Contact][phone]" id="ContactPhone" /></label></div>
+			<div class="con_box_bg"><label><input type="text" name="data[Request][phone]" id="RequestPhone" /></label></div>
 			<div class="con_text_norm">Include the country code.</div>
 			<div class="con_text">Activity Date:<span>*</span></div>
 			<div class="con_box_bg">
-			  <select name="data[Contact][date][day]" id="ContactDay"> 
+			  <select name="data[Request][date][day]" id="RequestDay"> 
 			    <option value="">Day</option>
 				<option value="01">1</option>
 				<option value="02">2</option>
@@ -164,7 +164,7 @@
 				<option value="30">30</option>
 				<option value="31">31</option>
 			  </select>
-			  <select name="data[Contact][date][month]" id="ContactMonth"  style="width:80px;">
+			  <select name="data[Request][date][month]" id="RequestMonth"  style="width:80px;">
 			    <option value="">Month</option>
 				<option value="01">January</option>
 				<option value="02">February</option>
@@ -179,7 +179,7 @@
 				<option value="11">November</option>
 				<option value="12">December</option>
 			  </select>
-			  <select name="data[Contact][date][year]" id="ContactYear">
+			  <select name="data[Request][date][year]" id="RequestYear">
 			    <option value="">Year</option>	
 				<option value="2013">2013</option>
 				<option value="2012">2012</option>
@@ -190,24 +190,24 @@
 			<div class="con_text">Number of Participants:<span>*</span></div>
 			<div class="con_box_bg">
 				<label>
-				  <select name="data[Contact][participantsNumber]" class="form-select required" id="ContactParticipantsNumber"><option value="">select...</option><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10+">10+</option></select>
+				  <select name="data[Request][participantsNumber]" class="form-select required" id="RequestParticipantsNumber"><option value="">select...</option><option value="1" selected="selected">1</option><option value="2">2</option><option value="3">3</option><option value="4">4</option><option value="5">5</option><option value="6">6</option><option value="7">7</option><option value="8">8</option><option value="9">9</option><option value="10+">10+</option></select>
 				 </label>
 			</div>
 			<div class="con_text_norm">The number of people that will take place in this activity on the given date</div>
 			<div class="con_text">Additional Information:<span>*</span></div>
-			<div class="con_box_bg"><textarea name="data[Contact][message]" id="ContactMessage" style="width:580px; height:80px;" cols="" rows=""></textarea></div>
+			<div class="con_box_bg"><textarea name="data[Request][message]" id="RequestMessage" style="width:580px; height:80px;" cols="" rows=""></textarea></div>
 			<div class="con_text_norm">Do you have any additional requirements or comments?</div>
 			
 			<div class="con_text">Terms and Conditions:<span>*</span></div>
 			<div class="terms_text">
-			  <input type="checkbox" name="data[Contact][isTerm]" id="ContactIsTerm" />
+			  <input type="checkbox" name="data[Request][isTerm]" id="RequestIsTerm" />
 			  I have read and agree to the <a href="#">Terms and Conditions for Booking </a></div>
 			 
 			<div>Verify :</div>	
 			
 			<?php /* Old Agile Captcha  
 			<div><img src="<?php echo $captcha_image_url; ?>" id="captcha" alt="CAPTCHA Image" /></div>
-			<div><input type="text" name="data[Contact][captcha_code]" id="captcha_code" size="10" maxlength="6" value="" />&nbsp;&nbsp;<a href="#" onclick="document.getElementById('captcha').src = '/operators/securimage/' + Math.random(); return false"> Reload Image</a></div>
+			<div><input type="text" name="data[Request][captcha_code]" id="captcha_code" size="10" maxlength="6" value="" />&nbsp;&nbsp;<a href="#" onclick="document.getElementById('captcha').src = '/operators/securimage/' + Math.random(); return false"> Reload Image</a></div>
 			<div>&nbsp;</div>
 			<div style="color:red;"><?php echo $error_captcha; ?></div>
 			<div style="color:green;"><?php echo $success_captcha; ?></div>
@@ -218,7 +218,7 @@
 			*/ ?>
 			
 			&nbsp;
-		</div> <!-- contact_bg -->
+		</div> <!-- request_bg -->
 	
 	</div>
 </div> <!-- content_left_panel -->

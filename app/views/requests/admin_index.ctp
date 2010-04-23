@@ -1,5 +1,5 @@
-<div class="contacts index">
-<h2><?php __('Contact Requests List');?></h2>
+<div class="requests index">
+<h2><?php __('Requests List');?></h2>
 <p>
 <?php
 echo $paginator->counter(array(
@@ -21,7 +21,7 @@ echo $paginator->counter(array(
 </tr>
 <?php
 $i = 0;
-foreach ($contacts as $contact):
+foreach ($requests as $request):
 	$class = null;
 	if ($i++ % 2 == 0) {
 		$class = ' class="altrow"';
@@ -29,36 +29,36 @@ foreach ($contacts as $contact):
 ?>
 	<tr<?php echo $class;?>>
 		<td>
-			<?php echo $contact['Contact']['id']; ?>
+			<?php echo $request['Request']['id']; ?>
 		</td>
 		<td>
-			<?php echo $contact['Contact']['name']; ?>
+			<?php echo $request['Request']['name']; ?>
 		</td>
 		<td>
-			<?php echo $contact['Contact']['email']; ?>
+			<?php echo $request['Request']['email']; ?>
 		</td>
 		<td>
-			<?php echo $contact['Contact']['phone']; ?>
+			<?php echo $request['Request']['phone']; ?>
 		</td>
 		<td>
-			<?php echo $contact['Contact']['date']; ?>
+			<?php echo $request['Request']['date']; ?>
 		</td>
 		<td>
-			<?php echo $contact['Contact']['participantsNumber']; ?>
+			<?php echo $request['Request']['participantsNumber']; ?>
 		</td>
 		<td>
-			<?php echo $contact['Contact']['isTerm']; ?>
+			<?php echo $request['Request']['isTerm']; ?>
 		</td>
 		<td>
-			<?php echo $contact['Contact']['message']; ?>
+			<?php echo $request['Request']['message']; ?>
 		</td>
 		<td>
-			<?php echo $contact['Contact']['subject']; ?>
+			<?php echo $request['Request']['subject']; ?>
 		</td>
 		<td class="actions">
-			<?php echo $html->link(__('View', true), array('action' => 'view', $contact['Contact']['id'])); ?>
-			<?php echo $html->link(__('Edit', true), array('action' => 'edit', $contact['Contact']['id'])); ?>
-			<?php echo $html->link(__('Delete', true), array('action' => 'delete', $contact['Contact']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $contact['Contact']['id'])); ?>
+			<?php echo $html->link(__('View', true), array('action' => 'view', $request['Request']['id'])); ?>
+			<?php echo $html->link(__('Edit', true), array('action' => 'edit', $request['Request']['id'])); ?>
+			<?php echo $html->link(__('Delete', true), array('action' => 'delete', $request['Request']['id']), null, sprintf(__('Are you sure you want to delete # %s?', true), $request['Request']['id'])); ?>
 		</td>
 	</tr>
 <?php endforeach; ?>
@@ -71,6 +71,6 @@ foreach ($contacts as $contact):
 </div>
 <div class="actions">
 	<ul>
-		<li><?php echo $html->link(__('New Contact', true), array('action' => 'add')); ?></li>
+		<li><?php echo $html->link(__('New Request', true), array('action' => 'add')); ?></li>
 	</ul>
 </div>

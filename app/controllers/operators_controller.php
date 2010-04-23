@@ -17,16 +17,29 @@ class OperatorsController extends AppController {
 		$this->Operator->recursive = 0;
 		//$this->passedArgs['limit'] = 50;
 		//$this->passedArgs['order'] = array('Operator.name' => 'asc');
-		
-		
+				
 		//Get ActivityType requested on previous page
 		$activityType = $this->params['pass']['0'];
 		
+		$conditions = array();
+		
+		if (!empty($this->params['pass']['0'])) {
+			$conditions[] = array ('ActivityType LIKE' => $this->params['pass']['0'] );
+		}
+				
+		if (!empty($this->params['pass']['1'])) {
+			$conditions[] = array ('Operator.CountryID =' => $this->params['pass']['1'] );
+		}
+		
+		
 		$this->paginate = array (
-			'conditions' => array('ActivityType LIKE' => $activityType),
-			'limit' => 50,
+			//'conditions' => array('ActivityType LIKE' => $activityType),
+			'conditions' => $conditions,
+			'limit' => 20,
 			'order' => array('Operator.name' => 'asc')
 		);
+		
+		
 		 
 		$this->set('operators', $this->paginate());
 	}

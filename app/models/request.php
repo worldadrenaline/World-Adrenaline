@@ -1,7 +1,7 @@
 <?php
-class Contact extends AppModel {
+class Request extends AppModel {
 
-	var $name = 'Contact';
+	var $name = 'Request';
 	
 	var $useTable = false;
     var $_schema = array(
