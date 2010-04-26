@@ -6,9 +6,9 @@
 			<?php echo $activityType['ActivityType']['id']; ?>
 			&nbsp;
 		</dd>
-		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('ActName'); ?></dt>
+		<dt<?php if ($i % 2 == 0) echo $class;?>><?php __('name'); ?></dt>
 		<dd<?php if ($i++ % 2 == 0) echo $class;?>>
-			<?php echo $activityType['ActivityType']['ActName']; ?>
+			<?php echo $activityType['ActivityType']['name']; ?>
 			&nbsp;
 		</dd>
 	</dl>

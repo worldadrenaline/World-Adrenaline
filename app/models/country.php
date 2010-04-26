@@ -5,6 +5,7 @@ class Country extends AppModel {
 	var $validate = array(
 		'CountryName' => array('notempty'),
 	);
+//	var $belongsTo = 'Operator'; 
 
 }
 ?>

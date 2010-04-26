@@ -9,7 +9,7 @@ echo $paginator->counter(array(
 <table cellpadding="0" cellspacing="0">
 <tr>
 	<th><?php echo $paginator->sort('id');?></th>
-	<th><?php echo $paginator->sort('ActName');?></th>
+	<th><?php echo $paginator->sort('name');?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -25,7 +25,7 @@ foreach ($activityTypes as $activityType):
 			<?php echo $activityType['ActivityType']['id']; ?>
 		</td>
 		<td>
-			<?php echo $activityType['ActivityType']['ActName']; ?>
+			<?php echo $activityType['ActivityType']['name']; ?>
 		</td>
 		<td class="actions">
 			<?php echo $html->link(__('View', true), array('action' => 'admin_view', $activityType['ActivityType']['id'])); ?>

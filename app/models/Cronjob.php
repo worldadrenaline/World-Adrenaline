@@ -10,7 +10,7 @@ class Cronjob extends AppModel {
 	   {
 	    $name=addslashes($aNewCategory[$i]['Name']);
 		$id=$aNewCategory[$i]['ID'];
-		$SOQL = "INSERT INTO activities (id,ActName) Values  ('".$id."','".$name."')";
+		$SOQL = "INSERT INTO activities (id,name) Values  ('".$id."','".$name."')";
         $aCategories= $this->query($SOQL);
 	   }
 	 
@@ -44,7 +44,7 @@ class Cronjob extends AppModel {
 		   $id=$aCompanyName[$i]['ID'];  
 	       $oprName=$aCompanyName[$i]['ShortName'];
            $type=$aCategory[$i]['Type'];
-		   $ActName=$aCategory[$i]['CategoryItem']['Name'];
+		   $name=$aCategory[$i]['CategoryItem']['Name'];
 		   $City=$aAddress[$i]['CityName'];
 		   $StateProv=$aAddress[$i]['StateProv']['StateCode'];
            $CountryName=$aAddress[$i]['CountryName']['value'];
@@ -74,7 +74,7 @@ function makeActivity24Entry($aNewCategory)
 		   }
 		   
 		
-		$SOQL = "INSERT INTO activities (id,ActName) Values  ('".$id."','".$name."')";
+		$SOQL = "INSERT INTO activities (id,name) Values  ('".$id."','".$name."')";
         $aCategories= $this->query($SOQL);
 	   }
 	 
@@ -127,7 +127,7 @@ function makeActivity24Entry($aNewCategory)
 		   
 		   $oprName=$aCompanyName[$i]['ShortName'];
            $type=$aCategory[$i]['Type'];
-		   $ActName=$aCategory[$i]['CategoryItem']['Name'];
+		   $name=$aCategory[$i]['CategoryItem']['Name'];
 		   $City=$aAddress[$i]['CityName'];
 		   $StateProv=$aAddress[$i]['StateProv']['StateCode'];
            $CountryName=$aAddress[$i]['CountryName']['value'];

@@ -3,7 +3,7 @@
 
 <table cellpadding="0" cellspacing="0">
 <tr>
-	<th><?php echo $paginator->sort('ActName');?></th>
+	<th><?php echo $paginator->sort('name');?></th>
 </tr>
 
 <?php
@@ -16,7 +16,7 @@ foreach ($activityTypes as $activityType):
 ?>
 	<tr<?php echo $class;?>>
 		<td>
-			<?php echo $activityType['ActivityType']['ActName']; ?>
+			<?php echo $activityType['ActivityType']['name']; ?>
 		</td>
 	</tr>
 <?php endforeach; ?>

@@ -4,7 +4,7 @@
  		<legend><?php __('Edit ActivityType');?></legend>
 	<?php
 		echo $form->input('id');
-		echo $form->input('ActName');
+		echo $form->input('name');
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

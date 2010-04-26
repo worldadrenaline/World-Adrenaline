@@ -3,7 +3,7 @@
 	<fieldset>
  		<legend><?php __('Add ActivityType');?></legend>
 	<?php
-		echo $form->input('ActName');
+		echo $form->input('name');
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

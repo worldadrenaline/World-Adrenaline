@@ -42,6 +42,12 @@
  */
 	Router::connect('/operator/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));
 	Router::connect('/prospect/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));		
+
+/**
+ * Listing of operators based on ActivityType
+ */
+ 	// Router::connect('/activity/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('slug'), 'slug'=>'[a-z]+'));		
+
 	
 /**
  *  Static routes for simple pages.

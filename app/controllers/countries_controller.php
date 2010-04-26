@@ -10,9 +10,13 @@ class CountriesController extends AppController {
 	}
 
 	function index() {
-		$this->Country->recursive = 0;
-		$this->set('countries', $this->paginate());
-	}
+		$Countries = $this->paginate();
+		if (isset($this->params['requested'])){
+			return $Countries;
+		} else {
+			$this->set('countries',$Countries);
+		}	
+	}	
 	
 	/*
 	 * Admin functions

@@ -3,7 +3,7 @@ class OperatorsController extends AppController {
 
 	var $name = 'Operators';
 	var $helpers = array('Html', 'Form');
-	
+    	
 	//var $components = array('Recaptcha');
 
 	function beforeFilter() {
@@ -14,34 +14,86 @@ class OperatorsController extends AppController {
 	}
 
 	function index() {
-		$this->Operator->recursive = 0;
-		//$this->passedArgs['limit'] = 50;
-		//$this->passedArgs['order'] = array('Operator.name' => 'asc');
-				
+	
+		// Create list of countries
+	    $countries = $this->Operator->Country->find('list');
+
 		//Get ActivityType requested on previous page
-		$activityType = $this->params['pass']['0'];
 		
-		$conditions = array();
-		
-		if (!empty($this->params['pass']['0'])) {
-			$conditions[] = array ('ActivityType LIKE' => $this->params['pass']['0'] );
+		/*
+		if (!empty($this->params['pass']['0'])) { $activityType = $this->params['pass']['0']; } 
+		else {
+			$this->cakeError('error404');
 		}
+		*/
+		
 				
+		//if (!empty($this->params['pass']['0'])) {
+		//	$conditions[] = array ('slug =' => $this->params['pass']['0'] );
+		//}
+		
+		
+		/*		
 		if (!empty($this->params['pass']['1'])) {
 			$conditions[] = array ('Operator.CountryID =' => $this->params['pass']['1'] );
 		}
+		*/
 		
+		//$activityType = $this->data['activityType'];
 		
+		$conditions = array();
+
+		if (!empty($this->data['activityType'])) {
+			$conditions[] = array ('slug =' => $this->data['activityType']);
+		}
+		else {
+			$this->data['activityType'] = $this->params['pass']['0'];
+			$conditions[] = array ('slug =' => $this->data['activityType']);
+		}
+		
+						
+		if (!empty($this->params['pass']['1'])) {
+			$conditions[] = array ('Operator.CountryID =' => $this->data['country']);
+		}
+
+		
+		//Get ActivityType long name from argument passed
+		/*
+        $firstOperator = $this->Operator->find('first', array(
+            'fields' => array('Operator.ActivityType', 'Operator.slug'),
+            'conditions'=>array('Operator.slug'=>$activityType)
+        ));
+        */
+        
+        /* TODO: match up the activity type from the argument passed to the activity_types table
+        $actName = $this->ActivityType->find('first', array(
+            'fields' => array('ActivityType.name'),
+            'conditions'=>array('ActivityType.slug'=>$activityType)
+        ));
+		*/
+	
+//		$this->Operator->recursive = 0;
+			
 		$this->paginate = array (
-			//'conditions' => array('ActivityType LIKE' => $activityType),
 			'conditions' => $conditions,
 			'limit' => 20,
 			'order' => array('Operator.name' => 'asc')
 		);
 		
-		
+		/*
+		$data = array (
+			'operators' => $this->paginate(),
+			'firstOperator' => $firstOperator,
+			'activityType' => $activityType
+		);
+		*/
 		 
-		$this->set('operators', $this->paginate());
+		 $data = array (
+			'operators' => $this->paginate(),
+			'countries' => $countries
+			);
+		 $this->set($data);
+		//$this->set('operators', $this->paginate());
 	}
 	
 	

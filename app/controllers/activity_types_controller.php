@@ -26,7 +26,7 @@ class ActivityTypesController extends AppController {
 	function admin_index() {
 		$this->ActivityType->recursive = 0;
 		$this->passedArgs['limit'] = 200; 
-		$this->passedArgs['order'] = array('ActivityType.ActName' => 'asc'); 
+		$this->passedArgs['order'] = array('ActivityType.name' => 'asc'); 
 		$this->set('activityTypes', $this->paginate());
 	}
 	

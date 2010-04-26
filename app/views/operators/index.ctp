@@ -5,34 +5,28 @@
 	<div class="sub_container">
 		<div class="content_left_panel">
 			
-			<?php $activityType = $this->params['pass']['0']; ?>
+			<?php // $activityTypeName = $firstOperator['Operator']['ActivityType']; ?>
+			<?php // $activityType = $firstOperator['Operator']['slug']; ?>
+			
+			<?php // echo $activityType; ?>
 
-			<div class="content_title"><h1><?php echo $activityType; ?> Operators</h1></div>
+			<div class="content_title"><h1><?php // echo $activityTypeName; ?> Operators</h1></div>
 			
 			<div class="content_bg">
 
-				<?php /* Filter not yet working
-				<!-- Filter the results -->
-				<div class="filter">
-				<h5>Filter by</h5>
-						<form name="filterForm" action="" method="get">
-						<!-- <input type="hidden" name="id" value="1034"  /> -->
-							<select id="ContryList" name="ContryList" onchange="form.submit()" >
-								<option value="" selected="selected">- Country -</option>
-								<option value="GB" >United Kingdom</option>
-							</select> 
-						</form>
-				</div>
-								
-				
+				<?php /* TODO: Filter the paging results. */ ?>
+				 <div class="filter">
 				<?php 
-				 /*
 				    echo $form->create('', array('url' => array('controller' => 'operators', 'action' => 'index')));
-	    			echo $form->input('country', array('type'=>'select', 'options'=>array ('' => '- Country -', 'UK' => 'United Kingdom'), 'label'=>'Filter by'));
-					echo $form->input('activityType', array('type'=>'hidden', 'value'=>$activityType));
+	    			//echo $form->input('country', array('type'=>'select', 'options'=>array ('' => '- Country -', 'UK' => 'United Kingdom'), 'label'=>'Filter by'));
+//					echo $form->input('country', array('type'=>'select'));
+			
+					echo $form->input('country', array('type'=>'select', 'options'=>$countries, 'empty'=>'- country -'));
+					echo $form->input('activityType', array('type'=>'hidden', 'value'=>$this->data['activityType']));
 				    echo $form->end('Send');
-				*/
+				
 				?>
+				</div>
 				
 				
 				<div class="content_tumb">
