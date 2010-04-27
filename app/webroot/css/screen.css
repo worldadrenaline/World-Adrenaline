@@ -110,21 +110,11 @@ td.actions a {
 }
 
 /* Paging */
-div.paging {
-	color: #ccc;
-	margin-bottom: 2em;
-}
-div.paging div.disabled {
-	color: #ddd;
-	display: inline;
-}
-div.paging span {
-}
-div.paging span.current {
-	color: #000;
-}
-div.paging span a {
-}
+div.paging { color: #ccc; margin-bottom: 5px; margin-top: 5px; }
+div.paging div.disabled { color: #ddd; display: inline; }
+div.paging span { }
+div.paging span.current { background:none repeat scroll 0 0 #0E5E9C; border:1px solid #0E5E9C; color:#FFFFFF; padding:3px 8px; font-size:12px; font-weight:bold; margin:2px; }
+div.paging span a { }
 
 /* Scaffold View */
 dl {

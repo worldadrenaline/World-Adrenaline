@@ -39,7 +39,7 @@
 				</div>
 				
 				
-				<div class="oprators_bg">
+				<div class="operatorList">
 					
 					<?php if ($paginator->counter(array('format' => __('%count%', true))) > 0 ) { ?>
 						<ul>

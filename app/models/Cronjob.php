@@ -1,7 +1,7 @@
-<?
-class Cronjob extends AppModel {  
-        var $name = 'Cronjob'; 
-		 var $useTable = false;
+<?php
+class Cronjob extends AppModel {
+	var $name = 'Cronjob'; 
+	var $useTable = false;
 		
  function makeActivityEntry($aNewCategory)
 	{
@@ -33,28 +33,29 @@ class Cronjob extends AppModel {
 	function makeProspectEntry($aProspect)
 	{
 	  
-	  
-	   for($i=0;$i<count($aProspect);$i++)
-	   {
-	        $aCompanyName[]=$aProspect[$i]['CompanyName'];
+		for($i=0;$i<count($aProspect);$i++) {
+			$aCompanyName[]=$aProspect[$i]['CompanyName'];
 			$aCategory[]=$aProspect[$i]['Category'];
 			$aURLs[]=$aProspect[$i]['URLs'];
 			$aAddress[]=$aProspect[$i]['Address'];
+			
+			$id=$aCompanyName[$i]['ID'];  
+			$oprName=$aCompanyName[$i]['ShortName'];
+			$type=$aCategory[$i]['Type'];
+			$ActName=$aCategory[$i]['CategoryItem']['Name'];
+			$ActID=$aCategory[$i]['CategoryItem']['ID'];
+			$City=$aAddress[$i]['CityName'];
+			$StateProv=$aAddress[$i]['StateProv']['StateCode'];
+			$CountryID=$aAddress[$i]['CountryName']['ID'];
+			$CountryISO=$aAddress[$i]['CountryName']['Code'];
+					    
 		
-		   $id=$aCompanyName[$i]['ID'];  
-	       $oprName=$aCompanyName[$i]['ShortName'];
-           $type=$aCategory[$i]['Type'];
-		   $name=$aCategory[$i]['CategoryItem']['Name'];
-		   $City=$aAddress[$i]['CityName'];
-		   $StateProv=$aAddress[$i]['StateProv']['StateCode'];
-           $CountryName=$aAddress[$i]['CountryName']['value'];
-		   $CountryCode=$aAddress[$i]['CountryName']['Code'];
-		    
-		$SOQL = "INSERT INTO operators (id,name,Type,ActivityType,City,StateProvince,Country,CountryID) Values  ('".$aCompanyName[$i]['ID']."','".$aCompanyName[$i]['ShortName']."','".$aCategory[$i]['Type']."','".$aCategory[$i]['CategoryItem']['Name']."','".$aAddress[$i]['CityName']."','".$aAddress[$i]['StateProv']['StateCode']."','".$aAddress[$i]['CountryName']['value']."','".$aAddress[$i]['CountryName']['Code']."')";
-     //   exit;
-		$aCntr= $this->query($SOQL);
-	   }
-	  
+			$SOQL = "INSERT INTO operators(id,name,type,activityType,activity_type_id,city,stateProvince,country_id,countryISO) Values  ('".$aCompanyName[$i]['ID']."','".$aCompanyName[$i]['ShortName']."','".$aCategory[$i]['Type']."','".$aCategory[$i]['CategoryItem']['Name']."','".$aCategory[$i]['CategoryItem']['ID']."','".$aAddress[$i]['CityName']."','".$aAddress[$i]['StateProv']['StateCode']."','".$aAddress[$i]['CountryName']['ID']."','".$aAddress[$i]['CountryName']['Code']."')";
+
+			
+			//   exit;
+			$aCntr= $this->query($SOQL);
+		}
 	}
 	
 function makeActivity24Entry($aNewCategory)

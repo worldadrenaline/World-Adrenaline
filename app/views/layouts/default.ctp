@@ -17,9 +17,14 @@
 			//echo $html->css('print', 'stylesheet', 'media="print"', true); 
 			echo $scripts_for_layout;
 		
+			/*	
 			if(!empty($ajax)) {
 			    echo $javascript->link('prototype');
-			} 
+			}
+			*/
+			
+			//echo $javascript->link(array('jquery.js')); 
+			 
 		?> 
 		
 		
