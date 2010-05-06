@@ -21,7 +21,7 @@ class OperatorsController extends AppController {
     function display() {
         
 		// Create list of countries
-	    //$countries = $this->Operator->Country->find('list');
+	    $countries = $this->Operator->Country->find('list');
         
         if(!$this->RequestHandler->isAjax()) {
             // things you want to do on initial page load go here
@@ -34,11 +34,15 @@ class OperatorsController extends AppController {
 			if (!empty($this->data['activityType'])) { $conditions[] = array ('Operator.shortname =' => $this->Operator->data['activityType']); }
 			if (!empty($this->data['country'])) { $conditions[] = array ('Operator.CountryID =' => $this->Operator->data['country']); }
 		} else {
-			if (!empty($this->params['pass']['0'])) { $this->data['activityType'] = $this->params['pass']['0'];
+			if (!empty($this->params['pass']['0'])) { 
+				$this->data['activityType'] = $this->params['pass']['0'];
 				//$conditions[] = array ('Operator.shortname =' => $this->data['activityType']);
+				$conditions[] = array ('ActivityType.shortname =' => $this->data['activityType']);
+
 			 }
 		}
 
+		/* debug info to be removed */
 		echo "Conditions :";
 		var_dump($conditions);
         
