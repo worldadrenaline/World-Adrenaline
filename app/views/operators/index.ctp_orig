@@ -6,7 +6,7 @@
 		<div class="content_left_panel">
 			
 			<?php // $activityTypeName = $firstOperator['Operator']['ActivityType']; ?>
-			<?php // $activityType = $firstOperator['Operator']['slug']; ?>
+			<?php // $activityType = $firstOperator['Operator']['shortname']; ?>
 			
 			<?php // echo $activityType; ?>
 

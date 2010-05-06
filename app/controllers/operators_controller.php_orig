@@ -29,7 +29,7 @@ class OperatorsController extends AppController {
 		
 				
 		//if (!empty($this->params['pass']['0'])) {
-		//	$conditions[] = array ('slug =' => $this->params['pass']['0'] );
+		//	$conditions[] = array ('shortname =' => $this->params['pass']['0'] );
 		//}
 		
 		

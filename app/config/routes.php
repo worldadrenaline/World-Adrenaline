@@ -46,7 +46,7 @@
 /**
  * Listing of operators based on ActivityType
  */
- 	// Router::connect('/activity/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('slug'), 'slug'=>'[a-z]+'));		
+ 	// Router::connect('/activity/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('shortname'), 'shortname'=>'[a-z]+'));		
 
 	
 /**

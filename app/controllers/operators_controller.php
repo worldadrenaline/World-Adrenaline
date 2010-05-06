@@ -31,11 +31,11 @@ class OperatorsController extends AppController {
         // Set up conditions based on filter form
         $conditions = array();
 		if ($this->data) {
-			if (!empty($this->data['activityType'])) { $conditions[] = array ('Operator.slug =' => $this->Operator->data['activityType']); }
+			if (!empty($this->data['activityType'])) { $conditions[] = array ('Operator.shortname =' => $this->Operator->data['activityType']); }
 			if (!empty($this->data['country'])) { $conditions[] = array ('Operator.CountryID =' => $this->Operator->data['country']); }
 		} else {
 			if (!empty($this->params['pass']['0'])) { $this->data['activityType'] = $this->params['pass']['0'];
-				$conditions[] = array ('Operator.slug =' => $this->data['activityType']);
+				//$conditions[] = array ('Operator.shortname =' => $this->data['activityType']);
 			 }
 		}
 
@@ -53,7 +53,7 @@ class OperatorsController extends AppController {
         
         $data = array (
 			'operators' => $this->paginate(),
-			'countries' => $countries
+			//'countries' => $countries
 		);
         
         //$data = $this -> paginate();
@@ -66,7 +66,7 @@ class OperatorsController extends AppController {
 	function index() {
 	
 		// Create list of countries
-	    $countries = $this->Operator->Country->find('list');
+	    //$countries = $this->Operator->Country->find('list');
 
 		//Get ActivityType requested on previous page
 		
@@ -79,7 +79,7 @@ class OperatorsController extends AppController {
 		
 				
 		//if (!empty($this->params['pass']['0'])) {
-		//	$conditions[] = array ('slug =' => $this->params['pass']['0'] );
+		//	$conditions[] = array ('shortname =' => $this->params['pass']['0'] );
 		//}
 		
 		
@@ -96,11 +96,11 @@ class OperatorsController extends AppController {
 
 		$conditions = array();
 		if ($this->data) {
-			if (!empty($this->data['activityType'])) { $conditions[] = array ('Operator.slug =' => $this->Operator->data['activityType']); }
+			if (!empty($this->data['activityType'])) { $conditions[] = array ('Operator.shortname =' => $this->Operator->data['activityType']); }
 			if (!empty($this->data['country'])) { $conditions[] = array ('Operator.CountryID =' => $this->Operator->data['country']); }
 		} else {
 			if (!empty($this->params['pass']['0'])) { $this->data['activityType'] = $this->params['pass']['0'];
-				$conditions[] = array ('Operator.slug =' => $this->data['activityType']);
+				$conditions[] = array ('Operator.shortname =' => $this->data['activityType']);
 			 }
 		}
 		
@@ -114,15 +114,15 @@ class OperatorsController extends AppController {
 		//Get ActivityType long name from argument passed
 		/*
         $firstOperator = $this->Operator->find('first', array(
-            'fields' => array('Operator.ActivityType', 'Operator.slug'),
-            'conditions'=>array('Operator.slug'=>$activityType)
+            'fields' => array('Operator.ActivityType', 'Operator.shortname'),
+            'conditions'=>array('Operator.shortname'=>$activityType)
         ));
         */
         
         /* TODO: match up the activity type from the argument passed to the activity_types table
         $actName = $this->ActivityType->find('first', array(
             'fields' => array('ActivityType.name'),
-            'conditions'=>array('ActivityType.slug'=>$activityType)
+            'conditions'=>array('ActivityType.shortname'=>$activityType)
         ));
 		*/
 	
@@ -149,13 +149,7 @@ class OperatorsController extends AppController {
 		 $this->set($data);
 		//$this->set('operators', $this->paginate());
 	}
-	
-	
-
-
-
-
-	
+		
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Operator', true));
