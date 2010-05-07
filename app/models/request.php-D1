@@ -3,8 +3,8 @@ class Request extends AppModel {
 
 	var $name = 'Request';
 	
-	
-	 var $_schema = array(
+	var $useTable = false;
+    var $_schema = array(
         'name'      =>array('type'=>'string', 'length'=>100), 
         'email'     =>array('type'=>'string', 'length'=>255), 
         'phone'     =>array('type'=>'string', 'length'=>255),
@@ -58,7 +58,7 @@ class Request extends AppModel {
                 'message' => 'The number of participants is required'
             ),
             'validCharacters'=>array(
-                'rule' => array('inList', array('0', '1', '2', '3', '4', '5', '6', '7', '8', '9', '10+')), 
+                'rule' => array('inList', array('1', '2', '3', '4', '5', '6', '7', '8', '9', '10+')), 
                 'required' => true,
                 'allowEmpty' => false,
                 'message' => 'Accepted options: 1-10+'
@@ -79,7 +79,6 @@ class Request extends AppModel {
             )
          )
     );
-
 
 }
 ?>

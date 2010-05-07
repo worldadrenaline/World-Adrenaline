@@ -2,11 +2,9 @@
 class Operator extends AppModel {
 
 	var $name = 'Operator';
-	var $validate = array(
-		'country_id' => array('numeric'),
-		'countryISO' => array('notempty'),
-		'activity_type_id' => array('numeric')
-	);
+	//var $hasOne = array('ActivityType', 'Country');
+	//var $hasOne = array('Country');
+	
 
 	//The Associations below have been created with all possible keys, those that are not needed can be removed
 	var $belongsTo = array(
@@ -18,13 +16,19 @@ class Operator extends AppModel {
 			'order' => ''
 		),
 		'ActivityType' => array(
-			'className' => 'ActivityType',
-			'foreignKey' => 'activity_type_id',
-			'conditions' => '',
-			'fields' => '',
-			'order' => ''
-		)
+            'className' => 'ActivityType',
+            'foreignKey' => 'activity_type_id',
+            'conditions' => '',
+            'fields' => '',
+            'order' => ''
+        ),
+	);	
+	
+	
+	var $validate = array(
+		'CountryID' => array('notempty')
 	);
+
 
 }
 ?>

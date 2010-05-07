@@ -2,9 +2,13 @@
 class OperatorsController extends AppController {
 
 	var $name = 'Operators';
-	var $helpers = array('Html', 'Form');
+	var $helpers = array('Html','Form','Javascript');
     var $components = array('RequestHandler');
+	//var $components = array('Recaptcha');
+    //var $paginate = array('limit' => 15, 'page' => 1, 'order'=>array('name'=>'asc'));
     var $paginate = array('limit'=>'20','page' => 1, 'order'=>array('Operator.name'=>'asc')); 
+
+    	
 
 	function beforeFilter() {
 	    parent::beforeFilter(); 
@@ -12,27 +16,24 @@ class OperatorsController extends AppController {
 		//$this->Recaptcha->publickey = "6Lf9KgcAAAAAADYWTqUyR0kYSxwbJ36ntBYAUI3r";
 		//$this->Recaptcha->privatekey = "6Lf9KgcAAAAAAFHCc0Xu5pHLAR17srqJ1eamIgFp"; 
 	}
-
-	function index($activityType = null) {
-		
-		/* debug info to be removed */
-		//echo "Data :";
-		//var_dump($this->data);
-		
-		
+    
+    
+    function index() {
+        
+		// Create list of countries
+	    $countries = $this->Operator->Country->find('list');
+        
+        if(!$this->RequestHandler->isAjax()) {
+            // things you want to do on initial page load go here
+            $this->pageTitle = "Operator List";    
+        }
+        
         // Set up conditions based on filter form
         $conditions = array();
 		
 		if ($this->data) {
-			//if (!empty($this->data['Operator']['activityType'])) { $conditions[] = array ('ActivityType.shortname =' => $this->Operator->data['activityType']); }
-			//if (!empty($this->data['country'])) { $conditions[] = array ('Operator.CountryID =' => $this->Operator->data['country']); }
-			if (!empty($this->data['Operator']['activityType'])) { 
-				$conditions[] = array ('ActivityType.shortname =' => $this->data['Operator']['activityType']); 
-				$this->data['activityType'] = $this->data['Operator']['activityType'];
-				$activityType = $this->data['Operator']['activityType'];
-				}
-			if (!empty($this->data['Operator']['country'])) { $conditions[] = array ('Operator.country_id =' => $this->data['Operator']['country']); }
-		
+			if (!empty($this->data['activityType'])) { $conditions[] = array ('ActivityType.shortname =' => $this->Operator->data['activityType']); }
+			if (!empty($this->data['country'])) { $conditions[] = array ('Operator.CountryID =' => $this->Operator->data['country']); }
 		} else {
 			if (!empty($this->params['pass']['0'])) { 
 				$this->data['activityType'] = $this->params['pass']['0'];
@@ -42,27 +43,9 @@ class OperatorsController extends AppController {
 			 }
 		}
 
-
-		//Check for activityType, otherwise redirect to homepage
-		if (!$activityType) {
-			$this->Session->setFlash(__('Please select an activity', true));
-			$this->redirect(array('controller' => 'pages', 'action' => 'display','home'));
-
-		}
-		
-		
-		// Create list of countries
-	    $countries = $this->Operator->Country->find('list');
-        
-        if(!$this->RequestHandler->isAjax()) {
-            // things you want to do on initial page load go here
-            $this->pageTitle = "Operator List";    
-        }
-
-
 		/* debug info to be removed */
-		//echo "Conditions :";
-		//var_dump($conditions);
+		echo "Conditions :";
+		var_dump($conditions);
         
         
         // Paginate Operators
@@ -81,15 +64,17 @@ class OperatorsController extends AppController {
         //$data = $this -> paginate();
         
         $this->set($data);
-
-	}
-
+        
+    }
+		
 	function view($id = null) {
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Operator', true));
 			$this->redirect(array('action' => 'index'));
 		}
+		
 		$this->set('operator', $this->Operator->read(null, $id));
+		
 		
 		//Validate form with reCaptcha
 		/*
@@ -100,14 +85,27 @@ class OperatorsController extends AppController {
 		  //invalid reCAPTCHA entry. 
 		}
 		*/
-		
+				
 	}
-
-
-	function admin_index () {
+		
+	
+	/*
+	 * Admin functions
+	 */
+	 
+	function admin_index() {
 		$this->Operator->recursive = 0;
 		$this->set('operators', $this->paginate());
 	}
+	
+	function admin_view($id = null) {
+		if (!$id) {
+			$this->Session->setFlash(__('Invalid Operator', true));
+			$this->redirect(array('action' => 'index'));
+		}
+		$this->set('operator', $this->Operator->read(null, $id));
+	}
+
 
 	function admin_add() {
 		if (!empty($this->data)) {

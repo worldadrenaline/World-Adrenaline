@@ -37,7 +37,7 @@
 			<div class="top_panel">
 				<div class="sub_container">
 					<div class="adven_logo"><a href="/"><img src="/img/logo-D3.png" alt="Logo" id="logo" /></a></div>
-					<div class="adven_message"><span>Adventicus</span> is the largest directory of adventure activity operators on the web. Whether you're a climber, diver, white-water rafter, hiker, mountain biker, or paraglider<span>...find your adventure now!</span></div>
+					<div class="adven_message"><span>Adventicus</span> is the largest directory of over <?php echo $this->element('totalOperators'); ?> adventure activity operators on the web. Whether you're a climber, diver, white-water rafter, hiker, mountain biker, or paraglider<span>...find your adventure now!</span></div>
 				</div> <!-- /sub_container -->
 				
 				
