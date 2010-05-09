@@ -61,8 +61,6 @@
 
 			<div id="content">
 
-
-	
 				<!-- Begin content_for_layout -->
 				<?php echo $content_for_layout; ?>
 				<!-- End content_for_layout -->

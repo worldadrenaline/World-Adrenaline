@@ -16,8 +16,7 @@ class OperatorsController extends AppController {
 	function index($activityType = null) {
 		
 		/* debug info to be removed */
-		//echo "Data :";
-		//var_dump($this->data);
+		//debug($this->data);
 		
 		
         // Set up conditions based on filter form
@@ -61,8 +60,7 @@ class OperatorsController extends AppController {
 
 
 		/* debug info to be removed */
-		//echo "Conditions :";
-		//var_dump($conditions);
+		//debug($conditions);
         
         
         // Paginate Operators

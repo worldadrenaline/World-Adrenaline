@@ -148,7 +148,13 @@
 /**
  * A random string used in security hashing methods.
  */
-	Configure::write('Security.salt', '4030cf26e4ed7dd97901903eb47c2fa1df514e3b');
+	Configure::write('Security.salt', '4030cf26e4ed7dd97901903eb47c2fa1df514e3b');	
+	
+/**
+ * The apikey used for sending and retreiving information from kumutu.com.
+ */
+	Configure::write('apikey', '10132293094ba6bd772192f4.29432906');	
+	
 /**
  * Apply timestamps with the last modified time to static assets (js, css, images).
  * Will append a querystring parameter containing the time the file was modified. This is

@@ -7,54 +7,115 @@ class RequestsController extends AppController {
 
 	function beforeFilter() {
 	    parent::beforeFilter(); 
-	    $this->Auth->allowedActions = array('add');
+	    $this->Auth->allowedActions = array('add', 'test');
 	}
 	
+	
+	/*
+	* Temp action for debug sending of request to kumutu
+	*/
+	function test() {
+				 	$data = array(
+						'Prospect' => array(
+							'id' => '223837'					
+						),
+						'Contact' => array (
+					 		'name' => 'Ryan Off',
+					 		'email' => 'mail@ryanoff.com',
+					 		'subject' => 'Test 20',
+					 		'message' => 'This is a test message'	
+						)
+			 		);	 	
+								
+				//usr
+				$methodUrl = 'http://local-kumutu/api/prospects/email.xml';
+				$uri = $methodUrl.'?apikey='.Configure::read('apikey');
+				
+				App::import('Core', 'HttpSocket');
+				$this->http = new HttpSocket();
+				$results = $this->http->post($uri, $data);
+
+				debug($results, true);
+				debug($data, true, true);
+	}
+	
+	/*
+    * Validate and save the request locallys, then try to send via API
+    */
 	function add() {
 	    $this->Request->set($this->data);
 	
 		if ($this->Request->validates()) {
 			$this->Request->create();
 			if ($this->Request->save($this->data)) {
+				
 				// We should now send the contact via the Kumutu API to the operator
 				// sendRequest (id, name, email, phone, date, participantsNumber, message, subject);
 				// If it succeeds, then display the follow message
-				$this->Session->setFlash(__('Success.. Your request has been sent.', true));
+				
+				/* Debug to be removed */
+				//debug($this->data);
+
+				/*
+				$data = array (
+				'id' => $this->data['Request']['operatorID'],
+			 	'name' => $this->data['Request']['name'],
+			 	'email' => $this->data['Request']['email'],
+			 	//'phone' => $this->data['Request']['phone'],
+			 	//'date' => $this->data['Request']['date'],
+			 	//'participantsNumber' => $this->data['Request']['participantsNumber'],
+			 	'subject' => $this->data['Request']['subject'],
+			 	'message' => $this->data['Request']['message']
+			 	);
+			 	*/
+			 	
+			 	//To be replaced with dynamic data above after testing
+			 	$data = array(
+					'Prospect' => array(
+						'id' => '223837'					
+					),
+					'Contact' => array (
+				 		'name' => 'Ryan Off',
+				 		'email' => 'mail@ryanoff.com',
+				 		'subject' => 'Test 20',
+				 		'message' => 'This is a test message'	
+					)
+			 		);	 	
+				
+				//$url = 'http://kumutu.com/api/prospects/email.xml?apikey=17604162604ae6ffa3636d46.73439478';	
+				$url = 'http://local-kumutu/api/prospects/email.xml?apikey=17604162604ae6ffa3636d46.73439478';	
+				
+				$methodUrl = 'http://local-kumutu/api/prospects/email.xml';
+				$uri = $methodUrl.'?apikey='.Configure::read('apikey');
+				
+				App::import('Core', 'HttpSocket');
+				$http = new HttpSocket();
+				$results = $http->post($uri, $data);
+				
+				echo 'Debug Results: '.$results.' :';
+				
+				if ($this->Request->sendRequest($this->data)) {
+					$this->Session->setFlash(__('Success.. Your request has been sent.', true));
+					$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
+				} else {
+				
+				$this->Session->setFlash(__('Your request was saved but not sent. We will send your request soon.', true));
 				$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
+				
+				}
+				
+									
 			} else {
 				$this->Session->setFlash(__('Your request could not be sent. Please, try again.', true));
 			}
 		}
 		else {
-			// $this->redirect($this->referer(), null, true);
 	        $errors = $this->Request->invalidFields();
 		    $this->Session->setFlash(implode(',', $errors));
-			//The problem we have is that this is taking us to the contact add page instead of back to the original page. If a redirect, then we loose all info in form. Possibly put this code in an element on the Operator page.
 		}
 		
+	}
 		
-		/* 
-		// The data is saved locally. Now we send the message via Kumutu to the Operator
-		    if ($this->RequestHandler->isPost()) {
-	        $this->Request->set($this->data);
-	        if ($this->Request->validates()) {
-	            //send email using the Email component
-	            $this->Email->to = 'ryan.off@kumutu.com';  
-	            $this->Email->subject = 'Information request from ' . $this->data['Request']['name'];  
-	            $this->Email->from = $this->data['Request']['email'];  
-	            $this->Email->send($this->data['Request']['message']);
-	        }
-	    }
-	    */
-	}
-	
-	
-	function sendRequest ($id = null) {
-		//Send a post request to http://dev.kumutu.com/api/prospects/email.xml?apikey=17604162604ae6ffa3636d46.73439478 with the variables from the form. 
-		//Check API response and if succeed, return message. If fail, return message. 	
-	}
-	
-	
 	
 	/*
 	 * Admin actions

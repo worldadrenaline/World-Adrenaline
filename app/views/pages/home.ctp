@@ -11,7 +11,7 @@
 	<div class="home">
 		<?php // echo $this->element('search'); ?>
 	
-		<div class="notice">Would you like to be added to this list? Please sign-up at <a href="http://kumutu.com/suppliers/register">Kumutu</a></div>
+		<div class="notice">Would you like to be added to this list? Sign up at <a href="http://kumutu.com/suppliers/register">Kumutu.com</a></div>
 		<?php echo $this->element('bannersHome'); ?>
 	
 	</div> 

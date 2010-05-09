@@ -7,8 +7,8 @@
 		
 			<h1><?php echo $this->data['activityType']; ?> Operators</h1>
 
-				<div id="LoadingDiv" style="display: none;">
-				    <?php echo $html->image('/img/ajax-loader.gif'); ?>
+				<div id="loading" style="display: none;">
+				    Loading, please wait...
 				</div>
 	
 					<div class="filter">
@@ -26,15 +26,18 @@
 				     /* Display paging info */
 				?>	
 				
-					<div id="paging" class="paging">
-						<?php
-							echo $paginator->prev(); 
-							echo $paginator->numbers(array('separator'=>'')); 
-							echo $paginator->next();
-						?>
+					<div id="paging" class="paging">	
+					<?php 
+					//Sets the update and indicator elements by DOM ID
+					//$paginator->options(array('update' => 'operatorList', 'indicator' => 'loading'));
+					echo $paginator->prev('<< Previous', null, null, array('class' => 'disabled'));
+					echo $paginator->numbers(array('separator'=>'')); 
+					echo $paginator->next('Next >>', null, null, array('class' => 'disabled')); 
+					?>
 					</div> 
 					
-					<div class="operatorList">
+					
+					<div id="operatorList">
 						<ul>
 						<?php foreach($operators as $operator): ?>
 							 <li><a href="/operators/view/<?php echo $operator['Operator']['id']; ?>"><?php echo $operator['Operator']['name']; ?></a></li>

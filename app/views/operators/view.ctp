@@ -4,9 +4,7 @@
 <div class="sub_container">
 <div class="content_left_panel">
 
-	<?php // if ($success_email) { echo '<div class="notice">'. $success_email .'></div>'; } ?> 
-	
-	
+	<?php // if ($success_email) { echo '<div class="notice">'. $success_email .'></div>'; } ?> 	
 	<h1><?php echo $operator['Operator']['name']; ?></h1>
 	
 	<div class="content_bg">
@@ -14,6 +12,7 @@
 		<div class="sub_po_bg">
 			<h2>Location</h2>
 			<p>
+						
 			<?php //if ($operator['Operator']['city']) { echo $operator['Operator']['city'].","; } ?>
 			<?php if ($operator['Operator']['stateProvince']) { echo $operator['Operator']['stateProvince']."</p><p>"; } ?>
 			<?php if ($operator['Operator']['countryISO']) { echo $operator['Country']['name']; } ?>
@@ -66,7 +65,7 @@
 			</div> <!-- /googleReviews -->
 		</div> <!-- /sub_to_bg -->
 	
-				<?php echo $this->element('requests/add'); ?>
+				<?php echo $this->element('requests/add', array('operatorID' => $operator['Operator']['id'])); ?>	
 	
 	</div>
 </div> <!-- content_left_panel -->

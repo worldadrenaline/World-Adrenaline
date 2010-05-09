@@ -17,6 +17,7 @@ echo $paginator->counter(array(
 	<th><?php echo $paginator->sort('isTerm');?></th>
 	<th><?php echo $paginator->sort('message');?></th>
 	<th><?php echo $paginator->sort('subject');?></th>
+	<th><?php echo $paginator->sort('operatorID')?></th>
 	<th class="actions"><?php __('Actions');?></th>
 </tr>
 <?php
@@ -54,6 +55,9 @@ foreach ($requests as $request):
 		</td>
 		<td>
 			<?php echo $request['Request']['subject']; ?>
+		</td>
+		<td>
+			<?php echo $request['Request']['operatorID']; ?>
 		</td>
 		<td class="actions">
 			<?php echo $html->link(__('View', true), array('action' => 'view', $request['Request']['id'])); ?>
