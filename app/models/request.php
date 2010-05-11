@@ -47,7 +47,7 @@ class Request extends AppModel {
                 'rule' => '/^[+\s\(\)0-9]+$/i', 
                 'required' => true,
                 'allowEmpty' => false,
-                'message' => 'Accepted characters: 0-9 + ( ) space.'
+                'message' => 'Accepted characters: 0-9 + ( ) space'
             )
          ),
          'participantsNumber' => array(

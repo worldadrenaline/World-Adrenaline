@@ -237,19 +237,24 @@ div.error-message {
 	font-weight: bold;
 }
 p.error {
-	background-color: #e32;
+	background:none repeat scroll 0 0 #C50D1A;
+	border:1px solid #B00B17;
+	margin:20px 13px;
+	padding:5px 20px;
 	color: #fff;
-	font-family: Courier, monospace;
 	font-size: 120%;
-	line-height: 140%;
-	padding: 0.8em;
-	margin: 1em 0;
+	line-height: 140%;	
 }
 p.error em {
 	color: #000;
 	font-weight: normal;
 	line-height: 140%;
 }
+
+#flashMessage.notice { background: #FFFFDD;	border:1px solid #EEEECC; clear: both; color: #FFF; }
+#flashMessage.error { background:none repeat scroll 0 0 #C50D1A; border:1px solid #B00B17; clear: both; color: #FFF; }
+#flashMessage.success { background: #5A9922; border:1px solid #50891E; clear:both; color: #FFF; }
+
 .notice {
 	background: #FFFFDD;
 	border:1px solid #EEEECC;
@@ -260,9 +265,20 @@ p.error em {
 	clear: both;
 }
 .success {
-	background: green;
-	color: #fff;
+	/*
+	background:none repeat scroll 0 0 #DBF49F;
+	border:1px solid #B1E13F;
+	*/
+	background:none repeat scroll 0 0 #5A9922;
+	border:1px solid #50891E;
+	margin:20px 13px;
+	padding:20px;
+	color: #FFFFFF;
 }
+
+
+#flashMessage { width:70%; margin: 10px auto; padding: 10px; text-align: center; }
+#flashMessage ul { list-style: none; }
 
 /*  Actions  */
 div.actions ul {
@@ -395,8 +411,6 @@ div.code-coverage-results span.result-ok {
 div.code-coverage-results span.result-good {
 	color: #0a0;
 }
-
-#flashMessage { width:80%; margin: 10px auto; border: 1px solid #AA0000; background-color: #FFFFFF; padding: 10px; text-align: center; }
 
 /* Home */
 .tagline {

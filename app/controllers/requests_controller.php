@@ -2,118 +2,84 @@
 class RequestsController extends AppController {
 
 	var $name = 'Requests';
-	var $helpers = array('Html', 'Form');
-
-
+	var $helpers = array('Html', 'Form', 'Recaptcha.CaptchaTool');
+	var $components = array(array('Recaptcha.Captcha', array(
+                'private_key' => '6Lf9KgcAAAAAAFHCc0Xu5pHLAR17srqJ1eamIgFp', 
+                'public_key' => '6Lf9KgcAAAAAADYWTqUyR0kYSxwbJ36ntBYAUI3r')));
+                
 	function beforeFilter() {
 	    parent::beforeFilter(); 
 	    $this->Auth->allowedActions = array('add', 'test');
 	}
-	
-	
+		
 	/*
-	* Temp action for debug sending of request to kumutu
-	*/
-	function test() {
-				 	$data = array(
-						'Prospect' => array(
-							'id' => '223837'					
-						),
-						'Contact' => array (
-					 		'name' => 'Ryan Off',
-					 		'email' => 'mail@ryanoff.com',
-					 		'subject' => 'Test 20',
-					 		'message' => 'This is a test message'	
-						)
-			 		);	 	
-								
-				//usr
-				$methodUrl = 'http://local-kumutu/api/prospects/email.xml';
-				$uri = $methodUrl.'?apikey='.Configure::read('apikey');
-				
-				App::import('Core', 'HttpSocket');
-				$this->http = new HttpSocket();
-				$results = $this->http->post($uri, $data);
-
-				debug($results, true);
-				debug($data, true, true);
-	}
-	
-	/*
-    * Validate and save the request locallys, then try to send via API
+    * Validate and save the request localy, then try to send via API
     */
 	function add() {
+		
 	    $this->Request->set($this->data);
 	
 		if ($this->Request->validates()) {
+		    if ($this->Captcha->validate()) { 
+
+		
 			$this->Request->create();
 			if ($this->Request->save($this->data)) {
-				
-				// We should now send the contact via the Kumutu API to the operator
-				// sendRequest (id, name, email, phone, date, participantsNumber, message, subject);
-				// If it succeeds, then display the follow message
-				
-				/* Debug to be removed */
-				//debug($this->data);
-
-				/*
-				$data = array (
-				'id' => $this->data['Request']['operatorID'],
-			 	'name' => $this->data['Request']['name'],
-			 	'email' => $this->data['Request']['email'],
-			 	//'phone' => $this->data['Request']['phone'],
-			 	//'date' => $this->data['Request']['date'],
-			 	//'participantsNumber' => $this->data['Request']['participantsNumber'],
-			 	'subject' => $this->data['Request']['subject'],
-			 	'message' => $this->data['Request']['message']
-			 	);
-			 	*/
+			 	$data = array ( 
+				 	'data' => array (
+						'Prospect' => array(
+							'id' => $this->data['Request']['operatorID']					
+						),
+						'Contact' => array (
+					 		'name' => $this->data['Request']['name'],
+					 		'email' => $this->data['Request']['email'],
+					 	 	'phone' => $this->data['Request']['phone'],
+					 		'subject' => $this->data['Request']['subject'],
+					 		'message' => $this->data['Request']['message'],
+					 	 	'participantsNumber' => $this->data['Request']['participantsNumber'],
+						 	'isTerm' => $this->data['Request']['isTerm'],
+						 	//'date' => $this->data['Request']['date'],	
+						)
+		 		));
+		 		
+		 			
 			 	
-			 	//To be replaced with dynamic data above after testing
-			 	$data = array(
-					'Prospect' => array(
-						'id' => '223837'					
-					),
-					'Contact' => array (
-				 		'name' => 'Ryan Off',
-				 		'email' => 'mail@ryanoff.com',
-				 		'subject' => 'Test 20',
-				 		'message' => 'This is a test message'	
-					)
-			 		);	 	
-				
-				//$url = 'http://kumutu.com/api/prospects/email.xml?apikey=17604162604ae6ffa3636d46.73439478';	
-				$url = 'http://local-kumutu/api/prospects/email.xml?apikey=17604162604ae6ffa3636d46.73439478';	
-				
-				$methodUrl = 'http://local-kumutu/api/prospects/email.xml';
-				$uri = $methodUrl.'?apikey='.Configure::read('apikey');
-				
+				//$methodUrl = 'http://api.kumutu.com/0.4/prospects/email.xml';
+				$methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/prospects/email.xml';
+				//$methodUrl = 'http://kumutu.local/0.4/prospects/email.xml';
+			 	
+			 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
+			 	
 				App::import('Core', 'HttpSocket');
-				$http = new HttpSocket();
-				$results = $http->post($uri, $data);
+				$this->http = new HttpSocket();
+				$results = $this->http->post($uri, $data);
 				
-				echo 'Debug Results: '.$results.' :';
-				
-				if ($this->Request->sendRequest($this->data)) {
-					$this->Session->setFlash(__('Success.. Your request has been sent.', true));
-					$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
-				} else {
-				
-				$this->Session->setFlash(__('Your request was saved but not sent. We will send your request soon.', true));
+				App::import('Xml');
+				$parsed_xml = new Xml($results);
+				$sendResults = Set::reverse($parsed_xml); 
+
+				if (!empty($sendResults['Success'])) {
+					$this->Session->setFlash('Thank you. Your request has been sent.', 'default', array('class' => 'success'));
+			    } else {
+    				if (!empty($sendResults['Error'])){ 
+	    				$this->Session->setFlash('Your request could not be sent. Error: '. $sendResults['Error']['Message'], 'default', array('class' => 'error')); 
+    				} else {
+	    				$this->Session->setFlash('Your request could not be sent.', 'default', array('class' => 'error'));
+    				}
+                    $this->redirect($this->referer(), null, true);
+
+			    }
 				$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
-				
-				}
-				
 									
 			} else {
-				$this->Session->setFlash(__('Your request could not be sent. Please, try again.', true));
+				$this->Session->setFlash('Your request could not be saved or sent. Please, try again.', 'default',array('class' => 'error'));
 			}
-		}
-		else {
+		} else {
 	        $errors = $this->Request->invalidFields();
-		    $this->Session->setFlash(implode(',', $errors));
+			$this->Session->setFlash('<strong>Please correct the following</strong><ul><li>'.implode('</li><li>', $errors).'</li></ul>', 'default', array('class' => 'error'));
+
 		}
-		
+		}
 	}
 		
 	

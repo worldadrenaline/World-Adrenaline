@@ -6,7 +6,7 @@
 
 	<?php // if ($success_email) { echo '<div class="notice">'. $success_email .'></div>'; } ?> 	
 	<h1><?php echo $operator['Operator']['name']; ?></h1>
-	
+		
 	<div class="content_bg">
 		
 		<div class="sub_po_bg">
@@ -64,7 +64,9 @@
 				<!-- END Google Friends Connect Rating -->		
 			</div> <!-- /googleReviews -->
 		</div> <!-- /sub_to_bg -->
-	
+				
+				<?php //TODO: only display form if the operator has an email address ?>
+				
 				<?php echo $this->element('requests/add', array('operatorID' => $operator['Operator']['id'])); ?>	
 	
 	</div>

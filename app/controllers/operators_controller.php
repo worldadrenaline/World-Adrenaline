@@ -8,9 +8,7 @@ class OperatorsController extends AppController {
 
 	function beforeFilter() {
 	    parent::beforeFilter(); 
-	    $this->Auth->allowedActions = array('index', 'view', 'display');
-		//$this->Recaptcha->publickey = "6Lf9KgcAAAAAADYWTqUyR0kYSxwbJ36ntBYAUI3r";
-		//$this->Recaptcha->privatekey = "6Lf9KgcAAAAAAFHCc0Xu5pHLAR17srqJ1eamIgFp"; 
+	    $this->Auth->allowedActions = array('index', 'view', 'display'); 
 	}
 
 	function index($activityType = null) {
@@ -46,7 +44,6 @@ class OperatorsController extends AppController {
 		if (!$activityType) {
 			$this->Session->setFlash(__('Please select an activity', true));
 			$this->redirect(array('controller' => 'pages', 'action' => 'display','home'));
-
 		}
 		
 		
