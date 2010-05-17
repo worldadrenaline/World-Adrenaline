@@ -1,7 +1,12 @@
 
 <div class="request">
 	
-		<?php if(!empty($this->data['Request']['operatorID'])){$operatorID = $this->data['Request']['operatorID'];} ?>
+		<?php
+		 debug ($operator_id); 
+			debug ($this->data);
+			?>
+	
+		<?php if(!empty($this->data['Request']['operator_id'])){$operator_id = $this->data['Request']['operator_id'];} ?>
 	
 		<h2>Request more information from this operator  </h2>	
 		<?php 
@@ -19,14 +24,10 @@
 			echo '<div class="weak">Do you have any additional requirements or comments?</div>';
 			echo $form->input('isTerm', array('label'=>'I agree with the <a href=/termsofuse>Terms of Use</a> <span>*</span>', 'type' => 'checkbox'));
 			echo $form->input('subject', array('type'=>'hidden', 'value'=>'Information request from Adventicus.com'));
-			echo $form->input('operatorID', array('type'=>'hidden', 'value'=>$operatorID));
-
-			//create the reCAPTCHA form.
+			echo $form->input('operator_id', array('type'=>'hidden', 'value'=>$operator_id));
 
 		    echo $form->submit('submit.png');
 			echo $form->end();
-
-			//echo $captchaTool->show();
 
 		?>
 </div>  <!-- /request -->

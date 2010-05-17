@@ -20,15 +20,13 @@ class RequestsController extends AppController {
 	    $this->Request->set($this->data);
 	
 		if ($this->Request->validates()) {
-		    if ($this->Captcha->validate()) { 
-
 		
 			$this->Request->create();
 			if ($this->Request->save($this->data)) {
 			 	$data = array ( 
 				 	'data' => array (
 						'Prospect' => array(
-							'id' => $this->data['Request']['operatorID']					
+							'id' => $this->data['Request']['operator_id']					
 						),
 						'Contact' => array (
 					 		'name' => $this->data['Request']['name'],
@@ -42,10 +40,8 @@ class RequestsController extends AppController {
 						)
 		 		));
 		 		
-		 			
-			 	
-				//$methodUrl = 'http://api.kumutu.com/0.4/prospects/email.xml';
-				$methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/prospects/email.xml';
+				$methodUrl = 'http://api.kumutu.com/0.4/prospects/email.xml';
+				//$methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/prospects/email.xml';
 				//$methodUrl = 'http://kumutu.local/0.4/prospects/email.xml';
 			 	
 			 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
@@ -67,18 +63,16 @@ class RequestsController extends AppController {
 	    				$this->Session->setFlash('Your request could not be sent.', 'default', array('class' => 'error'));
     				}
                     $this->redirect($this->referer(), null, true);
-
 			    }
-				$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
+				//$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
+                $this->redirect($this->referer(), null, true);
 									
 			} else {
-				$this->Session->setFlash('Your request could not be saved or sent. Please, try again.', 'default',array('class' => 'error'));
+				$this->Session->setFlash('Your request could not be sent. Please contact us at support@kumutu.com.', 'default',array('class' => 'error'));
 			}
 		} else {
 	        $errors = $this->Request->invalidFields();
 			$this->Session->setFlash('<strong>Please correct the following</strong><ul><li>'.implode('</li><li>', $errors).'</li></ul>', 'default', array('class' => 'error'));
-
-		}
 		}
 	}
 		

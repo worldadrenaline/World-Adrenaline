@@ -12,7 +12,7 @@
 		echo $form->input('isTerm');
 		echo $form->input('message');
 		echo $form->input('subject');
-		echo $form->input('operatorID');
+		echo $form->input('operator_id');
 	?>
 	</fieldset>
 <?php echo $form->end('Submit');?>

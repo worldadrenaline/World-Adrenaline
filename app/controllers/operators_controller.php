@@ -8,7 +8,7 @@ class OperatorsController extends AppController {
 
 	function beforeFilter() {
 	    parent::beforeFilter(); 
-	    $this->Auth->allowedActions = array('index', 'view', 'display'); 
+	    $this->Auth->allowedActions = array('index', 'view', 'display', 'sendRequest'); 
 	}
 
 	function index($activityType = null) {
@@ -85,18 +85,73 @@ class OperatorsController extends AppController {
 			$this->redirect(array('action' => 'index'));
 		}
 		$this->set('operator', $this->Operator->read(null, $id));
-		
-		//Validate form with reCaptcha
-		/*
-		if($this->Recaptcha->valid($this->params['form'])) {
-			//submission is valid!
-		} 
-		else {
-		  //invalid reCAPTCHA entry. 
-		}
-		*/
-		
 	}
+	
+	function sendRequest() {
+		
+	    $this->Request->set('request', $this->data['Request']);
+	
+		if ($this->Request->validates()) {
+		
+			$this->Request->create();
+			
+			if ($this->Request->save($this->data)) {
+			 	$data = array ( 
+				 	'data' => array (
+						'Prospect' => array(
+							'id' => $this->data['Request']['operator_id']					
+						),
+						'Contact' => array (
+					 		'name' => $this->data['Request']['name'],
+					 		'email' => $this->data['Request']['email'],
+					 	 	'phone' => $this->data['Request']['phone'],
+					 		'subject' => $this->data['Request']['subject'],
+					 		'message' => $this->data['Request']['message'],
+					 	 	'participantsNumber' => $this->data['Request']['participantsNumber'],
+						 	'isTerm' => $this->data['Request']['isTerm'],
+						 	//'date' => $this->data['Request']['date'],	
+						)
+		 		));
+
+				//$methodUrl = 'http://api.kumutu.com/0.4/prospects/email.xml';
+				$methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/prospects/email.xml';
+				//$methodUrl = 'http://kumutu.local/0.4/prospects/email.xml';
+			 	
+			 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
+			 	
+				App::import('Core', 'HttpSocket');
+				$this->http = new HttpSocket();
+				$results = $this->http->post($uri, $data);
+				
+				App::import('Xml');
+				$parsed_xml = new Xml($results);
+				$sendResults = Set::reverse($parsed_xml); 
+
+				if (!empty($sendResults['Success'])) {
+					$this->Session->setFlash('Thank you. Your request has been sent.', 'default', array('class' => 'success'));
+			    } else {
+    				if (!empty($sendResults['Error'])){ 
+	    				$this->Session->setFlash('Your request could not be sent. Error: '. $sendResults['Error']['Message'], 'default', array('class' => 'error')); 
+    				} else {
+	    				$this->Session->setFlash('Your request could not be sent.', 'default', array('class' => 'error'));
+    				}
+                    $this->redirect($this->referer(), null, true);
+
+			    }
+				//$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
+                $this->redirect($this->referer(), null, true);
+					
+			} else {
+				$this->Session->setFlash('Your request could not be sent. Please, contact support@kumutu.com', 'default',array('class' => 'error'));
+			}
+		} else {
+	        $errors = $this->Request->invalidFields();
+			$this->Session->setFlash('<strong>Please correct the following</strong><ul><li>'.implode('</li><li>', $errors).'</li></ul>', 'default', array('class' => 'error'));
+
+		}
+	}
+	
+	
 
 
 	function admin_index () {
