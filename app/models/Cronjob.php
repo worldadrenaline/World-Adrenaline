@@ -48,9 +48,10 @@ class Cronjob extends AppModel {
 			$StateProv=$aAddress[$i]['StateProv']['StateCode'];
 			$CountryID=$aAddress[$i]['CountryName']['ID'];
 			$CountryISO=$aAddress[$i]['CountryName']['Code'];
+			//$hasEmail=$aProspect[$i]['HasEmail'];
 					    
 		
-			$SOQL = "INSERT INTO operators(id,name,type,activityType,activity_type_id,city,stateProvince,country_id,countryISO) Values  ('".$aCompanyName[$i]['ID']."','".$aCompanyName[$i]['ShortName']."','".$aCategory[$i]['Type']."','".$aCategory[$i]['CategoryItem']['Name']."','".$aCategory[$i]['CategoryItem']['ID']."','".$aAddress[$i]['CityName']."','".$aAddress[$i]['StateProv']['StateCode']."','".$aAddress[$i]['CountryName']['ID']."','".$aAddress[$i]['CountryName']['Code']."')";
+			$SOQL = "INSERT INTO operators(id,name,type,activityType,activity_type_id,city,stateProvince,country_id,countryISO,hasEmail) Values  ('".$aCompanyName[$i]['ID']."','".$aCompanyName[$i]['ShortName']."','".$aCategory[$i]['Type']."','".$aCategory[$i]['CategoryItem']['Name']."','".$aCategory[$i]['CategoryItem']['ID']."','".$aAddress[$i]['CityName']."','".$aAddress[$i]['StateProv']['StateCode']."','".$aAddress[$i]['CountryName']['ID']."','".$aAddress[$i]['CountryName']['Code']."','".$aProspect[$i]['HasEmail']."')";
 
 			
 			//   exit;

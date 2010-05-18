@@ -25,6 +25,23 @@ class Operator extends AppModel {
 			'order' => ''
 		)
 	);
+	
+	var $hasMany = array(
+		'Request' => array(
+			'className' => 'Request',
+			'foreignKey' => 'operator_id',
+			'dependent' => false,
+			'conditions' => '',
+			'fields' => '',
+			'order' => '',
+			'limit' => '',
+			'offset' => '',
+			'exclusive' => '',
+			'finderQuery' => '',
+			'counterQuery' => ''
+		)
+	);
+	
 
 }
 ?>

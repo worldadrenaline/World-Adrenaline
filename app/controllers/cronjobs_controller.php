@@ -41,7 +41,7 @@ $file = "http://dev.kumutu.com/api/countries/list.xml?apikey=10132293094ba6bd772
   function insDbProspect()
   {
 	   App::import('Xml');
-	$file = "http://local-kumutu/0.4/prospects/get.xml?apikey=10132293094ba6bd772192f4.29432906";
+	$file = "http://api.kumutu.com/0.4/prospects/get.xml?apikey=10132293094ba6bd772192f4.29432906";
        $parsed_xml =& new XML($file);
        $parsed_xml = Set::reverse($parsed_xml);
        $aProspect=$parsed_xml['Prospects']['Prospect'];

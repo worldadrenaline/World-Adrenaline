@@ -65,23 +65,15 @@
 			</div> <!-- /googleReviews -->
 		</div> <!-- /sub_to_bg -->
 				
-				<?php //TODO: only display form if the operator has an email address ?>
-				<?php // Depreciated: echo $this->element('requests/add', array('operator_id' => $operator['Operator']['id'])); ?>	
-	
-		<div class="request">
-		
-			<?php
-			 debug ($operator); 
-			 debug ($request);
- 			 debug ($Request);
+		<?php //Display a sendRequest form if the operator has an email address 
+		if ($operator['Operator']['hasEmail'] == '1') {
+		?>
 
-				debug ($this->data);
-				?>
-		
-			<h2>Request more information from this operator  </h2>	
+		 <div class="request">
+	
+			<h2>Request more information from <?php echo $operator['Operator']['name']; ?> </h2>	
 			<?php 
-			    //echo $form->create('Request');
-			    echo $form->create('Request', array('url' => array('controller' => 'operators', 'action' => 'sendRequest')));
+			    echo $form->create('Request');
 				echo $form->input('name', array('label'=>'Name <span>*</span>', 'size'=>'35'));
 				echo $form->input('email', array('label'=>'Email <span>*</span>', 'size'=>'35'));
 				echo $form->input('phone', array('label'=>'Phone <span>*</span>'));
@@ -94,14 +86,18 @@
 				echo $form->input('isTerm', array('label'=>'I agree with the <a href=/termsofuse>Terms of Use</a> <span>*</span>', 'type' => 'checkbox'));
 				echo $form->input('subject', array('type'=>'hidden', 'value'=>'Information request from Adventicus.com'));
 				echo $form->input('operator_id', array('type'=>'hidden', 'value'=>$operator['Operator']['id']));
-	
+				echo $form->input('operatorName', array('type'=>'hidden', 'value'=>$operator['Operator']['name']));
+
+				//create the reCAPTCHA form.
+				$recaptcha->display_form('echo');
+
 			    echo $form->submit('submit.png');
 				echo $form->end();
 	
 			?>
 		</div>  <!-- /request -->
-	
-	
+	 <?php } ?>
+				
 	</div>
 </div> <!-- content_left_panel -->
 

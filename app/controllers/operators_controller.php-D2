@@ -43,11 +43,6 @@ class OperatorsController extends AppController {
 			 }
 		}
 
-		/* debug info to be removed */
-		echo "Conditions :";
-		var_dump($conditions);
-        
-        
         // Paginate Operators
         $this->paginate = array (
 			'conditions' => $conditions,
