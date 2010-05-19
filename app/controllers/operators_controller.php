@@ -19,8 +19,6 @@ class OperatorsController extends AppController {
 	
 
 	function index($activityType = null) {
-
-		debug($this->data);
 		
 		if(!$this->RequestHandler->isAjax()) {
 		}
@@ -61,9 +59,6 @@ class OperatorsController extends AppController {
             $this->pageTitle = "Operator List";    
         }
 
-		debug($conditions);
-
-        
         // Paginate Operators
         $this->paginate = array (
 			'conditions' => $conditions,

@@ -8,6 +8,7 @@ class DATABASE_CONFIG {
 		'login' => 'root',
 		'password' => 'Ku7r1beDB',
 		'database' => 'adventicusR3',
+		'encoding' => 'utf8'  
 	);
 }
 ?>
