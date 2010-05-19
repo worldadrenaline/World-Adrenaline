@@ -7,7 +7,10 @@
 			
 			<?php $i = 1; ?>
 			<?php foreach ($activityTypes as $activityType):?>
-					<li class="activityLink"><a href="/operators/index/<?php echo $activityType['ActivityType']['shortname']; ?>"><?php echo $activityType['ActivityType']['name']; ?></a></li>
+					
+					<li class="activityLink"><?php echo $html->link($activityType['ActivityType']['name'],array('controller'=>'operators','action'=>'index',$activityType['ActivityType']['shortname'])); ?></a></li>
+
+					
 					<?php if ($i++ % 12 == 0) {
 				        echo '</ul><ul class="activityList">';
 					} ?>

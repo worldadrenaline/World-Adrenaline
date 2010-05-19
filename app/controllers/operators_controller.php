@@ -2,12 +2,13 @@
 class OperatorsController extends AppController {
 
 	var $name = 'Operators';
-	var $helpers = array('Html', 'Form');
-    //var $components = array('RequestHandler');
+	var $helpers = array('Html', 'Form', 'Javascript');
+//	var $helpers = array('Html', 'Form');
+
+    var $components = array('RequestHandler', 'Recaptcha');
     var $paginate = array('limit'=>'20','page' => 1, 'order'=>array('Operator.name'=>'asc')); 
     //var $uses = array('Operator', 'Request');
-   	var $components = array('Recaptcha');  
-	
+  	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
 	    $this->Auth->allowedActions = array('index', 'view', 'display'); 
@@ -15,51 +16,50 @@ class OperatorsController extends AppController {
 	    $this->Recaptcha->publickey = "6Lf0LroSAAAAAMBdmwWULXCsPTNI-_bRRUlNQQX2";
 		$this->Recaptcha->privatekey = "6Lf0LroSAAAAABLmxIkUV8h5YTIgoAKGzU8hXvz1"; 
 	}
+	
 
 	function index($activityType = null) {
-		
-        // Set up conditions based on filter form
-        $conditions = array();
-		
-		if ($this->data) {
-			//if (!empty($this->data['Operator']['activityType'])) { $conditions[] = array ('ActivityType.shortname =' => $this->Operator->data['activityType']); }
-			//if (!empty($this->data['country'])) { $conditions[] = array ('Operator.CountryID =' => $this->Operator->data['country']); }
-			if (!empty($this->data['Operator']['activityType'])) { 
-				$conditions[] = array ('ActivityType.shortname =' => $this->data['Operator']['activityType']); 
-				$this->data['activityType'] = $this->data['Operator']['activityType'];
-				$activityType = $this->data['Operator']['activityType'];
-				}
-			if (!empty($this->data['Operator']['country'])) { $conditions[] = array ('Operator.country_id =' => $this->data['Operator']['country']); }
-		
-		} else {
-			if (!empty($this->params['pass']['0'])) { 
-				$this->data['activityType'] = $this->params['pass']['0'];
-				//$conditions[] = array ('Operator.shortname =' => $this->data['activityType']);
-				$conditions[] = array ('ActivityType.shortname =' => $this->data['activityType']);
 
-			 }
+		debug($this->data);
+		
+		if(!$this->RequestHandler->isAjax()) {
 		}
-
 
 		//Check for activityType, otherwise redirect to homepage
 		if (!$activityType) {
-			$this->Session->setFlash(__('Please select an activity', true));
+			$this->Session->setFlash(__('No activity type is selected. Please select an activity', true));
 			$this->redirect(array('controller' => 'pages', 'action' => 'display','home'));
 		}
+
+        // Set up conditions based on filter form
+        $conditions = array();
+        $country = '';
 		
+		if (isset($this->data)) {
+			$country = $this->data['Operator']['country'];
+			$activityType = $this->data['Operator']['activityType'];
+			$conditions = array ('Operator.country_id =' => $country, 'ActivityType.shortname =' => $activityType); 
+		} 
+		else {
+				//$activityType = $this->params['pass']['0'];
+		        $conditions = array ('ActivityType.shortname =' => $activityType);
+		}
+		
+		debug($this->params);
+		debug($activityType);
+		debug($country);
+		debug($this->data);
 		
 		// Create list of countries
 	    $countries = $this->Operator->Country->find('list');
-        
+
         if(!$this->RequestHandler->isAjax()) {
             // things you want to do on initial page load go here
             $this->pageTitle = "Operator List";    
         }
 
+		debug($conditions);
 
-		/* debug info to be removed */
-		//debug($conditions);
-        
         
         // Paginate Operators
         $this->paginate = array (
@@ -71,7 +71,9 @@ class OperatorsController extends AppController {
         
         $data = array (
 			'operators' => $this->paginate(),
-			'countries' => $countries
+			'countries' => $countries,
+			'activityType' => $activityType,
+			'country' => $country
 		);
         
         //$data = $this -> paginate();

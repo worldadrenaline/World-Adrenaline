@@ -5,37 +5,40 @@
 	<div class="sub_container">
 		<div class="content_left_panel">
 		
-			<h1><?php echo $this->data['activityType']; ?> Operators</h1>
-
+		<?php echo $javascript->link(array('jquery.js')); ?>
+		
+			<h1><?php echo $activityType; ?>  Operators</h1>
+				
 				<div id="loading" style="display: none;">
 				    Loading, please wait...
 				</div>
-	
-					<div class="filter">
-					Filter by
-					<?php
-		    			echo $form->create(null, array('url' => '/operators/index/'.$this->data['activityType']));
-						echo $form->input('country', array('type'=>'select', 'options'=>$countries, 'empty'=>'- country -', 'label'=>'', 'onChange' => 'this.form.submit()'	));
-						echo $form->input('activityType', array('type'=>'hidden', 'value'=>$this->data['activityType']));
-					    echo $form->end();
-					?>
-					</div>
+				
+				<div class="filter">
+				Filter by
+				<?php
+	    			echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'index', $activityType)));
+					echo $form->input('country', array('type'=>'select', 'options'=>$countries, 'empty'=>'- country -', 'label'=>'', 'onChange' => 'this.form.submit()'	));
+					echo $form->input('activityType', array('type'=>'hidden', 'value'=>$activityType));
+				    echo $form->end();
+				?>
+				</div>
+
 
 				<?php
 				if (count($operators)>0) {
-				     /* Display paging info */
+				     /* Display operators listing */
 				?>	
 				
 					<div id="paging" class="paging">	
 					<?php 
 					//Sets the update and indicator elements by DOM ID
-					//$paginator->options(array('update' => 'operatorList', 'indicator' => 'loading'));
-					echo $paginator->prev('<< Previous', null, null, array('class' => 'disabled'));
-					echo $paginator->numbers(array('separator'=>'')); 
-					echo $paginator->next('Next >>', null, null, array('class' => 'disabled')); 
+					//$paginator->options(array('update' => 'content', 'indicator' => 'loading'));
+					echo $paginator->prev('<< Previous', array('url'=>$this->params['pass']), null, array('class' => 'disabled'));
+					echo $paginator->numbers(array('separator'=>'','url'=>$this->params['pass'])); 
+					echo $paginator->next('Next >>', array('url'=>$this->params['pass']), null, array('class' => 'disabled'));
+					
 					?>
 					</div> 
-					
 					
 					<div id="operatorList">
 						<ul>
@@ -46,9 +49,11 @@
 					</div>
 
 					<div id="paging" class="paging">
-						<?php echo $paginator->prev(); ?>
-						<?php echo $paginator->numbers(array('separator'=>'')); ?>
-						<?php echo $paginator->next(); ?>
+					<?php 
+					echo $paginator->prev('<< Previous', array('url'=>$this->params['pass']), null, array('class' => 'disabled'));
+					echo $paginator->numbers(array('separator'=>'','url'=>$this->params['pass'])); 
+					echo $paginator->next('Next >>', array('url'=>$this->params['pass']), null, array('class' => 'disabled'));
+					?>
 					</div> 
 			<?php 
 			} else {

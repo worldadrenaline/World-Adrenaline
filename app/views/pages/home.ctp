@@ -1,6 +1,5 @@
 <?php  echo $this->element('activity_types/list'); ?>
 
-
 <!-- content_panel -->
 <div class="content_panel">
 <div class="sub_container">
