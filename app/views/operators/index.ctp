@@ -7,7 +7,11 @@
 		
 		<?php echo $javascript->link(array('jquery.js')); ?>
 		
-			<h1><?php echo $activityType; ?>  Operators</h1>
+			<h1><?php echo $activityType; ?>  Operators 
+			
+				<?php if (isset($country)) { echo 'in '.$country; } ?>
+			
+			</h1>
 				
 				<div id="loading" style="display: none;">
 				    Loading, please wait...
@@ -20,6 +24,7 @@
 					echo $form->input('country', array('type'=>'select', 'options'=>$countries, 'empty'=>'- country -', 'label'=>'', 'onChange' => 'this.form.submit()'	));
 					echo $form->input('activityType', array('type'=>'hidden', 'value'=>$activityType));
 				    echo $form->end();
+				    
 				?>
 				</div>
 
