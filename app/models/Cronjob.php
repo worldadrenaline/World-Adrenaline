@@ -3,7 +3,7 @@ class Cronjob extends AppModel {
 	var $name = 'Cronjob'; 
 	var $useTable = false;
 		
- function makeActivityEntry($aNewCategory)
+	function makeActivityEntry($aNewCategory)
 	{
 	  
 	   for($i=0;$i<count($aNewCategory);$i++)
@@ -16,17 +16,16 @@ class Cronjob extends AppModel {
 	 
 	}
 	
-	function makeCountryEntry($aNewCountry)
+	function makeCountryEntry($countries)
 	{
-	  
-	   for($i=0;$i<count($aNewCountry);$i++)
-	   {
-	    $name=addslashes($aNewCountry[$i]['value']);
-		$code=$aNewCountry[$i]['Code'];
-		$SOQL = "INSERT INTO countries (CountryID,CountryName) Values  ('".$code."','".$name."')";
-        $aCntr= $this->query($SOQL);
-	   }
-	 
+		foreach ($countries as $country) {
+			$id = $country['ID'];
+			$name = addslashes($country['value']);
+			$iso = $country['Code'];
+			$shortname = $country['ShortName'];
+			$SOQL = "INSERT INTO countries (id,name,iso,shortname) VALUES ('".$id."','".$name."','".$iso."','".$shortname."') ON DUPLICATE KEY UPDATE name='".$name."', iso='".$iso."', shortname='".$shortname."' ";
+			$addCountries = $this->query($SOQL);
+		}
 	}
 	
 	

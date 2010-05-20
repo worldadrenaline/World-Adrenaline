@@ -2,9 +2,13 @@
 class CronjobsController extends AppController {
 
 	var $name = 'Cronjobs';
+	
+	function beforeFilter() {
+	    parent::beforeFilter(); 
+	    $this->Auth->allowedActions = array('insDbActivity', 'insDbCountry');
+	}
 						  
 	function index() {
-
 	}
 	
  function insDbActivity() {
@@ -24,18 +28,38 @@ class CronjobsController extends AppController {
 	   exit;
 	 }
  
- function insDbCountry() {
+	function insDbCountry() {
         App::import('Xml');
-$file = "http://dev.kumutu.com/api/countries/list.xml?apikey=10132293094ba6bd772192f4.29432906";
-       $parsed_xml =& new XML($file);
+        
+        $methodUrl = 'http://kumutu.local/0.4/countries/get.xml';
+	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
+		$parsed_xml = new Xml($uri);
+		$parsed_xml = Set::reverse($parsed_xml);
+		
+		//$countries = $parsed_xml['Countries']['Country'];
+
+		foreach ($parsed_xml['Countries']['Country'] as $country) {
+			$countries[] = $country['CountryName'];
+		}
+		
+		$this->Cronjob->makeCountryEntry($countries);
+		exit;
+		       
+       /*
+       $file = "http://api.kumutu.com/api/countries/list.xml?apikey=10132293094ba6bd772192f4.29432906";
+       $parsed_xml =& new XML($file);       
        $parsed_xml = Set::reverse($parsed_xml);
+       
        $aCountry=$parsed_xml['Countries']['Country'];
+	   
 	   for($i=0;$i<count($aCountry);$i++)
 	   {
 	      $aNewCountry[]=$aCountry[$i]['CountryName'];
 	   } 
+	   
 	   $this->Cronjob->makeCountryEntry($aNewCountry);
 	   exit;
+	   */
 	}
  
   function insDbProspect()
@@ -53,7 +77,7 @@ function insDb24Activity() {
        
 	    App::import('Xml');
 
-$file = "http://dev.kumutu.com/api/activityTypes/list.xml?apikey=10132293094ba6bd772192f4.29432906&";
+$file = "http://api.kumutu.com/api/activityTypes/list.xml?apikey=10132293094ba6bd772192f4.29432906&";
        $parsed_xml =& new XML($file);
        $parsed_xml = Set::reverse($parsed_xml);
        $aCategory=$parsed_xml['ActivityTypes']['Category'];
@@ -67,7 +91,7 @@ $file = "http://dev.kumutu.com/api/activityTypes/list.xml?apikey=10132293094ba6b
  
  function insDb24Country() {
         App::import('Xml');
-$file = "http://dev.kumutu.com/api/countries/list.xml?apikey=10132293094ba6bd772192f4.29432906";
+$file = "http://api.kumutu.com/api/countries/list.xml?apikey=10132293094ba6bd772192f4.29432906";
 
        $parsed_xml =& new XML($file);
        $parsed_xml = Set::reverse($parsed_xml);
@@ -84,7 +108,7 @@ $file = "http://dev.kumutu.com/api/countries/list.xml?apikey=10132293094ba6bd772
   {
       
 	   App::import('Xml');
-       $file = "http://dev.kumutu.com/api/prospects/index.xml?apikey=10132293094ba6bd772192f4.29432906&modified=24";
+       $file = "http://api.kumutu.com/api/prospects/index.xml?apikey=10132293094ba6bd772192f4.29432906&modified=24";
        $parsed_xml =& new XML($file);
        $parsed_xml = Set::reverse($parsed_xml);
        $aProspect=$parsed_xml['Prospects']['Prospect'];
