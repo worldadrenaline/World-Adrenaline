@@ -53,11 +53,14 @@ class Cronjob extends AppModel {
 	  
   		foreach ($operators as $operator) {
 			
-			debug($operator);
+			//debug($operator);
 			
 			$id = $operator['CompanyName']['ID'];
 			$name = addslashes($operator['CompanyName']['value']);
-			if(!is_array($operator['Address']['CityName'])){ $city = $operator['Address']['CityName']; } else { $city = '';};
+			
+			debug($id);
+			
+			if(!is_array($operator['Address']['CityName'])){ $city = addslashes($operator['Address']['CityName']); } else { $city = '';};
 			$country_id = $operator['Address']['CountryName']['ID'];
 			if(!is_array($operator['Address']['StateProv'])){ $stateProvince = $operator['Address']['StateProv']; } else { $stateProvince = '';};
 			$countryISO = $operator['Address']['CountryName']['Code'];

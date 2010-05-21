@@ -49,24 +49,37 @@ class CronjobsController extends AppController {
         $methodUrl = 'http://kumutu.local/0.4/prospects/get.xml';
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 		
-		// get numberofpages
-		//for($i=0;$i<=numberofpages;$i++)
-		//for($i=0;$i<10;$i++)
-		//{
-		//	retrieve and parse page i
-		//  possibly check if the xml doc is good and if so, then do below, otherwise stop with pages
-		//  send to Cronjob->update
-		//  if result is good, continue to next page?
-		//  parse next page
-		//}
-		
-		
+		// Retrieve number of Prospects pages from from Kumutu
 		$parsed_xml = new Xml($uri);
 		$parsed_xml = Set::reverse($parsed_xml);
+		$totalPages = $parsed_xml['Prospects']['Paging']['TotalPages'];
 		
-		$operators = $parsed_xml['Prospects']['Prospect'];
+		//debug($totalPages);
 		
-		$this->Cronjob->refreshDbOperators($operators);
+		
+		for($currentPage=0;$currentPage<=$totalPages;$currentPage++) {
+		//for ($currentPage=0;$currentPage<=20;$currentPage++) {
+			//	retrieve and parse page i
+			$uriPage = $uri.'&page='.$currentPage;
+			debug($uriPage);
+			$parsed_xml = new Xml($uriPage);
+			$parsed_xml = Set::reverse($parsed_xml);
+			$operators = $parsed_xml['Prospects']['Prospect'];
+			//debug($operators);
+			
+			$this->Cronjob->updateDbOperators($operators);
+
+			//  possibly check if the xml doc is good and if so, then do below, otherwise stop with pages
+			//  send to Cronjob->update
+			//  if result is good, continue to next page?
+			//  parse next page
+		
+		
+		}
+		
+		
+
+		
 		exit;
 	}
 
