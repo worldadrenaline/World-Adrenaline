@@ -58,7 +58,27 @@ class Cronjob extends AppModel {
 			$id = $operator['CompanyName']['ID'];
 			$name = addslashes($operator['CompanyName']['value']);
 			
-			debug($id);
+			//debug($id);
+			//echo "ID: ".$id."\n";
+			
+			//Get memory usage
+			/*
+			$mem_usage = memory_get_usage(true);
+			if ($mem_usage < 1024)
+			    echo "Memory: ".$mem_usage." bytes";
+			elseif ($mem_usage < 1048576)
+			    echo "Memory: ".round($mem_usage/1024,2)." kilobytes";
+			else
+			    echo "Memory: ".round($mem_usage/1048576,2)." megabytes";
+			   
+			echo "<br/>";
+			*/
+			//End memory usage
+		
+			
+			//$mem = "Memory: ". memory_get_usage() . "\n";
+			//debug ($mem);
+			
 			
 			if(!is_array($operator['Address']['CityName'])){ $city = addslashes($operator['Address']['CityName']); } else { $city = '';};
 			$country_id = $operator['Address']['CountryName']['ID'];
@@ -72,6 +92,11 @@ class Cronjob extends AppModel {
 
 			$SOQL = "INSERT INTO operators (id,name,city,country_id,stateProvince,countryISO,phone,description,activityType,activity_type_id,hasEmail) VALUES ('".$id."','".$name."','".$city."','".$country_id."','".$stateProvince."','".$countryISO."','".$phone."','".$description."','".$activityType."','".$activity_type_id."','".$hasEmail."') ON DUPLICATE KEY UPDATE name='".$name."', city='".$city."', country_id='".$country_id."', stateProvince='".$stateProvince."', countryISO='".$countryISO."', phone='".$phone."', description='".$description."', activityType='".$activityType."', activity_type_id='".$activity_type_id."', hasEmail='".$hasEmail."' ";
 			$result = $this->query($SOQL);
+			
+			//Free up memory
+			//unset($operators);
+			//mysql_free_result($result);
+			
   		}
 	}
 

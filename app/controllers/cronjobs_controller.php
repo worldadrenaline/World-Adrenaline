@@ -46,7 +46,8 @@ class CronjobsController extends AppController {
  
 	function refreshOperators() {
         App::import('Xml');
-        $methodUrl = 'http://kumutu.local/0.4/prospects/get.xml';
+        //$methodUrl = 'http://kumutu.local/0.4/prospects/get.xml';
+        $methodUrl = 'http://kumutu:Ku7r1beDB@kumutu.local/0.4/prospects/get.xml';
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 		
 		// Retrieve number of Prospects pages from from Kumutu
@@ -54,32 +55,33 @@ class CronjobsController extends AppController {
 		$parsed_xml = Set::reverse($parsed_xml);
 		$totalPages = $parsed_xml['Prospects']['Paging']['TotalPages'];
 		
-		//debug($totalPages);
-		
-		
-		for($currentPage=0;$currentPage<=$totalPages;$currentPage++) {
-		//for ($currentPage=0;$currentPage<=20;$currentPage++) {
+		for($currentPage=1;$currentPage<=$totalPages;$currentPage++) {
 			//	retrieve and parse page i
 			$uriPage = $uri.'&page='.$currentPage;
 			debug($uriPage);
-			$parsed_xml = new Xml($uriPage);
-			$parsed_xml = Set::reverse($parsed_xml);
-			$operators = $parsed_xml['Prospects']['Prospect'];
-			//debug($operators);
 			
+			$xmlObject = new Xml($uriPage);
+			$parsed_xml = Set::reverse($xmlObject);
+			$operators = $parsed_xml['Prospects']['Prospect'];
+
 			$this->Cronjob->updateDbOperators($operators);
-
-			//  possibly check if the xml doc is good and if so, then do below, otherwise stop with pages
-			//  send to Cronjob->update
-			//  if result is good, continue to next page?
-			//  parse next page
-		
-		
+			
+			//Get memory usage
+			$mem_usage = memory_get_usage(true);
+			if ($mem_usage < 1024)
+			    echo "Memory: ".$mem_usage." bytes";
+			elseif ($mem_usage < 1048576)
+			    echo "Memory: ".round($mem_usage/1024,2)." kilobytes";
+			else
+			    echo "Memory: ".round($mem_usage/1048576,2)." megabytes";
+			   
+			echo "<br/>";
+			//End memory usage
+			
+			//Free up memory from XML object
+			$xmlObject->__destruct();
+			unset($xmlObject);
 		}
-		
-		
-
-		
 		exit;
 	}
 
