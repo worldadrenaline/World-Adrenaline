@@ -483,6 +483,7 @@ logo img {}
 .filter form div.input { display: inline; }
 .filter form {display: inline; }
 .filter form div.submit {display: inline; margin-left: 20px; }
+.country { color:#AAAAAA; font-size:20px; line-height:22px; }
 
 /* Profile page */
 img#captcha { margin-bottom: 5px;}

@@ -10,19 +10,26 @@
 			    Loading, please wait...
 			</div>
 
-			<?php // debug($activityType); ?>
-			<?php // debug($country); ?>
-			<?php // debug($this->data); ?>
-			<?php // debug($operators); ?>
+			<?php  //debug($activityType); ?>
+			<?php  //debug($activityTypeName); ?>
+			<?php  //debug($country); ?>
+			<?php  //debug($this->data); ?>
+			<?php  //debug($operators); ?>
+			<?php  //debug($countries); ?>
 			
-			<?php // echo '<h1>'.$activityType.' </h1>; ?>  Operators 
-			<h1><?php echo $operators['0']['ActivityType']['name']; ?>  Operators 
+			<h1>
+			<?php  echo $activityTypeName.' operators'; ?> 
+			<?php //echo $operators['0']['ActivityType']['name'].' operators'; ?>
+
 			
-				<?php // if (isset($country)) { echo 'in '.$country; } ?>
 				<?php //if ($country!='') { echo 'in '.$country.' near '.$operators[0]['Country']['name']; } else { echo 'globally'; } ?>
-				<?php if ($country!='') { echo '<br/>in '.$operators[0]['Country']['name']; } else { echo 'globally'; } ?>
-			
+				<div class="country">
+				<?php  if (isset($country) && $country!='') { echo 'in '.$countries[$country]; }  else { echo 'globally'; } ?>
+
+				<?php //if ($country!='') { echo 'in '.$operators[0]['Country']['name']; } else { echo 'globally'; } ?>
+				</div>
 			</h1>
+
 				
 				<div class="filter">
 				Filter by

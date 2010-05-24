@@ -21,11 +21,12 @@ class OperatorsController extends AppController {
 	function index($activityType = null) {
 		
 		if(!$this->RequestHandler->isAjax()) {
+	        $this->pageTitle = "Operator List";    
 		}
 
 		//Check for activityType, otherwise redirect to homepage
 		if (!$activityType) {
-			$this->Session->setFlash(__('No activity type is selected. Please select an activity', true));
+			$this->Session->setFlash(__('No activity type is selected. Please select an activity type.', true));
 			$this->redirect(array('controller' => 'pages', 'action' => 'display','home'));
 		}
 
@@ -36,28 +37,22 @@ class OperatorsController extends AppController {
 		if (isset($this->data)) {
 			$country = $this->data['Operator']['country'];
 			$activityType = $this->data['Operator']['activityType'];
-			$conditions = array ('Operator.country_id =' => $country, 'ActivityType.shortname =' => $activityType);
+			$conditions = array ('Operator.country_id =' => $this->data['Operator']['country'], 'ActivityType.shortname =' => $activityType);
 			$this->params['pass']['1'] = $this->data['Operator']['country'];
- 
 		} 
+		elseif (isset($this->params['pass']['1'])) {
+			$country = $this->params['pass']['1']; 
+			$conditions = array ('Operator.country_id =' => $country, 'ActivityType.shortname =' => $activityType);
+		}
 		else {
-				//$activityType = $this->params['pass']['0'];
-		        $conditions = array ('ActivityType.shortname =' => $activityType);
-		        
-		        if (isset($this->params['pass']['1'])) { 
-		        $country = $this->params['pass']['1']; 
-        			$conditions = array ('Operator.country_id =' => $country, 'ActivityType.shortname =' => $activityType);
-
-		        }
+	        $conditions = array ('ActivityType.shortname =' => $activityType);
 		}
 		
 		// Create list of countries
 	    $countries = $this->Operator->Country->find('list');
 
-        if(!$this->RequestHandler->isAjax()) {
-            // things you want to do on initial page load go here
-            $this->pageTitle = "Operator List";    
-        }
+		// Create list of activityTypes
+	    $activityTypes = $this->Operator->ActivityType->find('first', array('conditions' => array( 'ActivityType.shortname =' => $activityType)));
 
         // Paginate Operators
         $this->paginate = array (
@@ -70,8 +65,9 @@ class OperatorsController extends AppController {
         $data = array (
 			'operators' => $this->paginate(),
 			'countries' => $countries,
-			'activityType' => $activityType,
-			'country' => $country
+			'activityTypeName' => $activityTypes['ActivityType']['name'],
+			'country' => $country,
+			'activityType' => $activityType
 		);
         
         //$data = $this -> paginate();
