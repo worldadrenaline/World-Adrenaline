@@ -197,7 +197,7 @@ function buildAcl() {
 
 
 	 
-	    //allow users to only add and edit on posts and widgets
+	    //allow users to only add and edit on Operators, Countries, ActivityTypes, and Requests
 	    $group->id = 7;
 	    $this->Acl->deny($group, 'controllers');        
 	    $this->Acl->allow($group, 'controllers/Operators/add');

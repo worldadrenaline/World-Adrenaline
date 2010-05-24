@@ -5,17 +5,24 @@
 	<div class="sub_container">
 		<div class="content_left_panel">
 		
-		<?php echo $javascript->link(array('jquery.js')); ?>
-		
-			<h1><?php echo $activityType; ?>  Operators 
+			<?php echo $javascript->link(array('jquery.js')); ?>
+			<div id="loading" style="display: none;">
+			    Loading, please wait...
+			</div>
+
+			<?php // debug($activityType); ?>
+			<?php // debug($country); ?>
+			<?php // debug($this->data); ?>
+			<?php // debug($operators); ?>
 			
-				<?php if (isset($country)) { echo 'in '.$country; } ?>
+			<?php // echo '<h1>'.$activityType.' </h1>; ?>  Operators 
+			<h1><?php echo $operators['0']['ActivityType']['name']; ?>  Operators 
+			
+				<?php // if (isset($country)) { echo 'in '.$country; } ?>
+				<?php //if ($country!='') { echo 'in '.$country.' near '.$operators[0]['Country']['name']; } else { echo 'globally'; } ?>
+				<?php if ($country!='') { echo '<br/>in '.$operators[0]['Country']['name']; } else { echo 'globally'; } ?>
 			
 			</h1>
-				
-				<div id="loading" style="display: none;">
-				    Loading, please wait...
-				</div>
 				
 				<div class="filter">
 				Filter by
