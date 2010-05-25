@@ -52,16 +52,15 @@ class OperatorsController extends AppController {
 	    $countries = $this->Operator->Country->find('list');
 
 		// Create list of activityTypes
-	    $activityTypes = $this->Operator->ActivityType->find('first', array('conditions' => array( 'ActivityType.shortname =' => $activityType)));
+	    $activityTypes = $this->Operator->ActivityType->find('first', array('conditions' => array('ActivityType.shortname =' => $activityType)));
 
         // Paginate Operators
         $this->paginate = array (
 			'conditions' => $conditions,
-			'limit' => 20,
+			'limit' => 50,
 			'order' => array('Operator.name' => 'asc')
 		);
-        
-        
+                
         $data = array (
 			'operators' => $this->paginate(),
 			'countries' => $countries,
@@ -70,10 +69,7 @@ class OperatorsController extends AppController {
 			'activityType' => $activityType
 		);
         
-        //$data = $this -> paginate();
-        
         $this->set($data);
-
 	}
 
 	function view($id = null) {

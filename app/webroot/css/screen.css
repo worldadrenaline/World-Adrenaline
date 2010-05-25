@@ -117,7 +117,7 @@ td.actions a {
 
 /* Paging */
 div.paging { color: #ccc; margin-bottom: 5px; margin-top: 5px; }
-div.paging div.disabled { color: #ddd; display: inline; }
+div.paging div.disabled { color: #ddd; display: none; }
 div.paging span { }
 div.paging span.current { background:none repeat scroll 0 0 #0E5E9C; border:1px solid #0E5E9C; color:#FFFFFF; padding:3px 8px; font-size:12px; font-weight:bold; margin:2px; }
 div.paging span a { }
@@ -489,6 +489,7 @@ logo img {}
 img#captcha { margin-bottom: 5px;}
 .banners { margin: 0 auto; width:850px; }
 .banners .notice {width: 593px; }
+.banners .notice p {padding: 10px; margin:0px;}
 
 .activityList { }	
 ul.activityList { float: left; list-style: none; margin:0; padding:0; }
