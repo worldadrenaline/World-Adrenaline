@@ -51,8 +51,8 @@ class ImportController extends AppController {
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 		
 		// Retrieve number of Prospects pages from from Kumutu
-		$parsed_xml = new Xml($uri);
-		$parsed_xml = Set::reverse($parsed_xml);
+		$xmlObject = new Xml($uri);
+		$parsed_xml = Set::reverse($xmlObject);
 		$totalPages = $parsed_xml['Prospects']['Paging']['TotalPages'];
 		
 		for($currentPage=1;$currentPage<=$totalPages;$currentPage++) {
@@ -77,25 +77,26 @@ class ImportController extends AppController {
         $methodUrl = 'http://kumutu.local/0.4/prospects/get.xml';
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey').'&modified=30';
 
-		$parsed_xml = new Xml($uri);
-		$parsed_xml = Set::reverse($parsed_xml);
+		$xmlObject = new Xml($uri);
+		$parsed_xml = Set::reverse($xmlObject);
 		
 		if (isset($parsed_xml['Prospects']['Prospect'])) {
-			$operators = $parsed_xml['Prospects']['Prospect'];
-			$this->Import->updateDbOperators($operators);
+			// Check for multiple prospects updates hack. Should be made more elegant in future release.
+			if (Set::countDim($parsed_xml['Prospects']['Prospect']) > 1) {
+				$operators = $parsed_xml['Prospects']['Prospect'];
+				$this->Import->updateDbOperators($operators);
+			} 
+			else {
+				$operator = $parsed_xml['Prospects']['Prospect'];
+				$this->Import->updateDbOperator($operator);
+			} 
+			
 		}
 		
-	
-	
-		/*
-		App::import('Xml');
-		$file = "http://api.kumutu.com/api/prospects/index.xml?apikey=10132293094ba6bd772192f4.29432906&modified=24";
-		$parsed_xml =& new XML($file);
-		$parsed_xml = Set::reverse($parsed_xml);
-		$aProspect=$parsed_xml['Prospects']['Prospect'];
-		$this->Import->updateDbProspects($aProspect);
-		exit; 
-		*/
+		//Free up memory from XML object
+		$xmlObject->__destruct();
+		unset($xmlObject);
+
 		exit;
 	}
    
