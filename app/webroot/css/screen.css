@@ -484,6 +484,7 @@ logo img {}
 .filter form {display: inline; }
 .filter form div.submit {display: inline; margin-left: 20px; }
 .country { color:#AAAAAA; font-size:20px; line-height:22px; }
+.description { color:#999999; font-size:11px; line-height:13px;}
 
 /* Profile page */
 img#captcha { margin-bottom: 5px;}
