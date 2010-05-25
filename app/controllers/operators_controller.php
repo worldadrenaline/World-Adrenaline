@@ -3,11 +3,9 @@ class OperatorsController extends AppController {
 
 	var $name = 'Operators';
 	var $helpers = array('Html', 'Form', 'Javascript');
-//	var $helpers = array('Html', 'Form');
 
     var $components = array('RequestHandler', 'Recaptcha');
     var $paginate = array('limit'=>'20','page' => 1, 'order'=>array('Operator.name'=>'asc')); 
-    //var $uses = array('Operator', 'Request');
   	
 	function beforeFilter() {
 	    parent::beforeFilter(); 

@@ -46,7 +46,7 @@
 				<div id="operatorList">
 					<ul>
 					<?php foreach($operators as $operator): ?>
-						 <li><a href="/operators/view/<?php echo $operator['Operator']['id']; ?>"><?php echo $operator['Operator']['name']; ?></a>
+						 <li><?php echo $html->link($operator['Operator']['name'], array('controller' => 'operators','action' => 'view','id' => $operator['Operator']['id'],'shortname' => Inflector::slug($operator['Operator']['name']))); ?></a>
 						 <?php if ($operator['Operator']['description']!='') { echo '<div class="description">'.substr($operator['Operator']['description'],0,110).'...</div>'; }?></li>
 					<?php endforeach; ?>
 					</ul>

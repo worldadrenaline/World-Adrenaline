@@ -40,13 +40,12 @@
 /**
  * View an operator's profile
  */
-	Router::connect('/operator/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));
-	Router::connect('/prospect/:id/*', array('controller' => 'Operators', 'action'=>'view'), array('pass'=>array('id'), 'id'=>'[\d-]+'));		
+ 	Router::connect('/operator/:id-:shortname', array('controller' => 'operators', 'action' => 'view'), array( 'pass' => array('id'), 'id' => '[0-9]+'));
 
 /**
  * Listing of operators based on ActivityType
  */
- 	// Router::connect('/activity/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('shortname'), 'shortname'=>'[a-z]+'));		
+ 	Router::connect('/activity/:activityType/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('activityType'), 'activityType'=>'[a-z]+-?[a-z]+'));
 
 	
 /**
