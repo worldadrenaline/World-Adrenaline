@@ -70,16 +70,7 @@
 			</div> <!-- /content -->
 
 			<div id="footer">
-				<div id="footer-links">
-					<h2>Site Links</h2>
-					<ul>
-						<li class="first"><?php echo $html->link(__('About', true), '/about'); ?></li>
-						<li><?php echo $html->link(__('Contact', true), '/contact'); ?></li>
-					</ul>
-				</div> <!-- /footerlinks -->
-				<div id="footer-copyright">
-					&copy; Adventicus <?php echo date('Y'); ?>
-				</div>
+					<?php echo $this->element('layout/footerNavigation'); ?>
 			</div> <!-- /footer -->
 
 		</div> <!-- /container -->

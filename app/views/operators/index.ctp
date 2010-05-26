@@ -65,9 +65,9 @@
 			}
 			?>
 		</div>
-	
+	test
 		<?php echo $this->element('sidebar'); ?>
-	
-	</div>
-</div>
-<!-- //content_panel -->
+	test
+
+</div> <!-- sub_container -->
+</div> <!-- /content_panel -->
