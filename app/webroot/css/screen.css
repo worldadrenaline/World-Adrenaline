@@ -837,10 +837,16 @@ logo img {}
 	line-height:22px;
 }
 
-.description { color:#999999;
+.description { color:#AAA;
 	font-size:11px;
 	line-height:13px;
 }
+
+.location { color:#AAA;
+	font-size:11px;
+	line-height:13px;
+}
+
 
 /* Profile page */
 img#captcha { margin-bottom: 5px;

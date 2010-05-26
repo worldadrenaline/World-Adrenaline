@@ -46,8 +46,14 @@
 				<div id="operatorList">
 					<ul>
 					<?php foreach($operators as $operator): ?>
-						 <li><?php echo $html->link($operator['Operator']['name'], array('controller' => 'operators','action' => 'view','id' => $operator['Operator']['id'],'shortname' => Inflector::slug($operator['Operator']['name']))); ?></a>
-						 <?php if ($operator['Operator']['description']!='') { echo '<div class="description">'.substr($operator['Operator']['description'],0,110).'...</div>'; }?></li>
+						 <li><?php echo $html->link($operator['Operator']['name'], array('controller' => 'operators','action' => 'view','id' => $operator['Operator']['id'],'shortname' => Inflector::slug($operator['Operator']['name']))); ?></a> 
+						 <div class="location"> 
+						 <?php if (isset($operator['Operator']['city']) && $operator['Operator']['city']!='') { echo substr($operator['Operator']['city'],0,50).', '; }?>
+ 						 <?php echo $operator['Country']['name']; ?>
+						 </div>
+						 <div class="description">
+						 <?php if ($operator['Operator']['description']!='') { echo substr($operator['Operator']['description'],0,100).'...'; }?>
+						 </div></li>
 					<?php endforeach; ?>
 					</ul>
 				</div>

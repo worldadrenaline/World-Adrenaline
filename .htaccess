@@ -3,10 +3,3 @@
    RewriteRule    ^$ app/webroot/    [L]
    RewriteRule    (.*) app/webroot/$1 [L]
 </IfModule>
-
-# Web server authentication
-AuthName "Restricted Access"
-AuthType Basic
-AuthUserFile /var/www/html/kumutu_dev/.htpasswd
-AuthGroupFile /dev/null 
-require valid-user

@@ -46,7 +46,7 @@ class RequestsController extends AppController {
 							)
 			 		));
 	
-					$methodUrl = 'http://dev.kumutu.com/0.4/prospects/email.xml';
+					$methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/prospects/email.xml';
 				 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 				 	
 					App::import('Core', 'HttpSocket');
