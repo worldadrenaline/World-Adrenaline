@@ -13,7 +13,7 @@ class ImportController extends AppController {
 	
 	function updateActivities() {
  		App::import('Xml');
-		$methodUrl = 'http://kumutu.local/0.4/activityTypes/get.xml';
+		$methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/activityTypes/get.xml';
 		$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 
 		$parsed_xml = new Xml($uri);
@@ -30,7 +30,7 @@ class ImportController extends AppController {
  
 	function updateCountries() {
         App::import('Xml');
-        $methodUrl = 'http://kumutu.local/0.4/countries/get.xml';
+        $methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/countries/get.xml';
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 
 		$parsed_xml = new Xml($uri);
@@ -46,7 +46,6 @@ class ImportController extends AppController {
  
 	function refreshOperators() {
         App::import('Xml');
-        //$methodUrl = 'http://kumutu.local/0.4/prospects/get.xml';
         $methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/prospects/get.xml';
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 		
@@ -74,7 +73,7 @@ class ImportController extends AppController {
 	function updateOperators() {
 	
 		App::import('Xml');
-        $methodUrl = 'http://kumutu.local/0.4/prospects/get.xml';
+        $methodUrl = 'http://kumutu:Ku7r1be@dev.kumutu.com/0.4/prospects/get.xml';
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey').'&modified=30';
 
 		$xmlObject = new Xml($uri);
