@@ -3,9 +3,7 @@ class RequestsController extends AppController {
 
 	var $name = 'Requests';
 	var $helpers = array('Html', 'Form');
-	
 	var $uses = array('Operator', 'Request');
-
 	var $components = array('Recaptcha');  
 	
 	function beforeFilter() {

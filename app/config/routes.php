@@ -61,5 +61,14 @@
  */
 	Router::connect('/admin', array('controller' => 'users', 'admin' => true));
 
-			
+/**
+ * XML routes
+ */
+	Router::parseExtensions('xml');
+
+/**
+ * Sitemap routes
+ */
+	Router::connect('/sitemap', array('controller' => 'sitemaps', 'action' => 'index','url'=>array('ext'=>'xml')));
+	
 ?>
