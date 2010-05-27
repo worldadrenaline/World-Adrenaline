@@ -626,7 +626,6 @@ div.code-coverage-results span.result-good {
 	font-family:Verdana, Geneva, sans-serif;
 	font-size:12px;
 	color:#065c89;
-	font-style:italic;
 	font-weight:bold;
 }
 .adven_message span {font-size:15px;
@@ -646,9 +645,8 @@ div.code-coverage-results span.result-good {
 .header_menu {margin:auto;
 	width:849px;
 	height:auto;
-	background:url(../img/header_menu_bg.png) no-repeat left top;
 	margin-top:10px;
-	padding:40px 25px 0px 25px;
+	padding:5px 25px 0px 25px;
 }
 .header_menu_bg {float:left;
 	width:205px;
@@ -868,6 +866,12 @@ img#captcha { margin-bottom: 5px;
 
 .activityList {
 }
+.activityList h2 {
+	color:#F7FCFF;
+	font-size:20px;
+	padding:0 0 10px;
+	text-align:center;
+}
 
 ul.activityList { float: left;
 	list-style: none;
@@ -971,4 +975,81 @@ ol#terms ol.subitems li {
 ol#terms ol.subitems ul li { 
 	list-style-type:disc;
 }
- 
+
+
+/* Adventicus CSS Document */
+img {border:0px;}
+br {clear: left;}
+h1 {}
+h2 {}
+h3 {}
+h4 {}
+h5 {}
+p {}
+br {clear: left;}
+
+.sub_container {margin:auto; width:899px; height:auto;}
+
+
+
+
+/* Paging */
+.paging {float: right;}
+.paging a { font-size: 12px; color: #0E5E9C; border: 1px solid #C8EBFE; padding:3px 8px; font-weight: bold; margin: 0 2px; text-decoration: none; }
+.paging a.selec { background-color:#0E5E9C; color: #FFF; }
+.paging a:hover { background-color:#0E5E9C; color: #FFF; }
+
+
+#operatorList {float:left; width:635px; height:auto;}
+#operatorList ul{float:left; width:635px; height:auto; margin:0px; padding:0px 0px 0px 0px; list-style:none;}
+#operatorList ul li{float:left; width:625px; height:auto; margin:0px; padding:5px 5px 7px 5px; list-style:none; font-family:Tahoma, Geneva, sans-serif; font-size:13px; color:#000; line-height:18px;}
+#operatorList ul li:hover{float:left; width:625px; height:auto; margin:0px; padding:5px 5px 7px 5px; list-style:none; font-family:Tahoma, Geneva, sans-serif; font-size:13px; color:#000; line-height:18px; background-color:#def2fc;}
+
+#operatorList ul li a{font-weight:bold; color:#0e5e9c; text-decoration:underline;}
+#operatorList ul li a:hover{font-weight:bold; color:#0e5e9c; text-decoration:none;}
+#operatorList ul li span{color:#2f2f2f;}
+
+
+
+
+/* sub page css */
+.sub_po_bg {float:left; width:615px; height:auto;/* background-color:#FFF;*/ padding:10px;}
+.sub_po_bg ul {float:left; width:615px; height:auto; margin:0px; padding:0px;}
+.sub_po_bg ul li {float:left; width:615px; height:auto; margin:0px; padding:10px 0px 10px 0px; list-style:none; font-family:Tahoma, Geneva, sans-serif; font-size:13px; color:#000;}
+.sub_po_bg ul li a {color:#ff2020; font-weight:bold; text-decoration:underline;}
+.sub_po_bg ul li a:hover {color:#ff2020; font-weight:bold; text-decoration:none;}
+.sub_po_bg ul li span{font-weight:bold; color:#006ec0;}
+
+.con_text {float:left; width:595px; height:auto; font-size:12px;  padding:10px 0px 5px 0px; font-weight:bold;}
+.con_text a{text-decoration:none; color:#F00;}
+.con_text a:hover{text-decoration:underline; color:#F00;}
+.con_text_norm {float:left; width:595px; font-weight:normal; color:#444444; height:auto; font-size:10px;  padding:2px 0px 5px 0px;}
+.con_text span {color:#ff2020;}
+.terms_text {float:left; width:595px; height:auto; font-size:12px;  padding:10px 0px 5px 0px;}
+.terms_text a{text-decoration:none; color:#F00;}
+.terms_text a:hover{text-decoration:underline; color:#F00;}
+.setlink{border-right:1px dashed #7CB7DB;margin-right:10px;width:205px;
+padding-bottom:5px;background:transparent url(../images/nav_bg.png) no-repeat scroll left top;;padding-left:35px;text-decoration:none;color:#FFF;font-family:Verdana,Geneva,sans-serif;font-size:12px;}
+/*.act_link {float:left; width:175px; height:15px; background:url(../images/nav_bg.png) no-repeat left top; text-decoration:none; color:#FFF; font-family:Verdana, Geneva, sans-serif; font-size:12px; padding:6px 0px 0px 30px;}*/
+
+.act_link a {float:left; width:190px; height:15px; background:url(../images/nav_bg.png) no-repeat left top; text-decoration:none; color:#FFF; font-family:Verdana, Geneva, sans-serif; font-size:12px; padding:6px 0px 1px 30px;}
+.act_link a:hover {float:left; width:175px; height:15px; background:url(../images/nav_bg.png) no-repeat left top; text-decoration:underline; color:#FFF; font-family:Verdana, Geneva, sans-serif; font-size:12px; padding:6px 0px 1px 30px;}
+
+/* Sidebar */
+.friendsConnect {}
+.friendsConnect h2 { color:#0073C2; font-size:15px; margin:0 0 0 5px; text-align:left;}
+
+
+
+/* Debugging */
+#debug {
+	background: #FFFFDD;
+	border: 1px solid #EEEECC;
+}
+
+pre.cake-debug {
+	background: #FFFFDD;
+	font-size: 120%;
+	line-height: 140%
+	
+}

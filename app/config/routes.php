@@ -45,7 +45,7 @@
 /**
  * Listing of operators based on ActivityType
  */
- 	Router::connect('/activity/:activityType/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('activityType'), 'activityType'=>'[a-z]+-?[a-z]+'));
+ 	Router::connect('/activity/:activityType/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('activityType'), 'activityType'=>'[a-z0-9-]+'));
 
 	
 /**

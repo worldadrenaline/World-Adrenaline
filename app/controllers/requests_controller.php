@@ -68,10 +68,6 @@ class RequestsController extends AppController {
 	    			else {
 		    			$this->Session->setFlash('Your request could not be sent.', 'default', array('class' => 'error'));
 	    			}
-	
-				    //$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
-	                //$this->redirect($this->referer(), null, true);
-						
 				} else {
 					$this->Session->setFlash('Your request could not be sent. Please, contact support@kumutu.com', 'default',array('class' => 'error'));
 				}
@@ -83,10 +79,6 @@ class RequestsController extends AppController {
 			$this->Session->setFlash('<strong>Please correct the following</strong><ul><li>'.implode('</li><li>', $errors).'</li></ul>', 'default', array('class' => 'error'));
 		}    //Validates
 	//}   //RequestHandler
-	
-	//$this->redirect($this->referer(), null, true);
-	//$this->redirect(array('controller' => 'pages', 'action' => 'thanks'));
-
 	}	
 	
 	/*

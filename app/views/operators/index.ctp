@@ -71,9 +71,6 @@
 			}
 			?>
 		</div>
-	test
 		<?php echo $this->element('sidebar'); ?>
-	test
-
 </div> <!-- sub_container -->
 </div> <!-- /content_panel -->

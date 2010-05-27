@@ -2,6 +2,7 @@
 
 
 	<div class="activityList">
+		<h2>Choose your adventure activity category</h2>
 		<ul class="activityList">
 			<?php $activityTypes = $this->requestAction('activityTypes/index/sort:name/direction:asc/limit:200'); ?>
 			<?php $i = 1; ?>
