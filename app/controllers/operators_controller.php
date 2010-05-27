@@ -36,6 +36,7 @@ class OperatorsController extends AppController {
 			$country = $this->data['Operator']['country'];
 			$activityType = $this->data['Operator']['activityType'];
 			$conditions = array ('Operator.country_id =' => $this->data['Operator']['country'], 'ActivityType.shortname =' => $activityType);
+			if ($country==''){ $conditions = array ('ActivityType.shortname =' => $activityType); }
 			$this->params['pass']['1'] = $this->data['Operator']['country'];
 		} 
 		elseif (isset($this->params['pass']['1'])) {
@@ -45,6 +46,7 @@ class OperatorsController extends AppController {
 		else {
 	        $conditions = array ('ActivityType.shortname =' => $activityType);
 		}
+
 		
 		// Create list of countries
 	    $countries = $this->Operator->Country->find('list');
