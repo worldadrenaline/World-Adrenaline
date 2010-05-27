@@ -12,7 +12,6 @@
 
 		<?php 
 			echo $html->css('screen', 'stylesheet', 'media="screen"', true);
-			echo $html->css('adventicus','stylesheet', 'media="screen"', true); 
 			//echo $html->css('mobile', 'stylesheet', 'media="mobile"', true); 
 			//echo $html->css('print', 'stylesheet', 'media="print"', true); 
 			echo $scripts_for_layout;
