@@ -7,7 +7,7 @@
 		<meta name="Keywords" content="adventure, travel, adventure travel, extreme sports, extreme, adventure sport, adventure holiday, travel, sport, holidays, tour, adventicus" />
 		<meta name="robots" content="index,follow" />
 
-		<?php echo $html->meta('icon', $html->url('/img/favicon.png')); ?>
+		<?php echo $html->meta('icon', $html->url('../img/favicon.png')); ?>
 		<?php // <link rel="apple-touch-icon" href="/img/favicon-iphone.png" /> ?>
 
 		<?php 
@@ -35,7 +35,7 @@
 			</div> <!-- /header -->
 			<div class="top_panel">
 				<div class="sub_container">
-					<div class="adven_logo"><a href="/"><img src="/img/logo-D3.png" alt="Logo" id="logo" /></a></div>
+					<div class="adven_logo"><a href="/"><img src="../img/logo-D3.png" alt="Logo" id="logo" /></a></div>
 					<div class="adven_message"><span>Adventicus</span> is the largest directory of over <?php echo $this->element('totalOperators'); ?> adventure activity operators on the web. Whether you're a climber, diver, white-water rafter, hiker, mountain biker, or paraglider<span>...find your adventure now!</span></div>
 				</div> <!-- /sub_container -->
 				
