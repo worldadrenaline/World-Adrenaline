@@ -5,9 +5,9 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
-		'password' => 'Ku7r1beDB',
-		'database' => 'adventicusR3',
+		'login' => 'kumutu',
+		'password' => 'password',
+		'database' => 'adventicus',
 		'encoding' => 'utf8'  
 	);
 }
