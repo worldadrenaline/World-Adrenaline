@@ -7,7 +7,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'root',
 		'password' => 'Ku7r1beDB',
-		'database' => 'adventicusR3',
+		'database' => 'adventicus',
 		'encoding' => 'utf8'  
 	);
 }
