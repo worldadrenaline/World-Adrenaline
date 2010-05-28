@@ -2,3 +2,4 @@ app/tmp
 app/config/core.php
 app/config/database.php
 .htaccess
+..
