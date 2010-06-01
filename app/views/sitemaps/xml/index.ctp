@@ -8,7 +8,9 @@
     <?php foreach ($activityTypes as $activityType):?>
     <url>
         <loc><?php echo Router::url('/activity/'.$activityType['ActivityType']['shortname'],true); ?></loc>
-        <lastmod><?php echo trim($time->toAtom(time())); ?></lastmod>
+        <?php /*
+        <lastmod><?php echo $time->toAtom(date('Y-m-d')); ?></lastmod>
+        */ ?>
         <priority>0.8</priority>
     </url>
     <?php endforeach; ?>
@@ -16,7 +18,9 @@
     <?php foreach ($operators as $operator):?>
     <url>
         <loc><?php echo Router::url('/operator/'.$operator['Operator']['id'],true); ?></loc>
-        <lastmod><?php echo trim($time->toAtom(time())); ?></lastmod>
+        <?php /*
+        <lastmod><?php echo $time->toAtom(date('Y-m-d')); ?></lastmod>
+		*/ ?>
         <priority>0.5</priority>
     </url>
     <?php endforeach; ?>
