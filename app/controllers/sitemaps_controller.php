@@ -13,7 +13,7 @@ class SitemapsController extends AppController{
 
     function index (){ 
         $this->set('activityTypes', $this->ActivityType->find('all', array('fields' => array('id','name','shortname'))));
-        $this->set('operators', $this->Operator->find('all', array('fields' => array('id','name','city'))));
+        $this->set('operators', $this->Operator->find('all', array('fields' => array('id','name','city','modified'))));
 //debug logs will destroy xml format, make sure were not in drbug mode
 Configure::write ('debug', 0);
     }
