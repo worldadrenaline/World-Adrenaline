@@ -5,7 +5,13 @@ class ImportController extends AppController {
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
-	    $this->Auth->allowedActions = array('updateActivities', 'updateCountries', 'refreshOperators', 'updateOperators');
+	    $this->Auth->allowedActions = array(
+    	    'updateActivities',
+    	    'updateCountries',
+    	    'refreshOperators',
+    	    'updateOperators',
+    	    'updateKumutuSuppliers'
+    	    );
 	}
 						  
 	function index() {
@@ -98,6 +104,38 @@ class ImportController extends AppController {
 
 		exit;
 	}
+
+
+
+	function updateKumutuSuppliers() {
+
+		App::import('Xml');
+        $methodUrl = 'http://api.kumutu.com/0.4/suppliers/get.xml';
+	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
+
+		$xmlObject = new Xml($uri);
+		$parsed_xml = Set::reverse($xmlObject);
+		
+		if (isset($parsed_xml['Suppliers']['Supplier'])) {
+			if (Set::countDim($parsed_xml['Suppliers']['Supplier']) > 1) {
+				$suppliers = $parsed_xml['Suppliers']['Supplier'];
+				$this->Import->updateKumutuSuppliers($suppliers);
+			} 
+			else {
+			    // if only 1 supplier, we should do something
+				//$supplier = $parsed_xml['Suppliers']['Supplier'];
+				//$this->Import->updateKumutuSuppliers($supplier);
+			} 
+			
+		}
+		
+		//Free up memory from XML object
+		$xmlObject->__destruct();
+		unset($xmlObject);
+
+		exit;
+	}
+
    
 	function emptyOperators() {
 		$this->Import->emptyDbOperators();
