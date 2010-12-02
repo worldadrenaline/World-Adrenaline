@@ -2,14 +2,20 @@
 class OperatorsController extends AppController {
 
 	var $name = 'Operators';
-	var $helpers = array('Html', 'Form', 'Javascript');
+	var $helpers = array('Html', 'Form', 'Text', 'Javascript');
 
     var $components = array('RequestHandler', 'Recaptcha');
-    var $paginate = array('limit'=>'20','page' => 1, 'order'=>array('Operator.name'=>'asc')); 
+    var $paginate = array('limit'=>'20','page' => 1, 'order'=>array('Operator.name'=>'asc'));
   	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
-	    $this->Auth->allowedActions = array('index', 'view', 'display'); 
+	    $this->Auth->allowedActions = array(
+    	    'index',
+    	    'view',
+    	    'display',
+    	    'mapSearch',
+    	    'markers'
+	    ); 
 	    
 	    $this->Recaptcha->publickey = "6Lf0LroSAAAAAMBdmwWULXCsPTNI-_bRRUlNQQX2";
 		$this->Recaptcha->privatekey = "6Lf0LroSAAAAABLmxIkUV8h5YTIgoAKGzU8hXvz1"; 
@@ -17,9 +23,10 @@ class OperatorsController extends AppController {
 	
 
 	function index($activityType = null) {
+        $this->pageTitle = 'Adventure Sports, Extreme Sports, Adventures Worldwide';
 		
 		if(!$this->RequestHandler->isAjax()) {
-	        $this->pageTitle = "Operator List";    
+            $this->pageTitle = 'Adventure Sports, Extreme Sports, Adventures Worldwide';
 		}
 
 		//Check for activityType, otherwise redirect to homepage
@@ -73,6 +80,8 @@ class OperatorsController extends AppController {
 	}
 
 	function view($id = null) {
+        $this->pageTitle = 'Adventure Sports, Extreme Sports, Adventures Worldwide';
+
 		if (!$id) {
 			$this->Session->setFlash(__('Invalid Operator', true));
 			$this->redirect(array('action' => 'index'));
@@ -127,6 +136,53 @@ class OperatorsController extends AppController {
 		$this->Session->setFlash(__('The Operator could not be deleted. Please, try again.', true));
 		$this->redirect(array('action' => 'index'));
 	}
+	
+	
+	/**
+	 * Search by Google Map
+	 * 
+	 * @return void
+	 */
+	function mapSearch() {
+	  /*
+	    $suppliers = $this->Operator->find('all', array(
+	       'contain'=>array(
+	           'ActivityType', 
+               'Country', 
+               'Photo'=>array(
+	               'conditions'=>array('Photo.isLogo'=>1, 'Photo.folder'=>'thumb')
+	           )
+	       )
+	    ));
+	    
+	    //$mapKey = Configure::read('Map.key');
+
+        $this->set(compact('suppliers', 'mapKey'));
+        */
+	}	
+
+	/**
+	 * Output xml for google map
+	 * 
+	 * @return void
+	 */
+	function markers() {
+	    $operators = $this->Operator->find('all', array(
+            'recursive' => 0,
+            'limit' => 300,
+//	       'contain'=>array(
+//	           'ActivityType', 
+//               'Country', 
+//               'Photo'=>array(
+//	               'conditions'=>array('Photo.isLogo'=>1, 'Photo.folder'=>'thumb')
+//	           )
+//	       )
+	    ));
+        $this->set(compact('operators'));
+	}
+
+	
+	
 
 }
 ?>

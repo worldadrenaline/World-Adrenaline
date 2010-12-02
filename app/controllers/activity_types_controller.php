@@ -3,6 +3,7 @@ class ActivityTypesController extends AppController {
 
 	var $name = 'ActivityTypes';
 	var $helpers = array('Html', 'Form');
+    var $uses = array('ActivityType', 'Operator'); 
 
 
 	function beforeFilter() {
@@ -11,12 +12,26 @@ class ActivityTypesController extends AppController {
 	}
 
 	function index() {
-		$ActivityTypes = $this->paginate();
-		if (isset($this->params['requested'])){
-			return $ActivityTypes;
-		} else {
-			$this->set('activityTypes',$ActivityTypes);
+        //Listing activity types
+        $activities = $this->ActivityType->find('all', array(
+            'recursive' => 0,
+            'order' => 'name'
+        ));
+		
+		foreach ($activities as $activity) {
+            $activityCount = $this->Operator->find('count', array(
+                'recursive' => 0,
+                'conditions' => array( 
+                    'Operator.activity_type_id'=>$activity['ActivityType']['id']
+                )
+            ));
+            $activity['ActivityType']['count'] = $activityCount;
+            
+            if ($activityCount > 0) { $activityTypes[] = $activity; }		  
 		}
+
+		$this->set(compact('activityTypes'));
+		
 	}
 	
 	/*

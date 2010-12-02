@@ -10,7 +10,10 @@ class AppController extends Controller {
         $this->Auth->logoutRedirect = array('controller' => 'users', 'action' => 'login');
         $this->Auth->loginRedirect = array('controller' => 'operators', 'action' => 'add');
         $this->Auth->actionPath = 'controllers/';
-        $this->Auth->allowedActions = array('display');
+        $this->Auth->allowedActions = array(
+            'display',
+            'home'
+        );
 	}
 
 
