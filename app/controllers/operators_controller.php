@@ -22,19 +22,74 @@ class OperatorsController extends AppController {
 	}
 	
 
+
+
 	function index($activityType = null) {
+       
         $this->pageTitle = 'Adventure Sports, Extreme Sports, Adventures Worldwide';
+		//$this->set('title_for_layout', 'Adventure Sports, Extreme Sports, Adventures Worldwide');
+
 		
-		if(!$this->RequestHandler->isAjax()) {
-            $this->pageTitle = 'Adventure Sports, Extreme Sports, Adventures Worldwide';
-		}
+//		if(!$this->RequestHandler->isAjax()) {
+//            $this->pageTitle = 'Adventure Sports, Extreme Sports, Adventures Worldwide';
+//		}
 
-		//Check for activityType, otherwise redirect to homepage
-		if (!$activityType) {
-			$this->Session->setFlash(__('No activity type is selected. Please select an activity type.', true));
-			$this->redirect(array('controller' => 'pages', 'action' => 'display','home'));
-		}
+		
+        //Filters for operators listing
+        if(isset($this->data)) {
+            if (!empty($this->data['Operator']['q']) && !empty($this->data['Operator']['field'])) {
+                $field = $this->data['Operator']['field'];
+                $conditions['Operator.'.$field.' LIKE'] = '%'.$this->data['Operator']['q'].'%';
+            }
+            if (!empty($this->data['Operator']['country'])) {
+                $conditions['Operator.country_id'] = $this->data['Operator']['country'];
+            }
+            if (!empty($this->data['Operator']['activityType'])) {
+                $conditions['Operator.activity_type_id'] = $this->data['Operator']['activityType'];
+            }
 
+        } else {
+            $conditions = '';
+        }
+		
+		$this->paginate = array(        
+            'recursive' => 0,
+			'limit' => 50,
+            'conditions' => $conditions,
+			'order' => array('Operator.source' => 'asc', 'Operator.name' => 'asc')
+		);    
+			
+		$operators = $this->paginate('Operator');
+		//debug($conditions); die;    
+		$this->set(compact('operators'));
+		
+		// Create list of activityTypes
+    	$activityTypes = $this->Operator->ActivityType->find('list', array('order'=>'name ASC'));       
+
+		// Create list of countries
+		$countries = $this->Operator->Country->find('list', array('order'=>'name ASC'));
+
+
+
+		
+		// Get full name of activity type
+		$activityTypeData = $this->Operator->ActivityType->find('first', array(
+    		'conditions' => array( 
+        		'shortname' => $activityType
+    		),
+    		'recursive'=> 0
+		));
+		$activityTypeName = $activityTypeData['ActivityType']['name'];
+		
+		
+		
+        $this->set(compact('countries', 'activityTypes', 'activityType', 'activityTypeName'));
+
+		
+		
+		
+		
+        /* DEPRECIATED
         // Set up conditions based on filter form
         $conditions = array();
         $country = '';
@@ -77,6 +132,7 @@ class OperatorsController extends AppController {
 		);
         
         $this->set($data);
+        */
 	}
 
 	function view($id = null) {

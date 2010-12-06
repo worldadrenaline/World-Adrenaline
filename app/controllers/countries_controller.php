@@ -3,6 +3,8 @@ class CountriesController extends AppController {
 
 	var $name = 'Countries';
 	var $helpers = array('Html', 'Form');
+    var $uses = array('Country', 'Operator'); 
+
 	
 	function beforeFilter() {
 	    parent::beforeFilter(); 
@@ -10,12 +12,25 @@ class CountriesController extends AppController {
 	}
 
 	function index() {
-		$Countries = $this->paginate();
-		if (isset($this->params['requested'])){
-			return $Countries;
-		} else {
-			$this->set('countries',$Countries);
-		}	
+        //Listing countries
+        $countryList = $this->Country->find('all', array(
+            'recursive' => 0,
+            'order' => 'name'
+        ));
+		
+		foreach ($countryList as $country) {
+            $countryCount = $this->Operator->find('count', array(
+                'recursive' => 0,
+                'conditions' => array( 
+                    'Operator.country_id'=>$country['Country']['id']
+                )
+            ));
+            $country['Country']['count'] = $countryCount;
+            
+            if ($countryCount > 0) { $countries[] = $country; }		  
+		}
+
+		$this->set(compact('countries'));
 	}	
 	
 	/*

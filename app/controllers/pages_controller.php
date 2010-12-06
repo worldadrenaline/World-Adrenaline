@@ -2,7 +2,7 @@
 class PagesController extends AppController {
 	var $name = 'Pages';
 	var $helpers = array('Html', 'Form', 'Text', 'Number');
-	var $uses = array('Operator', 'ActivityType');
+	var $uses = array('Operator', 'Country', 'ActivityType');
 
     function beforeFilter() {
     
@@ -22,6 +22,12 @@ class PagesController extends AppController {
         $totalOperators = $this->Operator->find('count');
         $totalOperators = number_format(floor($totalOperators/1000)*1000);
         $this->set(compact('totalOperators'));
+       
+        // Create list of countries
+		$countries = $this->Country->find('list', array('order'=>'name ASC'));
+        
+		// Create list of activityTypes
+    	$activityTypes = $this->Operator->ActivityType->find('list', array('order'=>'name ASC'));  
         
         //Listing activity types
         $activities = $this->ActivityType->find('all', array(
@@ -37,10 +43,10 @@ class PagesController extends AppController {
                 )
             ));
             $activity['ActivityType']['count'] = $activityCount;
-            if ($activityCount > 0) { $activityTypes[] = $activity; }		  
+            if ($activityCount > 0) { $activityTypesCount[] = $activity; }		  
 		}
 
-		$this->set(compact('activityTypes'));
+		$this->set(compact('activityTypes', 'countries', 'activityTypesCount'));
     }
 
 

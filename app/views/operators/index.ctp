@@ -6,22 +6,36 @@
     </div>
     
     <h1>
+    
+    <?php if (!isset($activityTypeName)) { $activityTypeName = 'All'; } ?>
+    
     <?php  echo $activityTypeName.' operators'; ?> 
     	<div class="country">
     	<?php  if (isset($country) && $country!='') { echo 'in '.$countries[$country]; }  else { echo 'globally'; } ?>
     	</div>
     </h1>
-    	
-    <div class="filter">
-    Filter by
+
     <?php
-    	echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'index', $activityType)));
-    	echo $form->input('country', array('type'=>'select', 'options'=>$countries, 'empty'=>'all countries', 'label'=>'', 'onChange' => 'this.form.submit()'	));
-    	echo $form->input('activityType', array('type'=>'hidden', 'value'=>$activityType));
-        echo $form->end();
-        
+    if (isset($activityType)) {
+        echo $form->input('activityType', array('type'=>'select', 'options'=>$activityTypes, 'empty'=>'all activities', 'label'=>'', 'div'=>'input activityType', 'default'=>$activityType ));
+    }
+    
     ?>
+    <div class="filter">
+        <h4 class="weak">Filter by</h4>
+        <?php
+            echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'index', $activityType)));
+            echo $form->input('field', array('type'=>'select', 'options'=>array(
+               'name'=>'Name', 'city' => 'City', 'stateProvince' => 'State', 'description' => 'Description'
+            	), 'empty'=>'Display all', 'default'=>'name', 'label'=>'', 'div'=>'input field')
+            );
+            echo $form->input('q', array('type'=>'text', 'label'=>'', 'div'=>'input q', 'size'=>40));
+            echo $form->input('country', array('type'=>'select', 'options'=>$countries, 'empty'=>'all countries', 'label'=>'', 'div'=>'input country'));
+            echo $form->input('activityType', array('type'=>'select', 'options'=>$activityTypes, 'empty'=>'all activities', 'label'=>'', 'div'=>'input activityType'));
+            echo $form->end('Apply Filter');
+        ?>
     </div>
+    
     
     <?php
     if (count($operators)>0) {
@@ -41,14 +55,21 @@
     	<div id="operatorList">
     		<ul>
     		<?php foreach($operators as $operator): ?>
-    			 <li><?php echo $html->link($operator['Operator']['name'], array('controller' => 'operators','action' => 'view','id' => $operator['Operator']['id'],'shortname' => Inflector::slug($operator['Operator']['name']))); ?></a> 
-    			 <div class="location"> 
-    			 <?php if (isset($operator['Operator']['city']) && $operator['Operator']['city']!='') { echo substr($operator['Operator']['city'],0,50).', '; }?>
-    				 <?php echo $operator['Country']['name']; ?>
-    			 </div>
-    			 <div class="description">
-    			 <?php if ($operator['Operator']['description']!='') { echo substr($operator['Operator']['description'],0,100).'...'; }?>
-    			 </div></li>
+    			 <li class="<?php echo $operator['Operator']['source']; ?>">
+        			 <h3><?php echo $html->link($operator['Operator']['name'], array('controller' => 'operators','action' => 'view','id' => $operator['Operator']['id'],'shortname' => Inflector::slug($operator['Operator']['name']))); ?></a></h3>
+        			 <div class="location"> 
+            			 <?php if (isset($operator['Operator']['city']) && $operator['Operator']['city']!='') { echo substr($operator['Operator']['city'],0,50).', '; }?>
+            			 <?php if (isset($operator['Operator']['stateProvince']) && $operator['Operator']['stateProvince']!='') { echo substr($operator['Operator']['stateProvince'],0,50).', '; }?>
+    
+        				 <?php echo $operator['Country']['name']; ?>
+        			 </div>
+        			 <div class="description">
+        			 <?php if ($operator['Operator']['description']!='') { echo substr($operator['Operator']['description'],0,100).'...'; }?>
+        			 </div>
+                     <?php if ($operator['Operator']['source'] == 'kumutu') : ?>
+                         <div class="trusted"><?php echo "Trusted Operator"; ?></div>
+                     <?php endif; ?>	
+    			 </li>
     		<?php endforeach; ?>
     		</ul>
     	</div>

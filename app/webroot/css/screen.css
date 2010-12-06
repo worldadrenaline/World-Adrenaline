@@ -521,17 +521,22 @@ p.error em {
 
 }
 
-#flashMessage.notice { background: #FFFFDD;
+#flashMessage.notice {
+    background: #FFFFDD;
 	border:1px solid #EEEECC;
 	clear: both;
 	color: #FFF;
 }
-#flashMessage.error { background:none repeat scroll 0 0 #C50D1A;
+
+#flashMessage.error {
+    background:none repeat scroll 0 0 #C50D1A;
 	border:1px solid #B00B17;
 	clear: both;
 	color: #FFF;
 }
-#flashMessage.success { background: #5A9922;
+
+#flashMessage.success { 
+    background: #5A9922;
 	border:1px solid #50891E;
 	clear:both;
 	color: #FFF;
@@ -862,6 +867,38 @@ div.code-coverage-results span.result-good {
 .activityTypes.index ul.activityList a:hover {}
 
 
+/* Countries Index page */
+.countries.index {}
+
+.countries.index .countryList {}
+
+.countries.index ul.countryList { 
+    float: left;
+	list-style: none;
+	margin:0;
+	padding:0;
+}
+
+.countries.index ul.countryList li {
+    clear:both;
+    font-size:14px;
+    padding:0 0;
+    width:205px;
+} 
+
+.countries.index ul.countryList a {
+    text-decoration: none;
+}
+
+.countries.index ul.countryList li .weak {
+    color: #AAAAAA;
+    font-size: 10px;
+    padding-left:5px;
+}
+
+.countries.index ul.countryList a:hover {}
+
+
 /* Operators Index page */
 .operators.index {
 	padding-top:10px;
@@ -891,6 +928,11 @@ div.code-coverage-results span.result-good {
     background-color:#F4F4F4;
 }
 
+#operatorList ul li h3 {
+    font-size: 16px;
+    padding: 0
+}
+
 #operatorList ul li a{
     color:#D00000;
     font-size:16px;
@@ -900,6 +942,55 @@ div.code-coverage-results span.result-good {
 #operatorList ul li a:hover{
     color:#FFF;
     text-decoration:none;
+}
+
+#operatorList ul li.kumutu {
+    background:none repeat scroll 0 0 #FFFFDD;
+    border:1px solid #EEEECC;
+    margin-bottom:10px;
+    padding:10px 5px;
+}
+
+#operatorList ul li.kumutu h3 a {
+    font-size: 20px;
+}
+
+
+#operatorList ul li.kumutu .location {
+    color: #666666;
+}
+
+
+#operatorList ul li.prospects h3 a {
+    color:#525252;
+    font-size:13px;
+}
+
+#operatorList ul li.prospects h3 a:hover {
+    background-color: #525252;
+    color: #FFFFFF;
+}
+
+#operatorList ul li.prospects .location {
+    color:#888888;
+    font-size:10px;
+}
+
+#operatorList ul li.prospects .description {
+    color:#BBBBBB;
+    font-size:11px;
+}
+
+#operatorList div.trusted {
+    background-color: #FFF;
+    border:1px solid green;
+    color:green;
+    display:block;
+    font-size:11px;
+    line-height:15px;
+    margin-top:5px;
+    text-align:center;
+    width:92px;
 }
 
 
@@ -912,24 +1003,42 @@ div.code-coverage-results span.result-good {
     padding:10px 20px;
 }
 
-.filter h5 { float:left;
-	font-family:Arial;
-	margin:0 30px 0 0;
-}
-.filter label { display:inline;
-	font-size:100%;
-	padding-right:10px;
+.filter h4 { 
+	margin:0;
 }
 
-.filter form div.input { display: inline;
+.filter #OperatorAddForm {
+    height:90px;
+    overflow:auto;
+    width:100%;
 }
 
-.filter form {display: inline;
+.filter .input.field {
+    float:left;
 }
 
-.filter form div.submit {display: inline;
-	margin-left: 20px;
+.filter .input.q {
+    float: left;
+    padding-left:10px;
 }
+
+.filter .input.country {
+    clear:both;
+    float:left;
+    padding-top:3px;
+}
+
+.filter .input.activityType {
+    float:left;
+    padding-left:10px;
+    padding-top:5px;
+}
+
+.filter .submit {
+    float: left;
+}
+
+
 
 .country {
     color:#AAAAAA;

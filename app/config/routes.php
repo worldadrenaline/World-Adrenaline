@@ -4,6 +4,7 @@
  */
 	Router::connect('/', array('controller' => 'pages', 'action' => 'home'));
 	Router::connect('/activities',	array('controller' => 'activityTypes', 'action' => 'index'));
+	Router::connect('/locations',	array('controller' => 'countries', 'action' => 'index'));
  	Router::connect('/about', array('controller'=>'pages', 'action'=>'display', 'about'));
 	Router::connect('/contact',	array('controller' => 'pages', 'action' => 'display', 'contact'));
 	Router::connect('/thanks',	array('controller' => 'pages', 'action' => 'display', 'thanks'));
@@ -25,6 +26,12 @@
  * Listing of operators based on ActivityType
  */
  	Router::connect('/activity/:activityType/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('activityType'), 'activityType'=>'[a-z0-9-]+'));
+
+/**
+ * Listing of operators based on Country
+ */
+ 	Router::connect('/country/:country/*', array('controller' => 'operators', 'action'=>'index'), array('pass'=>array('country'), 'country'=>'[a-z0-9-]+'));
+
 
 /**
  *  Redirect the admin area to the users controller.
