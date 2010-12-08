@@ -7,7 +7,7 @@
 	</div>
 
     <div class="filter">
-        <h4 class="weak">Find your adventure</h4>
+        <h4 class="weak">Find an adventure operator</h4>
         <?php
             echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'index')));
             echo $form->input('field', array('type'=>'select', 'options'=>array(
