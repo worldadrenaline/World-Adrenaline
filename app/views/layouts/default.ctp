@@ -32,8 +32,8 @@
                     <?php echo $html->image('logo.png'); ?>
                 </div>
                 <div id="intro">
-                    <p><strong><?php __('World\'s fastest growing site for adventure sport activities'); ?></strong></p>
-                    <p><?php // __('Secure Bookings | Flexible Cancellation Policies | No Hidden Costs'); ?></p>
+                    <p><strong><?php __('Hands down the world\'s largest directory of adventure sport operators'); ?></strong></p>
+                    <p>Listing over <?php echo $totalOperators; ?> adventure operators worldwide</p>
                 </div>
                 
 			</div> <!-- /header -->

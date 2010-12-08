@@ -6,9 +6,11 @@
 	Router::connect('/activities',	array('controller' => 'activityTypes', 'action' => 'index'));
 	Router::connect('/locations',	array('controller' => 'countries', 'action' => 'index'));
  	Router::connect('/about', array('controller'=>'pages', 'action'=>'display', 'about'));
-	Router::connect('/contact',	array('controller' => 'pages', 'action' => 'display', 'contact'));
+	Router::connect('/contact',	array('controller' => 'contacts', 'action' => 'contact'));
 	Router::connect('/thanks',	array('controller' => 'pages', 'action' => 'display', 'thanks'));
-	Router::connect('/termsofuse',	array('controller' => 'pages', 'action' => 'display', 'termsofuse'));
+	Router::connect('/terms',	array('controller' => 'pages', 'action' => 'display', 'terms'));
+	Router::connect('/termsofuse',	array('controller' => 'pages', 'action' => 'display', 'terms'));
+	Router::connect('/privacy',	array('controller' => 'pages', 'action' => 'display', 'privacy'));
 	Router::connect('/map',	array('controller' => 'operators', 'action' => 'mapSearch'));
 
 

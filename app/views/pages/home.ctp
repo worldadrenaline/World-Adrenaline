@@ -41,6 +41,10 @@
         <ul>
             <?php foreach ($featuredOperators as $operator): ?>
     			 <li class="<?php echo $operator['Operator']['source']; ?>">
+                      <?php if ($operator['Operator']['source'] == 'kumutu') : ?>
+                         <div class="trusted"><?php echo "Trusted Operator"; ?></div>
+                     <?php endif; ?>
+                     
     			     <?php if (isset($operator['Operator']['imageFile_1'])) : ?>
     			         <div class="image"><?php echo $html->image($operator['Operator']['imageFile_1']); ?></div>
 			         <?php endif; ?>
@@ -54,10 +58,7 @@
         			 </div>
         			 <div class="description">
         			 <?php if ($operator['Operator']['description']!='') { echo substr($operator['Operator']['description'],0,100).'...'; }?>
-        			 </div>
-                     <?php if ($operator['Operator']['source'] == 'kumutu') : ?>
-                         <div class="trusted"><?php echo "Trusted Operator"; ?></div>
-                     <?php endif; ?>	
+        			 </div>	
     			 </li>            
             <?php endforeach; ?>
         </ul>

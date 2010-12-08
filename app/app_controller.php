@@ -3,6 +3,8 @@ class AppController extends Controller {
 
     var $components = array('Acl', 'Auth');
 	var $helpers = array('Html', 'Javascript', 'Form', 'Session');
+	var $uses = array('Operator');
+
 
     function beforeFilter() {
         //Configure AuthComponent
@@ -15,6 +17,13 @@ class AppController extends Controller {
             'display',
             'home'
         );
+        
+        
+        //Get total operators
+        $totalOperators = $this->Operator->find('count');
+        $totalOperators = number_format(floor($totalOperators/1000)*1000);
+        $this->set(compact('totalOperators'));
+        
 	}
 
 	function _getClassMethods($ctrlName = null) {

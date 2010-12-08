@@ -95,8 +95,8 @@ WA.MPS = {
 		//var infowindow = new google.maps.InfoWindow;
 	
 		//Load markers from markers.xml file
-//		WA.MPS.downloadUrl("/operators/markers.xml", function(data) {
-		WA.MPS.downloadUrl("http://kumutu.com/suppliers/markers.xml", function(data) {
+		WA.MPS.downloadUrl("/operators/markers.xml", function(data) {
+//		WA.MPS.downloadUrl("http://kumutu.com/suppliers/markers.xml", function(data) {
 
 			var xml = data.responseXML;
 			var markers = xml.documentElement.getElementsByTagName("marker");
@@ -160,4 +160,6 @@ WA.MPS = {
 
 $(document).ready(function(){
 	WA.MPS.initMap();
+	WA.MPS.loadMarkers();
+
 });

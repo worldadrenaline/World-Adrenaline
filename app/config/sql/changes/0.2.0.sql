@@ -11,7 +11,6 @@ ALTER TABLE `operators` ADD COLUMN `imageFile` VARCHAR(255) CHARACTER SET utf8 C
 ALTER TABLE `operators` ADD COLUMN `shortname` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL  AFTER `name`;
 
 
-
 -- moving up countryISO to be next to country_id
 ALTER TABLE `operators` CHANGE COLUMN `countryISO` `countryISO` VARCHAR(2) CHARACTER SET utf8 COLLATE utf8_unicode_ci NOT NULL DEFAULT ''  COMMENT ''  AFTER `country_id`;
 
@@ -22,6 +21,7 @@ ALTER TABLE `operators` CHANGE COLUMN `imageFile_1` `imageFile_1` VARCHAR(255) C
 ALTER TABLE `operators` ADD COLUMN `imageFile_2` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL  AFTER `imageFile_1`;
 ALTER TABLE `operators` ADD COLUMN `imageFile_3` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL  AFTER `imageFile_2`;
 ALTER TABLE `operators` ADD COLUMN `imageFile_4` VARCHAR(255) CHARACTER SET utf8 COLLATE utf8_unicode_ci NULL DEFAULT NULL   AFTER `imageFile_3`;
+
 
 --Add the activities TABLE
 CREATE TABLE `activities` (
@@ -45,6 +45,8 @@ CREATE TABLE `activities` (
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
+
+-- below possibly not needed as table declaration above encorporates these changes
 ALTER TABLE `activities` ADD COLUMN `name` VARCHAR(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL  AFTER `id`;
 ALTER TABLE `activities` ADD COLUMN `description` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL  AFTER `name`;
 ALTER TABLE `activities` ADD COLUMN `operator_id` VARCHAR(128) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL  AFTER `description`;
@@ -68,7 +70,7 @@ ALTER TABLE `activities` ADD COLUMN `activityType` TEXT CHARACTER SET utf8 COLLA
 ALTER TABLE `activities` ADD COLUMN `activityType_id` INT(11) NULL DEFAULT 0  AFTER `activityType`;
 ALTER TABLE `activities` CHANGE COLUMN `activityType` `activityType` TEXT CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL  COMMENT ''  AFTER `description`;
 ALTER TABLE `activities` CHANGE COLUMN `activityType_id` `activityType_id` INT(11) NULL DEFAULT 0  COMMENT ''  AFTER `activityType`;
-ALTER TABLE `adventicus`.`activities` CHANGE COLUMN `id` `id` INT(11) NOT NULL DEFAULT 0  COMMENT ''  FIRST;
+ALTER TABLE `activities` CHANGE COLUMN `id` `id` INT(11) NOT NULL DEFAULT 0  COMMENT ''  FIRST;
 
 
 

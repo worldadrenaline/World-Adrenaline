@@ -8,7 +8,7 @@
         <li>We may use general information regarding Website usage to improve this Website and develop its features.  This general information may also be made known to third parties. These statistics are solely for informative purposes and will not include information to identify an individual.</li>
         <li>We use third-party advertising companies to serve ads when you visit our website. These companies may use information (not including your name, address, email address, or telephone number) about your visits to this and other websites in order to provide advertisements about goods and services of interest to you.</li>
         <li>By the very nature of the internet, information that is publicly visible on-line might appear in search engine results or be linked to by other Websites.</li>
-        <li>If you feel that your privacy is being abused in any way by us or by others whereby we could intervene or help, please <a href="/contactus">contact us</a> and we will use all commercially reasonable efforts to determine and correct the problem promptly.</li>
+        <li>If you feel that your privacy is being abused in any way by us or by others whereby we could intervene or help, please <a href="/contact">contact us</a> and we will use all commercially reasonable efforts to determine and correct the problem promptly.</li>
     
     </ol>
 <p>For more information on our policies, please read our <a href="/terms">Terms of Use</a>.</p>

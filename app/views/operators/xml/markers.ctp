@@ -1,26 +1,8 @@
 <markers>
-<?php 
-    foreach ($operators as $key => $operator) :
-        $lat = $operator['Operator']['latitude'];
-        $lng = $operator['Operator']['longitude'];
-        $name = h($operator['Operator']['name']);
-        $city = $operator['Operator']['city'];
-        $country = $operator['Country']['name'];
-        $activityType = trim($operator['ActivityType']['name']);
-        $id = $operator['Operator']['id'];
-        //$slug = $operator['Operator']['slug'];
-        $description = $text->truncate(Sanitize::html($operator['Operator']['description'], array('remove' => true)), 100, '...', false);
-        //$image = h($operator['Photo'][0]['filename']);
-
-		if(!empty($operator['ActivityType']['element'])) {
-		    $element = $operator['ActivityType']['element'];
-		} else {
-			$element = "MISC";
-		}
-
-?>
-    <marker name="<?php echo $name;?>" lat="<?php echo $lat; ?>" lng="<?php echo $lng; ?>" url="<?php echo '/'.$slug;?>" city="<?php echo $city; ?>" country="<?php echo $country; ?>" element="<?php echo $element; ?>" activityType="<?php echo $activityType; ?>" type="operator" description="<?php echo $description; ?>" <?php /* image="<?php echo $image; ?>" */ ?>/> 
-    <?php //print_r($operator); ?>
-
-    <?php endforeach; ?>
+<marker name="wind &amp; waves" lat="-33.40406" lng="-70.54032" url="/windandwaves" city="Santiago" country="Chile" element="WATER" activityType="Windsurfing" type="operator" description="	Wind &amp;amp; waves is a tourism company born in Chile with the purpose of offer to waveriders..." image="100022_38514_thumb_Isotipoparafacebook.jpg"/> 
+<marker name="World Balloon" lat="35.159654" lng="-106.678546" url="/world-balloon" city="Albuquerque" country="United States of America" element="AIR" activityType="Ballooning" type="operator" description="Visitors come from around the world to enjoy Albuquerque&#039;s pleasant climate, beautiful..." image="100026_58684_thumb_WB-Logo-800X531.jpg"/> 
+<marker name="Skydive Mission Beach" lat="-17.895835" lng="146.09757" url="/australiaskydive" city="Mission Beach" country="Australia" element="AIR" activityType="Sky Diving" type="operator" description="Cairns (and Mission Beach) is known internationally as the gate way to the world famous Great..." image="100031_58133_thumb_sda-red.jpg"/> 
+<marker name="Mountain Legends" lat="-0.2038251" lng="-78.4928453" url="/mountain-legends" city="Quito" country="Ecuador" element="EARTH" activityType="Rock Climbing" type="operator" description="Mountain Legends Inc is a well established local Mountain Climbing company with 15 years of..." image="100035_10857_thumb_1436489281_12dd760086_o[1].jpg"/> 
+<marker name="Straddie Kingfisher Tours" lat="-27.499445" lng="153.405899" url="/kingfisher" city="Dunwich" country="Australia" element="EARTH" activityType="Safaris" type="operator" description="Straddie Kingfisher Tours started over 10 years ago now because Dave and Margaret Thelander have..." image="100069_97787_thumb_Disappearingfootprints.JPG"/> 
+<marker name="Botanical Treks &amp; Excursion" lat="27.7156157" lng="85.3116511" url="/botanical-treks-excursion" city="Kathmandu" country="Nepal" element="EARTH" activityType="Hiking / Trekking" type="operator" description="Botanical Treks &amp;amp; Excursion is a registered trekking company based in Kathmandu Nepal...." image="100086_94950_thumb_Nepal2008-103.JPG"/> 
 </markers>

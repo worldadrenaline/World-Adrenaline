@@ -89,7 +89,6 @@ class Import extends AppModel {
 			$id = $supplier['CompanyName']['ID'];
 			$name = addslashes($supplier['CompanyName']['value']);
 			$shortname = addslashes($supplier['CompanyName']['ShortName']); 
-
 			
 			$latitude = $supplier['Position']['Latitude'];
 			$longitude = $supplier['Position']['Longitude'];
@@ -108,6 +107,7 @@ class Import extends AppModel {
 			foreach ($supplier['MultimediaDescriptions']['MultimediaDescription'] as $media) {
 
                 $logoFile = null;
+                $imageFile = array();
                 foreach($media as $item) {
                     if(isset($item['TextItem'])) {
                         foreach($item['TextItem'] as $text) {
@@ -136,38 +136,13 @@ class Import extends AppModel {
 
 			$modified = $supplier['Modified'];
 
-			$SOQL = "INSERT INTO operators (id,name,city,country_id,countryISO,stateProvince,phone,description,activityType,activity_type_id,latitude,longitude,hasEmail,modified,source,logoFile,imageFile_1,imageFile_2,imageFile_3,imageFile_4) VALUES ('".$id."','".$name."','".$city."','".$country_id."','".$countryISO."','".$stateProvince."','".$phone."','".$description."','".$activityType."','".$activity_type_id."','".$latitude."','".$longitude."','".$hasEmail."','".$modified."','".$source."','".$logoFile."','".$imageFile[0]."','".$imageFile[1]."','".$imageFile[2]."','".$imageFile[3]."') ON DUPLICATE KEY UPDATE name='".$name."', city='".$city."', country_id='".$country_id."', countryISO='".$countryISO."',stateProvince='".$stateProvince."', phone='".$phone."', description='".$description."', activityType='".$activityType."', activity_type_id='".$activity_type_id."', latitude='".$latitude."', longitude='".$longitude."', hasEmail='".$hasEmail."', modified='".$modified."', source='".$source."', logoFile='".$logoFile."', imageFile_1='".$imageFile[0]."', imageFile_2='".$imageFile[1]."', imageFile_3='".$imageFile[2]."', imageFile_4='".$imageFile[3]."'";
+			$SOQL = "INSERT INTO operators (id,name,shortname,city,country_id,countryISO,stateProvince,phone,description,activityType,activity_type_id,latitude,longitude,hasEmail,modified,source,logoFile,imageFile_1,imageFile_2,imageFile_3,imageFile_4) VALUES ('".$id."','".$name."','".$shortname."','".$city."','".$country_id."','".$countryISO."','".$stateProvince."','".$phone."','".$description."','".$activityType."','".$activity_type_id."','".$latitude."','".$longitude."','".$hasEmail."','".$modified."','".$source."','".$logoFile."','".$imageFile[0]."','".$imageFile[1]."','".$imageFile[2]."','".$imageFile[3]."') ON DUPLICATE KEY UPDATE name='".$name."', shortname='".$shortname."', city='".$city."', country_id='".$country_id."', countryISO='".$countryISO."',stateProvince='".$stateProvince."', phone='".$phone."', description='".$description."', activityType='".$activityType."', activity_type_id='".$activity_type_id."', latitude='".$latitude."', longitude='".$longitude."', hasEmail='".$hasEmail."', modified='".$modified."', source='".$source."', logoFile='".$logoFile."', imageFile_1='".$imageFile[0]."', imageFile_2='".$imageFile[1]."', imageFile_3='".$imageFile[2]."', imageFile_4='".$imageFile[3]."'";
 			$result = $this->query($SOQL);
 			
   		}
 	}
 	
 	
-	/*
-	*  Adds or updates a single Kumutu supplier to the database
-	*/
-	function updateKumutuSupplier($supplier) {
-
-/* TODO, what is there is only one supplier? Use this below.
-			$id = $supplier['CompanyName']['ID'];
-			$name = addslashes($supplier['CompanyName']['value']);
-			
-			if(!is_array($supplier['Address']['CityName'])){ $city = addslashes($supplier['Address']['CityName']); } else { $city = '';};
-			$country_id = $supplier['Address']['CountryName']['ID'];
-			if(!is_array($supplier['Address']['StateProv'])){ $stateProvince = $supplier['Address']['StateProv']; } else { $stateProvince = '';};
-			$countryISO = $supplier['Address']['CountryName']['Code'];
-			if(!is_array($supplier['Address']['Phone'])){ $phone = $supplier['Address']['Phone']; } else { $phone = ''; }			
-			if(isset($supplier['MultimediaDescriptions']['MultimediaDescription']['TextItems']['TextItem']['Description']['value'])) { $description = addslashes($supplier['MultimediaDescriptions']['MultimediaDescription']['TextItems']['TextItem']['Description']['value']); } else { $description = ''; }
-			$activityType = $supplier['Category']['CategoryItem']['Name'];
-			$activity_type_id = $supplier['Category']['CategoryItem']['ID'];
-			if ( $supplier['HasEmail'] == 'True' ) { $hasEmail='1'; } else { $hasEmail='0'; }
-			$modified = $supplier['Modified'];
-
-			$SOQL = "INSERT INTO operators (id,name,city,country_id,stateProvince,countryISO,phone,description,activityType,activity_type_id,hasEmail,modified) VALUES ('".$id."','".$name."','".$city."','".$country_id."','".$stateProvince."','".$countryISO."','".$phone."','".$description."','".$activityType."','".$activity_type_id."','".$hasEmail."','".$modified."') ON DUPLICATE KEY UPDATE name='".$name."', city='".$city."', country_id='".$country_id."', stateProvince='".$stateProvince."', countryISO='".$countryISO."', phone='".$phone."', description='".$description."', activityType='".$activityType."', activity_type_id='".$activity_type_id."', hasEmail='".$hasEmail."', modified='".$modified."' ";
-			$result = $this->query($SOQL);
- */			
-	}
-
 	function updateKumutuActivities($activities) {
 	
   		foreach ($activities as $activity) {
@@ -178,7 +153,7 @@ class Import extends AppModel {
 			$operator_id = $activity['SupplierInfo']['CompanyName']['ID'];
 			
 			$name = addslashes($activity['ActivityName']['value']);
-			$shortname = addslashes($activity['ActivityName']['ShortName']); 
+			$shortname = addslashes($activity['ActivityName']['ShortName']);
 			
 			$activityType = $activity['Category'][1]['CategoryItem']['Name'];
 			$activityType_id = $activity['Category'][1]['CategoryItem']['ID'];
