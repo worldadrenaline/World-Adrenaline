@@ -1,4 +1,5 @@
 <?php
+App::import('Sanitize');
 class Import extends AppModel {
 	var $name = 'Import'; 
 	var $useTable = false;
@@ -87,6 +88,8 @@ class Import extends AppModel {
 			
 			$id = $supplier['CompanyName']['ID'];
 			$name = addslashes($supplier['CompanyName']['value']);
+			$shortname = addslashes($supplier['CompanyName']['ShortName']); 
+
 			
 			$latitude = $supplier['Position']['Latitude'];
 			$longitude = $supplier['Position']['Longitude'];
@@ -97,21 +100,43 @@ class Import extends AppModel {
 			if(!is_array($supplier['Address']['CityName'])){ $city = addslashes($supplier['Address']['CityName']); } else { $city = '';};
 
 			$countryISO = $supplier['Address']['CountryName']['Code'];
-
-            //TODO: get the real country code from the API or lookup locally, for now, using the USA
-		//	$country_id = $supplier['Address']['CountryName']['ID'];
-			$country_id = '233';
+			$country_id = $supplier['Address']['CountryName']['ID'];
 			
-			if(!is_array($supplier['Address']['StateProv'])){ $stateProvince = $supplier['Address']['StateProv']['value']; } else { $stateProvince = '';};
+			if(isset($supplier['Address']['StateProv']['value'])){ $stateProvince = addslashes($supplier['Address']['StateProv']['value']); } else { $stateProvince = '';}
 			if(!is_array($supplier['ContactInfo']['Phones']['Phone']['PhoneNumber'])){ $phone = $supplier['ContactInfo']['Phones']['Phone']['PhoneNumber']; } else { $phone = ''; }			
-			if(isset($supplier['MultimediaDescriptions']['MultimediaDescription']['TextItems']['TextItem']['Description']['value'])) { $description = addslashes($operator['MultimediaDescriptions']['MultimediaDescription']['TextItems']['TextItem']['Description']['value']); } else { $description = ''; }
 
-			if(isset($supplier['MultimediaDescriptions']['MultimediaDescription']['ImageItems']['ImageItem']['ImageFormat']['URL'])) { $image = addslashes($supplier['MultimediaDescriptions']['MultimediaDescription']['ImageItems']['ImageItem']['ImageFormat']['URL']); } else { $image = ''; }
-			
-			//TODO: get modified date from API, not setting it to today
-			$modified = date('Y-m-d H:i:s');
+			foreach ($supplier['MultimediaDescriptions']['MultimediaDescription'] as $media) {
 
-			$SOQL = "INSERT INTO operators (id,name,city,country_id,countryISO,stateProvince,phone,description,activityType,activity_type_id,latitude,longitude,hasEmail,modified,source) VALUES ('".$id."','".$name."','".$city."','".$country_id."','".$countryISO."','".$stateProvince."','".$phone."','".$description."','".$activityType."','".$activity_type_id."','".$latitude."','".$longitude."','".$hasEmail."','".$modified."','".$source."') ON DUPLICATE KEY UPDATE name='".$name."', city='".$city."', country_id='".$country_id."', stateProvince='".$stateProvince."', countryISO='".$countryISO."', phone='".$phone."', description='".$description."', activityType='".$activityType."', activity_type_id='".$activity_type_id."', hasEmail='".$hasEmail."', modified='".$modified."'";
+                $logoFile = null;
+                foreach($media as $item) {
+                    if(isset($item['TextItem'])) {
+                        foreach($item['TextItem'] as $text) {
+                            if ($text['Title'] == 'Description') { $description = trim(Sanitize::html(addslashes($text['Description']['value']), array('remove' => true))); }
+                        }                        
+                    }
+                    
+                    if(isset($item['ImageItem'])) {
+                        foreach($item['ImageItem'] as $image) {
+                        
+                            if (isset($image['IsLogo']) && $image['IsLogo'] == 'true') { 
+                                foreach ($image['ImageFormat'] as $format) {
+                                    if ($format['DimensionCategory'] == 'Thumbnail') { $logoFile = addslashes($format['URL']); }
+                                }
+                            }
+                            
+                            if (isset($image['IsLogo']) && $image['IsLogo'] == 'false') { 
+                                foreach ($image['ImageFormat'] as $format) {
+                                    if ($format['DimensionCategory'] == 'Thumbnail') { $imageFile[] = addslashes($format['URL']);}
+                                }
+                            }
+                        }
+                    }
+                }
+			} 
+
+			$modified = $supplier['Modified'];
+
+			$SOQL = "INSERT INTO operators (id,name,city,country_id,countryISO,stateProvince,phone,description,activityType,activity_type_id,latitude,longitude,hasEmail,modified,source,logoFile,imageFile_1,imageFile_2,imageFile_3,imageFile_4) VALUES ('".$id."','".$name."','".$city."','".$country_id."','".$countryISO."','".$stateProvince."','".$phone."','".$description."','".$activityType."','".$activity_type_id."','".$latitude."','".$longitude."','".$hasEmail."','".$modified."','".$source."','".$logoFile."','".$imageFile[0]."','".$imageFile[1]."','".$imageFile[2]."','".$imageFile[3]."') ON DUPLICATE KEY UPDATE name='".$name."', city='".$city."', country_id='".$country_id."', countryISO='".$countryISO."',stateProvince='".$stateProvince."', phone='".$phone."', description='".$description."', activityType='".$activityType."', activity_type_id='".$activity_type_id."', latitude='".$latitude."', longitude='".$longitude."', hasEmail='".$hasEmail."', modified='".$modified."', source='".$source."', logoFile='".$logoFile."', imageFile_1='".$imageFile[0]."', imageFile_2='".$imageFile[1]."', imageFile_3='".$imageFile[2]."', imageFile_4='".$imageFile[3]."'";
 			$result = $this->query($SOQL);
 			
   		}
@@ -143,7 +168,59 @@ class Import extends AppModel {
  */			
 	}
 
+	function updateKumutuActivities($activities) {
 	
+  		foreach ($activities as $activity) {
+
+			$source = "kumutu";
+			
+			$id = $activity['ActivityName']['ID'];
+			$operator_id = $activity['SupplierInfo']['CompanyName']['ID'];
+			
+			$name = addslashes($activity['ActivityName']['value']);
+			$shortname = addslashes($activity['ActivityName']['ShortName']); 
+			
+			$activityType = $activity['Category'][1]['CategoryItem']['Name'];
+			$activityType_id = $activity['Category'][1]['CategoryItem']['ID'];
+			
+			$latitude = $activity['Position']['Latitude'];
+			$longitude = $activity['Position']['Longitude'];
+			
+			foreach ($activity['MultimediaDescriptions']['MultimediaDescription'] as $media) {
+
+                foreach($media as $item) {
+                    if(isset($item['TextItem'])) {
+                        if ($item['TextItem']['Title'] == 'Long') { $description = trim(Sanitize::html(addslashes($item['TextItem']['Description']['value']), array('remove' => true))); }
+                    }
+
+                   /*TODO: get images
+                    if(isset($item['ImageItem'])) {
+                        foreach($item['ImageItem'] as $image) {
+                            foreach ($image['ImageFormat'] as $format) {
+                                if ($format['DimensionCategory'] == 'Thumbnail') { $imageFile[] = addslashes($format['URL']);}
+                            }
+                        }
+                    }
+                    */
+                    $imageFile[0]='';
+                    $imageFile[1]='';
+                    $imageFile[2]='';
+                    $imageFile[3]='';
+
+                }
+			} 
+
+            $currency = $activity['General']['Charge']['CurrencyCode'];
+            $priceMin = $activity['General']['Charge']['MinPrice'];
+
+			$modified = $activity['Modified'];
+
+			$SOQL = "INSERT INTO activities (id,operator_id,name,shortname,description,activityType,activityType_id,currency,priceMin,latitude,longitude,imageFile_1,imageFile_2,imageFile_3,imageFile_4,source,modified) VALUES ('".$id."','".$operator_id."','".$name."','".$shortname."','".$description."','".$activityType."','".$activityType_id."','".$currency."','".$priceMin."','".$latitude."','".$longitude."','".$imageFile[0]."','".$imageFile[1]."','".$imageFile[2]."','".$imageFile[3]."','".$source."','".$modified."') ON DUPLICATE KEY UPDATE operator_id='".$operator_id."', name='".$name."',  shortname='".$shortname."', description='".$description."', activityType='".$activityType."', activityType_id='".$activityType_id."', currency='".$currency."', priceMin='".$priceMin."', latitude='".$latitude."', longitude='".$longitude."', imageFile_1='".$imageFile[0]."', imageFile_2='".$imageFile[1]."', imageFile_3='".$imageFile[2]."', imageFile_4='".$imageFile[3]."', source='".$source."', modified='".$modified."'";
+			$result = $this->query($SOQL);
+			
+  		}
+	}
+
 	
 		
 	function emptyDbOperators() {

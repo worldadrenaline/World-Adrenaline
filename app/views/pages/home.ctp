@@ -23,7 +23,7 @@
 
     <div class="activityTypes index">
         <div id="activityList">
-    		<h2>Choose your adventure activity category</h2>
+    		<h2>Browse by adventure sport</h2>
     		<ul class="activityList">
     			<?php $i = 1; ?>
     			<?php foreach ($activityTypesCount as $activityType):?>
@@ -35,9 +35,35 @@
     		</ul>
     	</div> <!-- activityList -->
     </div>
+    
+    <div id="operatorList" class="featuredOperators">
+        <h2>Featured operators</h2>
+        <ul>
+            <?php foreach ($featuredOperators as $operator): ?>
+    			 <li class="<?php echo $operator['Operator']['source']; ?>">
+    			     <?php if (isset($operator['Operator']['imageFile_1'])) : ?>
+    			         <div class="image"><?php echo $html->image($operator['Operator']['imageFile_1']); ?></div>
+			         <?php endif; ?>
+    			 
+        			 <h3><?php echo $html->link($operator['Operator']['name'], array('controller' => 'operators','action' => 'view','id' => $operator['Operator']['id'],'shortname' => Inflector::slug($operator['Operator']['name']))); ?></a></h3>
+        			 <div class="location"> 
+            			 <?php if (isset($operator['Operator']['city']) && $operator['Operator']['city']!='') { echo substr($operator['Operator']['city'],0,50).', '; }?>
+            			 <?php if (isset($operator['Operator']['stateProvince']) && $operator['Operator']['stateProvince']!='') { echo substr($operator['Operator']['stateProvince'],0,50).', '; }?>
+    
+        				 <?php echo $operator['Country']['name']; ?>
+        			 </div>
+        			 <div class="description">
+        			 <?php if ($operator['Operator']['description']!='') { echo substr($operator['Operator']['description'],0,100).'...'; }?>
+        			 </div>
+                     <?php if ($operator['Operator']['source'] == 'kumutu') : ?>
+                         <div class="trusted"><?php echo "Trusted Operator"; ?></div>
+                     <?php endif; ?>	
+    			 </li>            
+            <?php endforeach; ?>
+        </ul>
+    </div>
 
 
-	<div class="notice">Would you like to be added to this list? Sign up at <a href="http://kumutu.com/suppliers/register">Kumutu.com</a></div>
 	<?php echo $this->element('bannersHome'); ?>
 
 </div> <!-- /home -->

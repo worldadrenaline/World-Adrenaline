@@ -12,9 +12,16 @@
     		// <link rel="apple-touch-icon" href="/img/favicon-iphone.png" />
 			echo $html->css('screen', 'stylesheet', 'media="screen"', true);
 			//echo $html->css('mobile', 'stylesheet', 'media="mobile"', true); 
-			//echo $html->css('print', 'stylesheet', 'media="print"', true); 
+			//echo $html->css('print', 'stylesheet', 'media="print"', true);
+
 			echo $scripts_for_layout;
-		?> 
+		
+            $javascript->link(array(
+                'jquery-1.4.2.min',
+                'wa' 
+            ), false);
+        ?>
+		
 		
 	</head>
 	<body>
@@ -26,7 +33,7 @@
                 </div>
                 <div id="intro">
                     <p><strong><?php __('World\'s fastest growing site for adventure sport activities'); ?></strong></p>
-                    <p><?php __('Secure Bookings | Flexible Cancellation Policies | No Hidden Costs'); ?></p>
+                    <p><?php // __('Secure Bookings | Flexible Cancellation Policies | No Hidden Costs'); ?></p>
                 </div>
                 
 			</div> <!-- /header -->

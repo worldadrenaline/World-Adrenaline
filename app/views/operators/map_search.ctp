@@ -9,12 +9,15 @@
 ?>
 
 <?php $this->pageTitle = 'Search by Map'; ?>
+<?php //$this->set('title_for_layout', 'Search by Map'); ?>
 
 <?php 
     $javascript->link(array(
-        'WA.mapSearch', 
-        "http://maps.google.com/maps/api/js?sensor=true"
-    ), false); 
+        'jquery-1.4.2.min',
+        'wa', 
+        'WA.mapSearch',
+        'http://maps.google.com/maps/api/js?sensor=true'
+    ), false);
 ?>
 
 
@@ -33,7 +36,5 @@
 	<div id="map-loader"><?php echo $html->image('ajax-mini-loader.gif'); ?></div>   
     <div id="map" style="width:100%; height:500px;"></div>
 </div>
-
-
 
 </div> <!-- /operators view -->

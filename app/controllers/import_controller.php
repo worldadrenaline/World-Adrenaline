@@ -10,7 +10,8 @@ class ImportController extends AppController {
     	    'updateCountries',
     	    'refreshOperators',
     	    'updateOperators',
-    	    'updateKumutuSuppliers'
+    	    'updateKumutuSuppliers',
+    	    'updateKumutuActivities'
     	    );
 	}
 						  
@@ -110,7 +111,8 @@ class ImportController extends AppController {
 	function updateKumutuSuppliers() {
 
 		App::import('Xml');
-        $methodUrl = 'http://api.kumutu.com/0.4/suppliers/get.xml';
+        //$methodUrl = 'http://api.kumutu.com/0.5/suppliers/get.xml';
+	 	$methodUrl = 'http://kumutu.local/0.5/suppliers/get.xml';
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 
 		$xmlObject = new Xml($uri);
@@ -123,6 +125,36 @@ class ImportController extends AppController {
 			} 
 			else {
 			    // if only 1 supplier, we should do something
+				//$supplier = $parsed_xml['Suppliers']['Supplier'];
+				//$this->Import->updateKumutuSuppliers($supplier);
+			} 
+			
+		}
+		
+		//Free up memory from XML object
+		$xmlObject->__destruct();
+		unset($xmlObject);
+
+		exit;
+	}
+	
+	function updateKumutuActivities() {
+
+		App::import('Xml');
+        //$methodUrl = 'http://api.kumutu.com/0.5/activities/get.xml';
+	 	$methodUrl = 'http://kumutu.local/0.5/activities/get.xml';
+	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
+
+		$xmlObject = new Xml($uri);
+		$parsed_xml = Set::reverse($xmlObject);
+		
+		if (isset($parsed_xml['Activities']['Activity'])) {
+			if (Set::countDim($parsed_xml['Activities']['Activity']) > 1) {
+				$activities = $parsed_xml['Activities']['Activity'];
+				$this->Import->updateKumutuActivities($activities);
+			} 
+			else {
+			    // if only 1 activity, we should do something
 				//$supplier = $parsed_xml['Suppliers']['Supplier'];
 				//$this->Import->updateKumutuSuppliers($supplier);
 			} 

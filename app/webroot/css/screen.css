@@ -41,9 +41,10 @@ h1, h2, h3, h4 {
 }
 
 h1 {
-    font-size: 40px;
-	line-height:45px;
-	font-weight: bold;
+    font-size:30px;
+    font-weight:bold;
+    line-height:45px;
+    padding-top:20px;
 }
 h2 { 
 	font-size: 190%;
@@ -228,7 +229,7 @@ br {
 #footer-links { 
 	margin:0 auto;
 	text-align:center;
-	width:500px;
+	width:800px;
 	padding-top:15px;
 
 }
@@ -236,7 +237,15 @@ br {
 #footer-links li {
 	display: inline;
 	padding-left:30px;
+} 
 
+#footer-links li a {
+	color: #BBB;
+} 
+
+#footer-links li a:hover {
+	color: #FFF;
+	background-color: #BBB;
 } 
 
 #footer-links h2 { 
@@ -784,6 +793,48 @@ div.code-coverage-results span.result-good {
     
 }
 
+#hotels { 
+    background-color:#F3F3F3;
+    background-image:url("/img/letter-i.png");
+    background-position:14px center;
+    background-repeat:no-repeat;
+    border:1px solid #E1E1E1;
+    font-size:14px;
+    font-weight:bold;
+    height:auto;
+    margin:0 0 10px;
+    padding:10px 10px 10px 50px;
+}
+
+#hotels div { 
+    clear:both; 
+    width:100%; 
+    height:22px; 
+}
+
+#hotels a { 
+    float:left;
+    color:#848484;
+    text-decoration: none;
+}
+
+#hotels a:hover { 
+    background-color:inherit;
+    color:#CC0000;
+}
+
+#hotels span { 
+    float:right; 
+    color:#CC0000;
+}
+
+#hotels span a, #affiliate span a:hover, #affiliate span a:visited { 
+    background-color:inherit; 
+    color:#CC0000;
+    text-decoration: none;
+}
+
+
 /* Home page */
 #welcome {}
 
@@ -834,6 +885,13 @@ div.code-coverage-results span.result-good {
     padding:0;
 }
 
+#home #operatorList ul li.kumutu {
+    background-color:#FFFFFF;
+    border-color:#E1E1E1;
+    border-style:none none solid;
+    border-width:medium medium 2px;
+    padding-bottom:20px;
+}
 
 /* Activities Index page */
 .activityTypes.index {}
@@ -944,10 +1002,16 @@ div.code-coverage-results span.result-good {
     text-decoration:none;
 }
 
+#operatorList ul li .image {
+    float:left;
+    padding:0 10px;
+}
+
 #operatorList ul li.kumutu {
     background:none repeat scroll 0 0 #FFFFDD;
     border:1px solid #EEEECC;
     margin-bottom:10px;
+    overflow:auto;
     padding:10px 5px;
 }
 
@@ -991,6 +1055,7 @@ div.code-coverage-results span.result-good {
     margin-top:5px;
     text-align:center;
     width:92px;
+    float:left;
 }
 
 
@@ -1038,8 +1103,6 @@ div.code-coverage-results span.result-good {
     float: left;
 }
 
-
-
 .country {
     color:#AAAAAA;
 	font-size:20px;
@@ -1058,9 +1121,14 @@ div.code-coverage-results span.result-good {
 }
 
 
-/* Operview view page */
+/* Operator view page */
 .operators.view {
-    margin-top:50px;
+    margin-top:30px;
+}
+
+.operators.view .logo {
+    float:left;
+    padding:0 10px 10px 0;
 }
 
 .operators.view h1 {}
@@ -1086,7 +1154,23 @@ div.code-coverage-results span.result-good {
     line-height:21px;
     text-align:center;
     width:100px;
+    float: left;
 }
+
+.operators.view .profile {
+    clear: both;
+}
+
+.operators.view ul.photos {
+    list-style:none outside none;
+    overflow:auto;
+}
+
+.operators.view ul.photos li{
+    float: left;
+    padding:0 10px 0 0;
+}
+
 
 img#captcha { margin-bottom: 5px;
 }
@@ -1104,6 +1188,14 @@ img#captcha { margin-bottom: 5px;
 
 .ads-banner { padding-top: 10px;
 }
+
+.operators.view ul.activities {
+    list-style:none outside none;
+}
+.operators.view ul.activities li {}
+.operators.view ul.activities li h3 {}
+.operators.view ul.activities li p {}
+
 
 /* Information Request Form */
 .operators.view .request {
@@ -1210,6 +1302,17 @@ pre.cake-debug {
 	
 }
 
+/* Search by Map page */
+#searchMap {
+    padding-top: 10px;
+}
+#searchMap h1 {
+    font-size:22px;
+    line-height:22px;
+    text-transform:uppercase;
+}
+
+#searchMap #map-loader{}
 
 
 /*

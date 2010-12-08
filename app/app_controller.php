@@ -2,6 +2,7 @@
 class AppController extends Controller {
 
     var $components = array('Acl', 'Auth');
+	var $helpers = array('Html', 'Javascript', 'Form', 'Session');
 
     function beforeFilter() {
         //Configure AuthComponent
@@ -15,9 +16,6 @@ class AppController extends Controller {
             'home'
         );
 	}
-
-
-
 
 	function _getClassMethods($ctrlName = null) {
 		App::import('Controller', $ctrlName);

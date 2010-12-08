@@ -85,7 +85,7 @@ WA.MPS = {
 	 * Initialise the map with basic controls
 	 */
     initMap: function () {
-
+    
         //Initialize the map
 		WA.MPS.map = new google.maps.Map(document.getElementById("map"), {
 			center: new google.maps.LatLng(0, 0),
@@ -95,7 +95,9 @@ WA.MPS = {
 		//var infowindow = new google.maps.InfoWindow;
 	
 		//Load markers from markers.xml file
-		WA.MPS.downloadUrl("/operators/markers.xml", function(data) {
+//		WA.MPS.downloadUrl("/operators/markers.xml", function(data) {
+		WA.MPS.downloadUrl("http://kumutu.com/suppliers/markers.xml", function(data) {
+
 			var xml = data.responseXML;
 			var markers = xml.documentElement.getElementsByTagName("marker");
 

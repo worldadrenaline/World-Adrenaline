@@ -47,6 +47,18 @@ class PagesController extends AppController {
 		}
 
 		$this->set(compact('activityTypes', 'countries', 'activityTypesCount'));
+		
+		
+		//Get 3 featured operators
+		$featuredOperators = $this->Operator->find('all', array(
+            'recursive' => 0,
+            'limit' => 3,
+            //'order' => array('Operator.source' => 'asc', 'Operator.name' => 'asc'),
+		    'order'=>'RAND()',
+            'conditions' => array(
+                'Operator.source' => 'kumutu'
+        )));
+		$this->set(compact('featuredOperators'));
     }
 
 

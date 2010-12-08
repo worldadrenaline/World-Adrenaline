@@ -7,31 +7,28 @@
     
     <h1>
     
-    <?php if (!isset($activityTypeName)) { $activityTypeName = 'All'; } ?>
+    <?php if (!isset($activityTypeName)) { $activityTypeName = 'All adventure'; } ?>
     
     <?php  echo $activityTypeName.' operators'; ?> 
     	<div class="country">
-    	<?php  if (isset($country) && $country!='') { echo 'in '.$countries[$country]; }  else { echo 'globally'; } ?>
+    	<?php  
+    	    if (isset($this->data['Operator']['country'])) { $country = $this->data['Operator']['country']; }
+        	if (isset($country) && $country!='') { echo 'in '.$countries[$country]; }  else { echo 'globally'; } 
+    	?>
     	</div>
     </h1>
 
-    <?php
-    if (isset($activityType)) {
-        echo $form->input('activityType', array('type'=>'select', 'options'=>$activityTypes, 'empty'=>'all activities', 'label'=>'', 'div'=>'input activityType', 'default'=>$activityType ));
-    }
-    
-    ?>
     <div class="filter">
-        <h4 class="weak">Filter by</h4>
+        <h4 class="weak">Refine your search</h4>
         <?php
-            echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'index', $activityType)));
+            echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'index')));
             echo $form->input('field', array('type'=>'select', 'options'=>array(
                'name'=>'Name', 'city' => 'City', 'stateProvince' => 'State', 'description' => 'Description'
             	), 'empty'=>'Display all', 'default'=>'name', 'label'=>'', 'div'=>'input field')
             );
             echo $form->input('q', array('type'=>'text', 'label'=>'', 'div'=>'input q', 'size'=>40));
-            echo $form->input('country', array('type'=>'select', 'options'=>$countries, 'empty'=>'all countries', 'label'=>'', 'div'=>'input country'));
-            echo $form->input('activityType', array('type'=>'select', 'options'=>$activityTypes, 'empty'=>'all activities', 'label'=>'', 'div'=>'input activityType'));
+            echo $form->input('country', array('type'=>'select', 'options'=>$countries, 'empty'=>'all countries', 'label'=>'', 'div'=>'input country', 'default'=>$country));
+            echo $form->input('activityType', array('type'=>'select', 'options'=>$activityTypes, 'empty'=>'all activities', 'label'=>'', 'div'=>'input activityType', 'default'=>$activityID));
             echo $form->end('Apply Filter');
         ?>
     </div>
@@ -55,7 +52,12 @@
     	<div id="operatorList">
     		<ul>
     		<?php foreach($operators as $operator): ?>
+    		
     			 <li class="<?php echo $operator['Operator']['source']; ?>">
+    			     <?php if (isset($operator['Operator']['imageFile_1'])) : ?>
+    			         <div class="image"><?php echo $html->image($operator['Operator']['imageFile_1']); ?></div>
+			         <?php endif; ?>
+    			 
         			 <h3><?php echo $html->link($operator['Operator']['name'], array('controller' => 'operators','action' => 'view','id' => $operator['Operator']['id'],'shortname' => Inflector::slug($operator['Operator']['name']))); ?></a></h3>
         			 <div class="location"> 
             			 <?php if (isset($operator['Operator']['city']) && $operator['Operator']['city']!='') { echo substr($operator['Operator']['city'],0,50).', '; }?>

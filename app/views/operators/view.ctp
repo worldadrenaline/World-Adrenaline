@@ -1,6 +1,10 @@
 <div class="operators view">
 
 	<?php // if ($success_email) { echo '<div class="notice">'. $success_email .'></div>'; } ?> 	
+    <?php if (isset($operator['Operator']['logoFile'])) : ?>
+        <div class="logo"><?php echo $html->image($operator['Operator']['logoFile']); ?></div>
+    <?php endif; ?>
+	
 	<h1><?php echo $operator['Operator']['name']; ?></h1>
 	
 	<?php if ($operator['Operator']['source'] == 'kumutu') : ?>
@@ -11,21 +15,54 @@
 			<h2>Location</h2>
 			<p>
 						
-			<?php //if ($operator['Operator']['city']) { echo $operator['Operator']['city'].","; } ?>
+			<?php if ($operator['Operator']['city']) { echo $operator['Operator']['city'].","; } ?>
 			<?php if ($operator['Operator']['stateProvince']) { echo $operator['Operator']['stateProvince']."</p><p>"; } ?>
 			<?php if ($operator['Operator']['countryISO']) { echo $operator['Country']['name']; } ?>
 
 			</p>
 			
-			<?php if ($operator['Operator']['activityType']) { ?>
+			<?php if ($operator['Operator']['activityType']) : ?>
 				<h2>Activities offered</h2>
 				<?php echo "<p>".$operator['Operator']['activityType']."</p>"; ?>
-			<?php } ?>
+			<?php endif; ?>
 			
-			<?php if ($operator['Operator']['description']) { ?>
+            <?php if (isset($operator['Operator']['imageFile_1'])) : ?>
+                <h2>Photos</h2>
+                <ul class="photos">
+                    <li><?php echo $html->image($operator['Operator']['imageFile_1']); ?></li>
+
+                    <?php if (isset($operator['Operator']['imageFile_2'])) : ?>
+                        <li><?php echo $html->image($operator['Operator']['imageFile_2']); ?></li>
+                    <?php endif; ?>                    
+
+                    <?php if (isset($operator['Operator']['imageFile_3'])) : ?>
+                        <li><?php echo $html->image($operator['Operator']['imageFile_3']); ?></li>
+                    <?php endif; ?> 
+
+                    <?php if (isset($operator['Operator']['imageFile_4'])) : ?>
+                        <li><?php echo $html->image($operator['Operator']['imageFile_4']); ?></li>
+                    <?php endif; ?> 
+
+                </ul>
+            <?php endif; ?>
+			
+			<?php if ($operator['Operator']['description']) : ?>
 				<h2>Description</h2>
-				<?php echo "<p>".$operator['Operator']['description']."</p>"; ?>
-			<?php } ?>
+				<p><?php echo $operator['Operator']['description']; ?></p>
+			<?php endif; ?>
+			
+			<?php if (!empty($activities)) :?>
+			     <h2>Activities offered</h2>
+ 			     <ul class="activities">
+			     <?php foreach ($activities as $activity) : ?>
+    			     <li>
+         			     <p><?php echo $html->link($activity['Activity']['name'], array('controller'=>'activities','action'=>'view', $activity['Activity']['id'])); ?></p>
+     			     </li>
+				<?php //debug($activity); ?>
+
+			     <?php endforeach; ?>
+			     </ul>
+			<?php endif; ?>
 			
 			<div class="googleReviews">
 				<h2>Reviews</h2>
