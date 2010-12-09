@@ -108,7 +108,7 @@
 	</div> <!-- /profile -->
 			
     <?php //Display a sendRequest form if the operator has an email address 
-    if ($operator['Operator']['hasEmail'] == '1') :
+    if ($operator['Operator']['hasEmail'] == '1'  && $operator['Operator']['source'] == 'prospects') :
     ?>
     
         <div class="request">

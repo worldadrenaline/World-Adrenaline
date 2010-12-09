@@ -11,7 +11,7 @@
 	<div class="ads-banner">
 	<script type="text/javascript"><!--
 	google_ad_client = "pub-7251615936819381";
-	/* Adventicus Banner - 728x90 */
+	/* WA Banner - 728x90 */
 	google_ad_slot = "5057191971";
 	google_ad_width = 728;
 	google_ad_height = 90;
