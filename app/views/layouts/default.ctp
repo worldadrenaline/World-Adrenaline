@@ -65,10 +65,12 @@
 		<?php echo $this->element('layout/scripts'); ?>
 		<!-- /scripts -->
 
-		<div id="debug">
-			<?php debug($session->read()); ?>
-			<?php echo $cakeDebug; ?>	
-		</div> <!-- /debug -->
+		
+        <?php if (Configure::read('debug') > 0 ) : ?>
+        <div id="debug">
+            <?php debug($session->read()); ?>
+        </div> <!-- /debug -->
+        <?php endif; ?>
 
 	</body>
 </html>

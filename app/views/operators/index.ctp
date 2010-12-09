@@ -59,7 +59,7 @@
                         <div class="trusted"><?php echo "Trusted Operator"; ?></div>
                     <?php endif; ?>	
     			 
-    			     <?php if (isset($operator['Operator']['imageFile_1'])) : ?>
+    			     <?php if (isset($operator['Operator']['imageFile_1']) && !empty($operator['Operator']['imageFile_1'])) : ?>
     			         <div class="image"><?php echo $html->image($operator['Operator']['imageFile_1']); ?></div>
 			         <?php endif; ?>
     			 

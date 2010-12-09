@@ -6,7 +6,7 @@
     	<?php endif; ?>	
     
     
-        <?php if (isset($operator['Operator']['logoFile'])) : ?>
+        <?php if (isset($operator['Operator']['imageFile_1']) && !empty($operator['Operator']['imageFile_1'])) : ?>
             <div class="logo"><?php echo $html->image($operator['Operator']['logoFile']); ?></div>
         <?php endif; ?>
 	
