@@ -73,14 +73,13 @@ ALTER TABLE `activities` CHANGE COLUMN `activityType_id` `activityType_id` INT(1
 ALTER TABLE `activities` CHANGE COLUMN `id` `id` INT(11) NOT NULL DEFAULT 0  COMMENT ''  FIRST;
 
 
-
-
-
-
-
-
-
-
-
-
-
+-- Changing kumutu.local to kumutu.com for images in the database
+UPDATE operators SET logoFile = replace(logoFile, 'kumutu.local', 'kumutu.com');
+UPDATE operators SET imageFile_1 = replace(imageFile_1, 'kumutu.local', 'kumutu.com');
+UPDATE operators SET imageFile_2 = replace(imageFile_2, 'kumutu.local', 'kumutu.com');
+UPDATE operators SET imageFile_3 = replace(imageFile_3, 'kumutu.local', 'kumutu.com');
+UPDATE operators SET imageFile_4 = replace(imageFile_4, 'kumutu.local', 'kumutu.com');
+UPDATE activities SET imageFile_1 = replace(imageFile_1, 'kumutu.local', 'kumutu.com');
+UPDATE activities SET imageFile_2 = replace(imageFile_2, 'kumutu.local', 'kumutu.com');
+UPDATE activities SET imageFile_3 = replace(imageFile_3, 'kumutu.local', 'kumutu.com');
+UPDATE activities SET imageFile_4 = replace(imageFile_4, 'kumutu.local', 'kumutu.com');

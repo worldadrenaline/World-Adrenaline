@@ -1,4 +1,4 @@
-<?php if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'adventicus.local') === false)): //Hide for dev environments ?>
+<?php if (isset($_SERVER['HTTP_HOST']) && (strpos($_SERVER['HTTP_HOST'], 'worldadrenaline.local') === false)): //Hide for dev environments ?>
 <!-- Google Analytics -->
 <script type="text/javascript">
 	var gaJsHost = (("https:" == document.location.protocol) ? "https://ssl." : "http://www.");

@@ -77,7 +77,7 @@
 			<!-- Include the Google Friend Connect javascript library. -->
 			<script type="text/javascript" src="http://www.google.com/friendconnect/script/friendconnect.js"></script>
 			<!-- Define the div tag where the gadget will be inserted. -->
-			<div id="div-6020171846287259166" style="width:282px;border:0px solid #cccccc;"></div>
+			<div id="div-7057340042623842469" style="width:282px;border:0px solid #cccccc;"></div>
 			<!-- Render the gadget into a div. -->
 			<script type="text/javascript">
 			var skin = {};
@@ -97,8 +97,8 @@
 			skin['POSTS_PER_PAGE'] = '5';
 			google.friendconnect.container.setParentUrl('/' /* location of rpc_relay.html and canvas.html */);
 			google.friendconnect.container.renderReviewGadget(
-			 { id: 'div-6020171846287259166',
-			   site: '17783130226979614319',
+			 { id: 'div-7057340042623842469',
+			   site: '07966693734964759379',
 			   'view-params':{"disableMinMax":"false","scope":"ID","docId":"<?php echo $operator['Operator']['id']; ?>","startMaximized":"true"}
 			 },
 			  skin);

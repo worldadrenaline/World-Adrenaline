@@ -4,7 +4,7 @@
 		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
 		<title><?php echo $title_for_layout; ?> | World Adrenaline</title>
 		<meta name="Description" content="Adventure activity listings worldwide. Find an adventure activity globally and make a request." />
-		<meta name="Keywords" content="adventure, travel, adventure travel, extreme sports, extreme, adventure sport, adventure holiday, travel, sport, holidays, tour, adventicus" />
+		<meta name="Keywords" content="adventure, travel, adventure travel, extreme sports, extreme, adventure sport, adventure holiday, travel, sport, holidays, tour, worldadrenaline" />
 		<meta name="robots" content="index,follow" />
 
 		<?php 
@@ -32,7 +32,7 @@
                     <?php echo $html->image('logo.png'); ?>
                 </div>
                 <div id="intro">
-                    <p><strong><?php __('Without a doubt the world\'s largest directory of adventure sport operators'); ?></strong></p>
+                    <p><strong><?php __('The world\'s largest directory of adventure sport operators'); ?></strong></p>
                     <p>Listing over <?php echo $totalOperators; ?> adventure operators worldwide</p>
                 </div>
                 

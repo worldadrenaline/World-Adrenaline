@@ -7,7 +7,7 @@ class DATABASE_CONFIG {
 		'host' => 'localhost',
 		'login' => 'kumutu',
 		'password' => 'password',
-		'database' => 'adventicus',
+		'database' => 'worldadrenaline',
 		'encoding' => 'utf8'  
 	);
 }
