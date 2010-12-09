@@ -5,7 +5,7 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'root',
+		'login' => 'worldadrenaline',
 		'password' => 'Ku7r1beDB',
 		'database' => 'worldadrenaline',
 		'encoding' => 'utf8'  
