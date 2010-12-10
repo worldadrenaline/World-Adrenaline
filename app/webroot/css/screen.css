@@ -1017,6 +1017,10 @@ div.code-coverage-results span.result-good {
 #operatorList ul li.kumutu {
     background:none repeat scroll 0 0 #FFFFDD;
     border:1px solid #EEEECC;
+    /* Green background
+    background:none repeat scroll 0 0 #E2F9E3;
+    border:1px solid #99CC99;
+    */
     margin-bottom:10px;
     overflow:auto;
     padding:10px 5px;
