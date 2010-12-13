@@ -17,7 +17,7 @@ class OperatorsController extends AppController {
     	    'display',
     	    'mapSearch',
     	    'markers'
-	    ); 
+	    );
 	    
 	    $this->Recaptcha->publickey = "6Lf0LroSAAAAAMBdmwWULXCsPTNI-_bRRUlNQQX2";
 		$this->Recaptcha->privatekey = "6Lf0LroSAAAAABLmxIkUV8h5YTIgoAKGzU8hXvz1"; 
@@ -43,7 +43,7 @@ class OperatorsController extends AppController {
             
             if (!empty($this->data['Operator']['q']) && !empty($this->data['Operator']['field'])) {
                 $field = $this->data['Operator']['field'];
-                $conditions['Operator.'.$field.' LIKE'] = '%'.$this->data['Operator']['q'].'%';
+                $conditions['Operator.'.$field.' LIKE'] = '%'.Sanitize::paranoid($this->data['Operator']['q'], array(' ', '@')).'%';
             }
             if (!empty($this->data['Operator']['country'])) {
                 $conditions['Operator.country_id'] = $this->data['Operator']['country'];
