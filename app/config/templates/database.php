@@ -5,7 +5,7 @@ class DATABASE_CONFIG {
 		'driver' => 'mysql',
 		'persistent' => false,
 		'host' => 'localhost',
-		'login' => 'kumutu',
+		'login' => 'username',
 		'password' => 'password',
 		'database' => 'worldadrenaline',
 		'encoding' => 'utf8'  

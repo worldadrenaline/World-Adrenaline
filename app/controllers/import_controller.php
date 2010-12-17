@@ -20,7 +20,7 @@ class ImportController extends AppController {
 	
 	function updateActivities() {
  		App::import('Xml');
-		$methodUrl = 'http://api.kumutu.com/0.4/activityTypes/get.xml';
+		$methodUrl = Configure::read('activityTypesGetURL');
 		$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 
 		$parsed_xml = new Xml($uri);
@@ -37,7 +37,7 @@ class ImportController extends AppController {
  
 	function updateCountries() {
         App::import('Xml');
-        $methodUrl = 'http://api.kumutu.com/0.4/countries/get.xml';
+        $methodUrl = Configure::read('countriesGetURL');
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 
 		$parsed_xml = new Xml($uri);
@@ -53,7 +53,7 @@ class ImportController extends AppController {
  
 	function refreshOperators() {
         App::import('Xml');
-        $methodUrl = 'http://api.kumutu.com/0.4/prospects/get.xml';
+        $methodUrl = Configure::read('prospectsGetURL');
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 		
 		// Retrieve number of Prospects pages from from Kumutu
@@ -80,7 +80,7 @@ class ImportController extends AppController {
 	function updateOperators() {
 	
 		App::import('Xml');
-        $methodUrl = 'http://api.kumutu.com/0.4/prospects/get.xml';
+        $methodUrl = Configure::read('prospectsGetURL');
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey').'&modified=30';
 
 		$xmlObject = new Xml($uri);
@@ -111,8 +111,7 @@ class ImportController extends AppController {
 	function updateKumutuSuppliers() {
 
 		App::import('Xml');
-        //$methodUrl = 'http://api.kumutu.com/0.5/suppliers/get.xml';
-	 	$methodUrl = 'http://kumutu.local/0.5/suppliers/get.xml';
+	 	$methodUrl = Configure::read('suppliersGetURL');
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 
 		$xmlObject = new Xml($uri);
@@ -141,8 +140,7 @@ class ImportController extends AppController {
 	function updateKumutuActivities() {
 
 		App::import('Xml');
-        //$methodUrl = 'http://api.kumutu.com/0.5/activities/get.xml';
-	 	$methodUrl = 'http://kumutu.local/0.5/activities/get.xml';
+	 	$methodUrl = Configure::read('activitiesGetURL');
 	 	$uri = $methodUrl.'?apikey='.Configure::read('apikey');
 
 		$xmlObject = new Xml($uri);
