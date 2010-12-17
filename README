@@ -1,0 +1,18 @@
+World Adrenaline is a web application for importing, searching and selling adventure activities. Sort of a kayak.com but for adventure activities.
+
+The software is written in CakePHP and is designed to import feeds of adventure operators and adventure activities from various adventure activity distribution companies. These operators and activities are then searchable on the site and the customer should be able to purchase or click through to purchase one of the activities. 
+
+Install Instructions
+1. Copy core.php, bootstrap.php and database.php from app/config/templates to app/config
+2. Configure your database and update database.php with your details
+3. Obtain API keys for Google Maps and Kumutu.com (http://kumutu.com/api) and add these to bootstrap.php
+4. Configure bootstrap.php with global constants for the methods at api.kumutu.com that correspond to the import functions in app/controllers/import_controller.php
+5. Verify http://domain.com is working
+6. Run http://domain.com/users/buildAcl to build the permissions table
+7. Run the following URLs in your web browser to build the database by pulling data from the APIs
+- http://domain.com/import/updateCountries
+- http://domain.com/import/updateActivities
+- http://domain.com/import/updateOperators
+- http://domain.com/import/updateKumutuSuppliers
+- http://domain.com/import/updateKumutuActivities
+

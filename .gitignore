@@ -1,0 +1,4 @@
+app/config/bootstrap.php
+app/config/core.php
+app/config/database.php
+app/tmp
