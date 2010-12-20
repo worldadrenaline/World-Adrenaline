@@ -11,9 +11,10 @@ class ContactsController extends AppController {
             'add',
             'contact'
         );
-        
+       
 	    $this->Recaptcha->publickey = "6Lfqwb8SAAAAAFXVVDRwnAR5BZa5fa4tkaE_T40g";
 		$this->Recaptcha->privatekey = "6Lfqwb8SAAAAAKw0h6AYGMVTrvwLenny0BFbNITk"; 
+
     }
 
 

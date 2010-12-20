@@ -1,5 +1,5 @@
 <?php
-	Configure::write('debug', 2);
+	Configure::write('debug', 0);
 	Configure::write('App.encoding', 'UTF-8');
 	Configure::write('Routing.admin', 'admin');
 	define('LOG_ERROR', 2);

@@ -12,5 +12,6 @@
         //create the reCAPTCHA form.
         $recaptcha->display_form('echo');
 
-        echo $form->end('Send message'); ?>
+        echo $form->end('Send message'); 
+    ?>
 </div>
