@@ -1912,3 +1912,5 @@ Bridlington is one of the oldest established ' at line 1</span> in [CORE/cake/li
 2010-12-08 01:31:39 Warning: Warning (512): <span style = "color:Red;text-align:left"><b>SQL Error:</b> 1054: Unknown column 'Array' in 'where clause'</span> in [CORE/cake/libs/model/datasources/dbo_source.php, line 527]
 2010-12-08 14:16:25 Warning: Warning (2): Invalid argument supplied for foreach() in [APP/views/pages/home.ctp, line 29]
 2010-12-08 14:16:25 Warning: Warning (2): Invalid argument supplied for foreach() in [APP/views/pages/home.ctp, line 42]
+2010-12-20 11:52:37 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/ryanoff/Sites/worldadrenaline/app/views/helpers/recaptcha.php:128) in [CORE/cake/libs/controller/controller.php, line 647]
+2010-12-20 11:56:15 Warning: Warning (2): Cannot modify header information - headers already sent by (output started at /Users/ryanoff/Sites/worldadrenaline/app/views/helpers/recaptcha.php:128) in [CORE/cake/libs/controller/controller.php, line 647]

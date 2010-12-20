@@ -1,8 +1,8 @@
 <?php
 class ContactsController extends AppController {
 	var $name = 'Contacts';
-	var $helpers = array('Html', 'Form', 'Text', 'Number');
-	var $components = array('Auth', 'Acl', 'RequestHandler', 'Mailer');
+	var $helpers = array('Html', 'Form', 'Text', 'Number', 'Javascript');
+	var $components = array('Auth', 'Acl', 'RequestHandler', 'Mailer', 'Recaptcha');
 
     function beforeFilter() {
     
@@ -11,6 +11,9 @@ class ContactsController extends AppController {
             'add',
             'contact'
         );
+        
+	    $this->Recaptcha->publickey = "6Lfqwb8SAAAAAFXVVDRwnAR5BZa5fa4tkaE_T40g";
+		$this->Recaptcha->privatekey = "6Lfqwb8SAAAAAKw0h6AYGMVTrvwLenny0BFbNITk"; 
     }
 
 
@@ -19,30 +22,34 @@ class ContactsController extends AppController {
             $this->Contact->set($this->data);
             if ($this->Contact->validates()) {
                 
-                $name       = $this->data['Contact']['name'];
-                $email      = $this->data['Contact']['email'];
-                $subject    = $this->data['Contact']['subject'];
-                $message    = $this->data['Contact']['message'];
-                
-                $this->Mailer->to = Configure::read('Email.support');
-                $this->Mailer->subject = "WorldAdrenaline Contact Form: ".$subject;
-                $this->Mailer->template = 'contact';
-                $this->Mailer->layout = 'default';
-                $this->Mailer->sendAs = 'text';
-                $this->Mailer->replyTo = $email;
+                if($this->Recaptcha->valid($this->params['form'])) {
 
-                $this->set(compact('name', 'email', 'subject', 'message'));
-                //return $this->Mailer->send();
+                    $name       = $this->data['Contact']['name'];
+                    $email      = $this->data['Contact']['email'];
+                    $subject    = $this->data['Contact']['subject'];
+                    $message    = $this->data['Contact']['message'];
+                    
+                    $this->Mailer->to = Configure::read('Email.support');
+                    $this->Mailer->subject = "WorldAdrenaline Contact Form: ".$subject;
+                    $this->Mailer->template = 'contact';
+                    $this->Mailer->layout = 'default';
+                    $this->Mailer->sendAs = 'text';
+                    $this->Mailer->replyTo = $email;
+    
+                    $this->set(compact('name', 'email', 'subject', 'message'));
+                    //return $this->Mailer->send();
+                    
+                    if (!$this->Mailer->send()) {
+                        $this->Session->setFlash(__('Oops! There was a problem sending your message. We would love to know about this problem, please e-mail support@worldadrenaline.com and tell us what error you received.', true));
+                    }
+                    else {
+                        $this->Session->setFlash(__('We have received your message. We will respond to your enquiry as soon as we can.', true));
+                        $this->redirect('/');
+                    }
+                } else {
                 
-                if (!$this->Mailer->send()) {
-                    $this->Session->setFlash(__('Oops! There was a problem sending your message. We would love to know about this problem, please e-mail support@worldadrenaline.com and tell us what error you received.', true));
-                }
-                else {
-                    $this->Session->setFlash(__('We have received your message. We will respond to your enquiry as soon as we can.', true));
-                    $this->redirect('/');
-                }
-                
-
+                    $this->Session->setFlash(__('The captcha was entered incorrectly. Please try agian.', true));
+                } 
             }
             else {
                 $this->Session->setFlash(__('Please correct the errors on the form below and try again.', true));

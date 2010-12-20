@@ -1084,3 +1084,5 @@
 2010-12-08 16:50:04 Notice: Notice (8): Undefined offset:  2 in [APP/models/import.php, line 139]
 2010-12-08 16:50:05 Notice: Notice (8): Undefined offset:  0 in [APP/models/import.php, line 139]
 2010-12-09 17:08:15 Notice: Notice (8): Uninitialized string offset: 0 in [CORE/cake/libs/view/helpers/html.php, line 442]
+2010-12-20 11:58:50 Notice: Notice (8): Undefined variable: totalOperators in [APP/views/layouts/default.ctp, line 36]
+2010-12-20 11:59:19 Notice: Notice (8): Undefined variable: totalOperators in [APP/views/layouts/default.ctp, line 36]

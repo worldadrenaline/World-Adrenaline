@@ -19,8 +19,8 @@ class OperatorsController extends AppController {
     	    'markers'
 	    );
 	    
-	    $this->Recaptcha->publickey = "6Lf0LroSAAAAAMBdmwWULXCsPTNI-_bRRUlNQQX2";
-		$this->Recaptcha->privatekey = "6Lf0LroSAAAAABLmxIkUV8h5YTIgoAKGzU8hXvz1"; 
+	    $this->Recaptcha->publickey = "6Lfqwb8SAAAAAFXVVDRwnAR5BZa5fa4tkaE_T40g";
+		$this->Recaptcha->privatekey = "6Lfqwb8SAAAAAKw0h6AYGMVTrvwLenny0BFbNITk"; 
 	}
 	
 
@@ -118,7 +118,7 @@ class OperatorsController extends AppController {
 
 	}
 
-	function admin_index () {
+	function admin_index() {
 		$this->Operator->recursive = 0;
 		$this->set('operators', $this->paginate());
 	}

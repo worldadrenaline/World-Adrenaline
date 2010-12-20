@@ -8,7 +8,9 @@
         echo $form->input('email', array('label'=>'Email address'));
         echo $form->input('subject', array('label'=>'Summarize your question/problem in one sentence'));
         echo $form->input('message', array('type'=>'textarea', 'label'=>'Tell us all about it, please be as descriptive as possible'));
-        echo $form->end('Send message');
-    ?>
-    
+
+        //create the reCAPTCHA form.
+        $recaptcha->display_form('echo');
+
+        echo $form->end('Send message'); ?>
 </div>
