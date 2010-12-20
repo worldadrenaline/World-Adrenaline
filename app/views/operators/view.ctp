@@ -126,7 +126,7 @@
             echo $form->input('message', array('label'=>'Additional Information <span>*</span>', 'type' => 'textarea', 'cols'=>'65'));
             echo '<div class="weak">Do you have any additional requirements or comments?</div>';
             echo $form->input('isTerm', array('label'=>'I agree with the <a href=/termsofuse>Terms of Use</a> <span>*</span>', 'type' => 'checkbox'));
-            echo $form->input('subject', array('type'=>'hidden', 'value'=>'Information request from Adventicus.com'));
+            echo $form->input('subject', array('type'=>'hidden', 'value'=>'Information request from WorldAdrenaline.com'));
             echo $form->input('operator_id', array('type'=>'hidden', 'value'=>$operator['Operator']['id']));
             echo $form->input('operatorName', array('type'=>'hidden', 'value'=>$operator['Operator']['name']));
             
