@@ -32,13 +32,10 @@ Configure::write('apikey', '10132293094ba6bd772192f4.29432906');
 /**
  * Affiliate Methods
  */
-Configure::write('prospectsGetURL', 'http://api.kumutu.com/0.4/prospects/get.xml');
- 
-//Configure::write('suppliersGetURL', 'http://kumutu.com/0.5/suppliers/get.xml');
-Configure::write('suppliersGetURL', 'http://kumutu.local/0.5/suppliers/get.xml');
-Configure::write('activitiesGetURL', 'http://kumutu.local/0.5/activities/get.xml');
-
-Configure::write('activityTypesGetURL', 'http://api.kumutu.com/0.4/activityTypes/get.xml');
-Configure::write('countriesGetURL', 'http://api.kumutu.com/0.4/countries/get.xml');
+Configure::write('prospectsGetURL', 'http://api.kumutu.com/0.5/prospects/get.xml');
+Configure::write('suppliersGetURL', 'http://api.kumutu.com/0.5/suppliers/get.xml');
+Configure::write('activitiesGetURL', 'http://api.kumutu.com/0.5/activities/get.xml');
+Configure::write('activityTypesGetURL', 'http://api.kumutu.com/0.5/activityTypes/get.xml');
+Configure::write('countriesGetURL', 'http://api.kumutu.com/0.5/countries/get.xml');
   
 ?>
