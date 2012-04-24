@@ -159,18 +159,17 @@
 	<li>CONTACT
 		<p>If you have any questions, please contact us at</p>
 		<address>
-			Kumutu Ltd<br />
-			14 Hale House<br />
-			27 Lindsay Square<br />
-			London SW1V 2HS<br />
-			United Kingdom<br />
+			Kumutu Inc<br />
+			400 West Ventura Blvd<br />
+			Camarillo, CA 93010<br />
+			United States<br />
 		</address>
 		<p>or use our contact form.</p>
 	</li>
 
 </ol>
 
-<p>Last updated on 26 May 2010.</p>
+<p>Last updated on 24 April 2012.</p>
 
 </div>
 
