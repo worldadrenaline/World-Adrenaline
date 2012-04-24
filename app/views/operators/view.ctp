@@ -14,9 +14,9 @@
         	<h1><?php echo $operator['Operator']['name']; ?></h1>
 
     		<div class="location">
-    			<p><?php if ($operator['Operator']['phone']) { echo $operator['Operator']['phone']; } ?></p>
     			<p><?php if ($operator['Operator']['city']) { echo $operator['Operator']['city'].","; } ?><?php if ($operator['Operator']['stateProvince']) { echo $operator['Operator']['stateProvince']; } ?></p>
     			<p><?php if ($operator['Operator']['countryISO']) { echo $operator['Country']['name']; } ?></p>
+    			<p><?php if ($operator['Operator']['phone']) { echo $operator['Operator']['phone']; } ?></p>
     		</div>
         </div>
     </div>
