@@ -5,7 +5,7 @@
 </div>
 
 <div class="operatorSignup" onclick="window.location='http://kumutu.com/work-with-us';" onmouseover="this.style.cursor='pointer';">
-    <h3>Operators Signup</h3>
+    <h3>Providers Signup</h3>
     <p>Interested in being part of World Adrenaline?  Join kumutu.com to expose your activities to thousands of potential customers every day.</p>
 </div>
 

@@ -3,11 +3,11 @@
 	
 	<div id="welcome">
         <h1><?php __('Book your next adventure activity');?></h1>
-        <p><?php __('At World Adrenaline you will find the largest selection of over '); echo $totalOperators; __(' adventure activities from the four corners of the globe. Come face-to-face with the forces of nature and have a new, exhilarating experience. Escape from real life and find yourself in your next adventure. Your next big challenge is just a click away.'); ?></p> 
+        <p><?php __('At World Adrenaline you will find the largest selection of over '); echo $totalOperators; __(' adventure providers from the four corners of the globe. Come face-to-face with the forces of nature and have a new, exhilarating experience. Escape from real life and find yourself in your next adventure. Your next big challenge is just a click away.'); ?></p> 
 	</div>
 
     <div class="filter">
-        <h4 class="weak">Find an adventure operator</h4>
+        <h4 class="weak">Find an adventure provider</h4>
         <?php
             echo $form->create(null, array('url' => array('controller' => 'operators', 'action' => 'index')));
             echo $form->input('field', array('type'=>'select', 'options'=>array(
@@ -37,7 +37,7 @@
     </div>
     
     <div id="operatorList" class="featuredOperators">
-        <h2>Featured operators</h2>
+        <h2>Featured providers</h2>
         <ul>
             <?php foreach ($featuredOperators as $operator): ?>
     			 <li class="<?php echo $operator['Operator']['source']; ?>">

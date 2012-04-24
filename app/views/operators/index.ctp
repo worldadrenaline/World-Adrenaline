@@ -87,7 +87,7 @@
     	</div> 
     <?php 
     } else {
-    	echo '<div class="notice">Currently, we do not have any operators that fit this criteria. Check back soon as the list grows daily.</div>';
+    	echo '<div class="notice">Currently, we do not have any adventure providers that fit this criteria. Check back soon as the list grows daily.</div>';
     }
     ?>
 

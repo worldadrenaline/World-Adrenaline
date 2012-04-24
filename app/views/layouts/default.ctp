@@ -32,8 +32,8 @@
                     <?php echo $html->image('logo.png'); ?>
                 </div>
                 <div id="intro">
-                    <p><strong><?php __('The world\'s largest directory of adventure sport operators'); ?></strong></p>
-                    <p>Listing over <?php echo $totalOperators; ?> adventure operators worldwide</p>
+                    <p><strong><?php __('The world\'s largest directory of adventure activity provider'); ?></strong></p>
+                    <p>Listing over <?php echo $totalOperators; ?> adventure providers worldwide</p>
                 </div>
                 
 			</div> <!-- /header -->

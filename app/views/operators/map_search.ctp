@@ -24,7 +24,7 @@
 <div id="searchMap">
     <div id="title">
         <h1 class="grunge">Search by map</h1> 
-        <p class="weak">Find adventure operators worldwide</p>
+        <p class="weak">Find adventure providers worldwide</p>
     </div>
     <div id="legend">
         <span class="air"><?php __('Air'); ?></span>

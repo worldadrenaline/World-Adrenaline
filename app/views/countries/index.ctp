@@ -1,5 +1,5 @@
 <div class="countries index">
-	<h2>Choose a country for adventure operators</h2>
+	<h2>Choose a country for adventure providers</h2>
 	<ul class="countryList">
 		<?php $i = 1; ?>
 		<?php foreach ($countries as $country):?>

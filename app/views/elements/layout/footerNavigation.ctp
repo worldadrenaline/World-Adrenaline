@@ -3,7 +3,7 @@
 	<ul>
 		<li>&copy; World Adrenaline <?php echo date('Y'); ?></li>
 		<li class="first"><?php echo $html->link(__('About', true), '/about'); ?></li>
-		<li><?php echo $html->link(__('Activity Operators', true), 'http://kumutu.com/partners'); ?></li>
+		<li><?php echo $html->link(__('Activity Providers', true), 'http://kumutu.com/partners'); ?></li>
 		<li><?php echo $html->link(__('Partners', true), 'http://kumutu.com/partners'); ?></li>
 		<li><?php echo $html->link(__('Privacy Policy', true), '/privacy'); ?></li>
 		<li><?php echo $html->link(__('Contact', true), '/contact'); ?></li>
